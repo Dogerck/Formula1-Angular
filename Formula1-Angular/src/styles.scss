@@ -1,1 +1,25 @@
-/* You can add global styles to this file, and also import other style files */
+@font-face {
+    font-family: F1Regular;
+    src: url(./assets/fonts/Formula1-Regular_web_0.ttf);
+    font-display: swap;
+}
+@font-face {
+    font-family: F1Bold;
+    src: url(./assets/fonts/Formula1-Bold_web_0.ttf);
+    font-display: swap;
+}
+@font-face {
+    font-family: F1Wide;
+    src: url(./assets/fonts/Formula1-Wide_web_0.ttf);
+    font-display: swap;
+}
+* {
+    box-sizing: border-box;
+}
+
+html, body { height: 100%; box-sizing: border-box;}
+
+body {
+    margin: 0;
+    font-family:F1Regular, Roboto, "Helvetica Neue", sans-serif;
+}
