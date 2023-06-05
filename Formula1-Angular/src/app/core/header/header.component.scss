@@ -1,1 +1,15 @@
-@import url(../../scss/global.scss);
+// @import url(../../scss/global.scss);
+
+.header {
+    background-color: #e10600;
+    height: 100px;
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 10px;
+
+    img {
+        height: 50%;
+    }
+}
