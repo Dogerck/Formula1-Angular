@@ -8,30 +8,30 @@
 // have to load a single css file for Angular Material in your app.
 // Be sure that you only ever include this mixin once!
 @include mat.core();
-
+@import './app/scss/colors';
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
-$Formula1-Angular-primary: mat.define-palette(mat.$indigo-palette);
-$Formula1-Angular-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+$color-primary: mat.define-palette($primary-palette, A300);
+$color-accent: mat.define-palette($accent-palette, A300);
 
 // The warn palette is optional (defaults to red).
-$Formula1-Angular-warn: mat.define-palette(mat.$red-palette);
+$color-warn: mat.define-palette($warn-palette, A300);
 
 // Create the theme object. A theme consists of configurations for individual
 // theming systems such as "color" or "typography".
-$Formula1-Angular-theme: mat.define-light-theme((
+$color-theme: mat.define-light-theme((
   color: (
-    primary: $Formula1-Angular-primary,
-    accent: $Formula1-Angular-accent,
-    warn: $Formula1-Angular-warn,
+    primary: $color-primary,
+    accent: $color-accent,
+    warn: $color-warn,
   )
 ));
 
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component
 // that you are using.
-@include mat.all-component-themes($Formula1-Angular-theme);
+@include mat.all-component-themes($color-theme);
 
 @font-face {
     font-family: F1Regular;
