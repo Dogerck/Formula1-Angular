@@ -1,7 +1,7 @@
 // @import url(../../scss/global.scss);
 
 .header {
-    background-color: grey;
+    background-color: #e10600;
     height: 100px;
     width: 100%;
     display: flex;
@@ -12,4 +12,10 @@
     img {
         height: 50%;
     }
+
+    ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+      }
 }
