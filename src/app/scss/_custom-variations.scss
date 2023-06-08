@@ -1,0 +1,39 @@
+$minmobile: "(max-width: 300px)"; 
+$xsmobile: "(max-width: 399px)"; 
+$xmobile: "(max-width: 500px)"; 
+$smobile: "(max-width: 576px)"; 
+$mobile: "(max-width: 767px)"; 
+
+$xtablet: "(max-width: 992px)";
+$tablet: "(max-width: 1200px)";
+
+$iphone4: "(max-height: 530px)"; 
+$iphone5: "(max-width: 350px)";
+$iphoneX: "(min-height: 800px)";
+
+.c-container{
+    margin: 0 auto;
+        
+    padding: 0 15px;
+
+    @media (min-width: 576px) {
+        max-width: 600px;
+    }     
+
+    @media (min-width: 768px) {
+        max-width: 720px;
+    }
+
+    @media (min-width: 992px) {
+        max-width: 960px;
+    } 
+
+    @media (min-width: 1200px) {
+        max-width: 1140px;
+    }
+}
+
+@mixin flexCenter {
+    display: flex;
+    align-items: center;
+}

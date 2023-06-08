@@ -1,8 +1,8 @@
-// @import url(../../scss/global.scss);
+@import "../../scss/custom-variations";
 
 .header {
     background-color: #e10600;
-    height: 100px;
+    height: 65px;
     width: 100%;
     display: flex;
     justify-content: flex-start;
@@ -10,12 +10,30 @@
     padding: 10px;
 
     img {
-        height: 50%;
+        height: 70%;
     }
 
-    ul {
-        list-style-type: none;
-        margin: 0;
-        padding: 0;
-      }
+    .menu-icon{
+        color: white;
+        display: none;
+    }
 }
+
+@media screen and (max-width: 768px) {
+
+    .header { 
+        justify-content: center;
+
+        .menu-icon{
+            color: white;
+            display: inherit;
+        }
+        img {
+            flex: 1 1 auto;
+        }
+        .spacer {
+            width: 48px;
+        }
+    }
+}
+
