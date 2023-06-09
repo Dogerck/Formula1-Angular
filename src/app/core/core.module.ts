@@ -20,7 +20,7 @@ import { RouterModule } from '@angular/router';
     MatButtonModule,
     MatToolbarModule,
     MatSidenavModule,
-    RouterModule
+    RouterModule,
   ],
   exports: [
     FooterComponent,

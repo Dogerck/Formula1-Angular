@@ -6,14 +6,14 @@ import { StandingsComponent } from './components/standings/standings.component';
 
 @NgModule({
   declarations: [
-    StandingsComponent
+    StandingsComponent,
   ],
   imports: [
     CommonModule,
     HomeRoutingModule
   ],
   exports: [
-    StandingsComponent
+    StandingsComponent,
   ]
 })
 export class HomeModule { }

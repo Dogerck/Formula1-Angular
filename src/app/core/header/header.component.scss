@@ -28,6 +28,9 @@
         align-items: center;
         margin: 0;
         
+       a {
+        text-decoration: none;
+        color: white;
         li {
             cursor: pointer;
             height: 100%;
@@ -46,6 +49,7 @@
                 transition: all 0.3s ease-in-out;
             }
         }
+       }
     }
 }
 

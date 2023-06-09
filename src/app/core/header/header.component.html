@@ -2,13 +2,13 @@
     <button mat-icon-button class="menu-icon" (click)="opened=!opened" aria-label="menu icon">
         <mat-icon>menu</mat-icon>
     </button>
-    <img class="logo-img" src="../../../assets/img/icons/f1_logo.svg" alt="">
+    <img routerLink="home" class="logo-img" src="../../../assets/img/icons/f1_logo.svg" alt="F1 logo">
     <ul class="lista-desktop">
-        <li><span>Latest</span></li>
-        <li><span>Schedule</span></li>
-        <li><span>Results</span></li>
-        <li><span>Drivers</span></li>
-        <li><span>Teams</span></li>
+        <a routerLink="latest"><li><span>Latest</span></li></a>
+        <a href=""><li><span>Schedule</span></li></a>
+        <a href=""><li><span>Results</span></li></a>
+        <a href=""><li><span>Drivers</span></li></a>
+        <a href=""><li><span>Teams</span></li></a>
     </ul>
     <span class="spacer"></span>
 </mat-toolbar>
