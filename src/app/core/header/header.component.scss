@@ -5,17 +5,47 @@
     height: 65px;
     width: 100%;
     display: flex;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
-    padding: 10px;
+    // padding: 10px;
 
     img {
-        height: 70%;
+        height: 45%;
+        cursor: pointer;
     }
 
     .menu-icon{
         color: white;
         display: none;
+    }
+    ul{
+        list-style:none;
+        flex-direction: row;
+        display: flex;
+        color: white;
+        font-size: 14px;
+        height: 100%;
+        align-items: center;
+        margin: 0;
+        
+        li {
+            cursor: pointer;
+            height: 100%;
+            margin: 0 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            span {
+                margin: 0 5px;
+            }
+
+            &:hover {
+                background-color: #15151e;
+                height: 100%;
+                transition: all 0.3s ease-in-out;
+            }
+        }
     }
 }
 

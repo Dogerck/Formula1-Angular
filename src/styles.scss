@@ -47,6 +47,7 @@ $Formula1-Angular-theme: mat.define-light-theme((
 }
 * {
     box-sizing: border-box;
+    font-family: F1Regular, Roboto, "Helvetica Neue", sans-serif; 
 }
 
 html, body { height: 100%; box-sizing: border-box;}
@@ -57,4 +58,8 @@ body {
 }
 
 html, body { height: 100%; }
-body { margin: 0; font-family: F1Regular, Roboto, "Helvetica Neue", sans-serif; }
+body { 
+    margin: 0; 
+    font-family: F1Regular, Roboto, "Helvetica Neue", sans-serif; 
+    font-size: 16px
+}
