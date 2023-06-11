@@ -31,6 +31,7 @@
        a {
         text-decoration: none;
         color: white;
+        height: 100%;
         li {
             cursor: pointer;
             height: 100%;
@@ -55,10 +56,10 @@
 
 mat-sidenav-container {
     height: calc(205vh - 115vh);
-    // display: none;
     mat-sidenav {
-        width: 200px;
-        background-color: #15151e;
+        width: 100%;
+        height: fit-content;
+        background-color: #e10600;
         .lista-mobile {
             color: white;
             list-style: none;
