@@ -58,7 +58,7 @@ mat-sidenav-container {
     height: calc(205vh - 115vh);
     mat-sidenav {
         width: 100%;
-        height: fit-content;
+        height: 270px;
         background-color: #e10600;
         .lista-mobile {
             color: white;
@@ -83,14 +83,32 @@ mat-sidenav-container {
         .lista-desktop{
             display: none;
         }
-
-        
         .spacer {
             width: 48px;
         }
     }
     mat-sidenav-container {
         display: flex;
+    }
+    .lista-mobile {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        a {
+            background-color: #e10600;
+            height: 30px;
+            width: 90%;
+            text-decoration: none;
+            color: white;
+            border-bottom-right-radius: 10px;
+            border-bottom: 1px solid white;
+            border-right: 1px solid white;
+            margin: 0 0 20px 0;
+        }
+        a:first-child {
+            margin-top: 10px;
+        }
     }
 }
 

@@ -1,6 +1,7 @@
 <mat-toolbar class="header">
     <button mat-icon-button class="menu-icon" (click)="opened=!opened" aria-label="menu icon">
-        <mat-icon>menu</mat-icon>
+        <mat-icon *ngIf="opened">close</mat-icon>
+        <mat-icon *ngIf="!opened">menu</mat-icon>
     </button>
     <img routerLink="home" class="logo-img" src="../../../assets/img/icons/f1_logo.svg" alt="F1 logo">
     <ul class="lista-desktop">
@@ -13,14 +14,14 @@
     <span class="spacer"></span>
 </mat-toolbar>
 <mat-sidenav-container>
-    <mat-sidenav [(opened)]="opened" mode="over">
-        <ul class="lista-mobile">
-            <li><span>Latest</span></li>
-            <li><span>Schedule</span></li>
-            <li><span>Results</span></li>
-            <li><span>Drivers</span></li>
-            <li><span>Teams</span></li>
-        </ul>
+    <mat-sidenav class="sidenav" [(opened)]="opened" mode="over">
+        <div class="lista-mobile">
+            <a routerLink="latest"><span>Latest</span></a>
+            <a routerLink="scheddive"><span>Schedule</span></a>
+            <a routerLink="results"><span>Results</span></a>
+            <a routerLink="drivers"><span>Drivers</span></a>
+            <a routerLink="teams"><span>Teams</span></a>
+        </div>
     </mat-sidenav>
     <mat-sidenav-content>
         <router-outlet></router-outlet>
