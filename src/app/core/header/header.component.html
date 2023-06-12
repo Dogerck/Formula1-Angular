@@ -1,10 +1,10 @@
 <mat-toolbar class="header">
     <button mat-icon-button class="menu-icon" (click)="opened=!opened" aria-label="menu icon">
-        <mat-icon *ngIf="opened">close</mat-icon>
-        <mat-icon *ngIf="!opened">menu</mat-icon>
+        <mat-icon>{{opened ? 'close' : 'menu'}}</mat-icon>
     </button>
     <img routerLink="home" class="logo-img" src="../../../assets/img/icons/f1_logo.svg" alt="F1 logo">
     <ul class="lista-desktop">
+        <a routerLink="home"><li><span>Home</span></li></a>
         <a routerLink="latest"><li><span>Latest</span></li></a>
         <a routerLink="schedule"><li><span>Schedule</span></li></a>
         <a routerLink="results"><li><span>Results</span></li></a>
@@ -14,13 +14,14 @@
     <span class="spacer"></span>
 </mat-toolbar>
 <mat-sidenav-container>
-    <mat-sidenav class="sidenav" [(opened)]="opened" mode="over">
+    <mat-sidenav class="sidenav" [(opened)]="opened" mode="push">
         <div class="lista-mobile">
-            <a routerLink="latest"><span>Latest</span></a>
-            <a routerLink="scheddive"><span>Schedule</span></a>
-            <a routerLink="results"><span>Results</span></a>
-            <a routerLink="drivers"><span>Drivers</span></a>
-            <a routerLink="teams"><span>Teams</span></a>
+            <a routerLink="home" (click)="opened = false"><span>Home</span></a>
+            <a routerLink="latest" (click)="opened = false"><span>Latest</span></a>
+            <a routerLink="schedule"(click)="opened = false"><span>Schedule</span></a>
+            <a routerLink="results"(click)="opened = false"><span>Results</span></a>
+            <a routerLink="drivers"(click)="opened = false"><span>Drivers</span></a>
+            <a routerLink="teams"(click)="opened = false"><span>Teams</span></a>
         </div>
     </mat-sidenav>
     <mat-sidenav-content>

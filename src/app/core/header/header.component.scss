@@ -56,9 +56,9 @@
 
 mat-sidenav-container {
     height: calc(205vh - 115vh);
-    mat-sidenav {
+    .sidenav {
         width: 100%;
-        height: 270px;
+        height: 310px;
         background-color: #e10600;
         .lista-mobile {
             color: white;
