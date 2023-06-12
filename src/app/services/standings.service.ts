@@ -7,8 +7,10 @@ import { BaseService } from './base.service';
   providedIn: 'root'
 })
 
-export class CardService extends BaseService {
+export class StandingsService extends BaseService {
+
 constructor(http: HttpClient) { super(http) }
+
   getAll<Standings>(url: string) : Observable<Standings> {
     return this.getData<Standings>(`${url}`);
   }

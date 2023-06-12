@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { StandingsService } from 'src/app/services/standings.service';
 
 @Component({
   selector: 'app-standings',
@@ -6,5 +7,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./standings.component.scss']
 })
 export class StandingsComponent {
+
+  getAll() {
+    
+  }
 
 }

@@ -11,6 +11,12 @@ $iphone4: "(max-height: 530px)";
 $iphone5: "(max-width: 350px)";
 $iphoneX: "(min-height: 800px)";
 
+@mixin flexCenter {
+    display: flex;
+    align-items: center;
+    justify-content: end;
+}
+
 .c-container{
     margin: 0 auto;
         
@@ -33,7 +39,3 @@ $iphoneX: "(min-height: 800px)";
     }
 }
 
-@mixin flexCenter {
-    display: flex;
-    align-items: center;
-}
