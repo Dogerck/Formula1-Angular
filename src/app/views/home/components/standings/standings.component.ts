@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { StandingsService } from 'src/app/services/standings.service';
+import { Component, Input } from '@angular/core';
+import { Standings } from 'src/app/models/standings';
 
 @Component({
   selector: 'app-standings',
@@ -8,8 +8,5 @@ import { StandingsService } from 'src/app/services/standings.service';
 })
 export class StandingsComponent {
 
-  getAll() {
-    
-  }
-
+  @Input() standings: Standings | undefined
 }
