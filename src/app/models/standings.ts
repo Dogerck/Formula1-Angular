@@ -15,7 +15,7 @@ export interface StandingsLists {
     driverStandings: DriverStandings []
 }
 export interface DriverStandings {
-    pistion: string,
+    position: string,
     positionText: string,
     points: string,
     wins: string,
