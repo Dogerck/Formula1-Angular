@@ -1,8 +1,8 @@
 .footer {
     width: 100%;
     height: 70px;
-    background-color: #15151e;
-    color: #fff;
+    background-color: var(--f1-accent);
+    color: white;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -10,7 +10,7 @@
 
     p {
         a {
-            color: #e10600;
+            color: var(--f1-primary);
             text-decoration: none;
         }
     }

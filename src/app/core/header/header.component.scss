@@ -1,7 +1,7 @@
 @import '../../scss/global.scss';
 
 .header {
-    background-color: #e10600;
+    background-color: var(--f1-primary);
     height: 65px;
     width: 100%;
     display: flex;
@@ -59,7 +59,7 @@ mat-sidenav-container {
     height: calc(205vh - 121vh);
     .sidenav {
         width: 100%;
-        background-color: #e10600;
+        background-color: var(--f1-primary);
         .lista-mobile {
             color: white;
             list-style: none;
@@ -96,7 +96,7 @@ mat-sidenav-container {
         justify-content: center;
         align-items: center;
         a {
-            background-color: #e10600;
+            background-color: var(--f1-primary);
             height: 30px;
             width: 90%;
             text-decoration: none;

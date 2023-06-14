@@ -1,61 +1,72 @@
-@function map-deep-get($map, $keys...) {
-    @each $key in $keys {
-        $map: map-get($map, $key);
-    }
-
-    @return $map;
-}
-
-$primary-palette: (
-    A300:#e10600,
-    A400:#da433e,
-    A500:#d6342e,
-   contrast: (
-     A300: white,
-   )
+/* For use in src/lib/core/theming/_palette.scss */
+$f1-primary-pallete: (
+    50 : #fbe1e0,
+    100 : #f6b4b3,
+    200 : #f08380,
+    300 : #ea514d,
+    400 : #e62b26,
+    500 : #e10600,
+    600 : #dd0500,
+    700 : #d90400,
+    800 : #d50300,
+    900 : #cd0200,
+    A100 : #fff5f5,
+    A200 : #ffc2c2,
+    A400 : #ff8f8f,
+    A700 : #ff7575,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #ffffff,
+        400 : #ffffff,
+        500 : #ffffff,
+        600 : #ffffff,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
 );
 
-$accent-palette: (
- A100: #15151e,
- contrast: (
-   A300: white,
- )
+/* For use in src/lib/core/theming/_palette.scss */
+$f1-accent-pallete: (
+    50 : #e3e3e4,
+    100 : #b9b9bc,
+    200 : #8a8a8f,
+    300 : #5b5b62,
+    400 : #383840,
+    500 : #15151e,
+    600 : #12121a,
+    700 : #0f0f16,
+    800 : #0c0c12,
+    900 : #06060a,
+    A100 : #5050ff,
+    A200 : #1d1dff,
+    A400 : #0000e9,
+    A700 : #0000d0,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #ffffff,
+        400 : #ffffff,
+        500 : #ffffff,
+        600 : #ffffff,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #ffffff,
+        A200 : #ffffff,
+        A400 : #ffffff,
+        A700 : #ffffff,
+    )
 );
 
-$warn-palette: (
- A100:#ff7e8c,
- A200: #e84a5f,
- A300: #b00136,
- contrast: (
-   A100: map-get($map: $primary-palette, $key: A200),
-   A200: white,
-   A300: white,
- )
-);
+$f1-primary: #e10600;
+$f1-accent: #15151e;
 
-$gray: #ececec;
-$highlight: #FBED17;
-$info-light: #c7f1ff;
-$info: #0a5975;
-$atention-light: #fffedf;
-$atention: #b8a04e;
-$danger-light: #ffe1e1;
-$danger: #b74f4f;
-$white: #fff;
-$gray: rgb(85 85 85);
-$alert: rgb(231 238 247);
 
-$primary: map-get($map: $primary-palette, $key: A300);
-$primary-light: map-get($map: $primary-palette, $key: A400);
-$primary-contrast: map-deep-get($primary-palette, contrast, A300);
-
-$accent-light: map-get($map: $accent-palette, $key: A100);
-$accent-midle: map-get($map: $accent-palette, $key: A200);
-$accent: map-get($map: $accent-palette, $key: A300);
-$accent-dark: map-get($map: $accent-palette, $key: A400);
-$accent-contrast: map-deep-get($accent-palette, contrast, A300);
-
-$warn: map-get($map: $warn-palette, $key: A300);
-$warn-contrast: map-deep-get($warn-palette, contrast, A300);
-
-$gradient-primary: linear-gradient(45deg, $accent 0%, $primary 100%);
