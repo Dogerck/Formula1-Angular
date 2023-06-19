@@ -1,26 +1,35 @@
 export interface Standings {
-    MRData: {
-    stadingsTable: StandingsTable
-    }
+    MRData: MRData;
 }
+
+export interface MRData {
+    xmlns: string,
+    series: string,
+    url: string,
+    limit: string,
+    offset: string,
+    total: string,
+    StandingsTable: StandingsTable;
+  }
 
 export interface StandingsTable {
     season: string,
-    standingsLists: StandingsLists []
+    StandingsLists: StandingsLists []
 }
 
 export interface StandingsLists {
     season: string,
     round: string,
-    driverStandings: DriverStandings []
+    DriverStandings: DriverStandings []
 }
+
 export interface DriverStandings {
     position: string,
     positionText: string,
     points: string,
     wins: string,
-    driver: Driver,
-    constructors: Constructors []
+    Driver: Driver,
+    Constructors: Constructors []
 }
 
 export interface Driver {

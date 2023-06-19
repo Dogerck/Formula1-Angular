@@ -13,18 +13,17 @@ export class HomeComponent implements OnInit  {
 
   constructor(private standingsService: StandingsService) {}
 
-  ngOnInit() {
-    this.getStandings()
-  }
-
+  
   getStandings() {
     this.standingsService.getAll<Standings>('current/driverStandings.json').subscribe({
-      next:(data:Standings) => {
-        if(Array.isArray(data.MRData.stadingsTable.standingsLists[0].driverStandings[0])) {
-          this.standings = data.MRData.stadingsTable.standingsLists[0].driverStandings[0];
-          console.log(data.MRData.stadingsTable.standingsLists[0].driverStandings[0]);
+      next:(data:Standings) => {        
+        if(Array.isArray(data.MRData.StandingsTable.StandingsLists[0].DriverStandings[0])) {
+          this.standings = data.MRData.StandingsTable.StandingsLists[0].DriverStandings[0];
         }
       }
     })
+  }
+  ngOnInit() {
+    this.getStandings()
   }
 }

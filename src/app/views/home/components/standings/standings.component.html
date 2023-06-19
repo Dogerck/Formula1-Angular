@@ -8,9 +8,9 @@
             <th>Points</th>
         </tr>
     </thead>
-    <tbody>
-        <tr>
-            <td> {{standings?.MRData?.stadingsTable?.standingsLists}} </td>
+    <tbody *ngIf="standings">
+        <tr *ngFor="let driverStanding of standings.MRData.StandingsTable.StandingsLists[0].DriverStandings">
+            <td> {{driverStanding.position}} </td>
             <td>...</td>
             <td>...</td>
             <td>...</td>
