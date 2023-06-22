@@ -1,4 +1,4 @@
 export const environment = {
     production: true,
-    apiUrl: 'http://ergast.com/api/f1/'
+    apiUrl: 'https://ergast.com/api/f1/'
 };
