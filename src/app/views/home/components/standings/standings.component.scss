@@ -1,38 +1,63 @@
+@import '../../../../scss/global.scss';
+
 table {
     border-collapse: collapse;
     margin: auto;
     font-size: 0.8em;
+
+    th,td {
+      padding: 10px;
+      text-align: start;
+      width: 100px;
+      cursor: pointer;
+    }
+
+    th {
+      font-weight: bold;
+      font-size: 1.1em;
+    }
+    tr:nth-child(even) {
+      background-color: #f4f4f4;
+    }
+    
+    tr:hover:nth-child(1n + 1) {
+      background-color: #c5c5c5;
+      color: #fff;
+    }
+    
+    .flag {
+      display: flex;
+      justify-content: center;
+
+      .country-flag {
+        border-radius: 5px;
+        border: 1px solid #949498;
+        width: 42px;
+        height: 26px;
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .country-flag img {
+        width: 100%;
+        height: auto;
+      }
+    }
+    .position, .points {
+      text-align: center;
+    }
   }
   
-  th,td {
-    padding: 10px;
-    text-align: start;
-    width: 100px;
-    cursor: pointer;
-  }
   
-  th {
-    font-weight: bold;
-    font-size: 1.1em;
-  }
   
-  tr:nth-child(even) {
-    background-color: #f4f4f4;
-  }
   
-  tr:hover:nth-child(1n + 1) {
-    background-color: #c5c5c5;
-    color: #fff;
-  }
   
-  .country-flag {
-    border-radius: 5px;
-    border: 1px solid #949498;
-    width: 42px;
-    height: 26px;
-    overflow: hidden;
-  }
-  .country-flag img {
-    width: 100%;
-    height: auto;
+  
+
+  @media screen and #{$mobile} {
+    table {
+      
+      font-size: 0.6em;
+    }
   }

@@ -1,12 +1,32 @@
-import { Component, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Standings } from 'src/app/models/standings';
+import { StandingsService } from 'src/app/services/standings.service';
 
 @Component({
   selector: 'app-standings',
   templateUrl: './standings.component.html',
   styleUrls: ['./standings.component.scss']
 })
-export class StandingsComponent {
+export class StandingsComponent implements OnInit {
 
-  @Input() standings: Standings | undefined
+  standingsData: Standings | undefined;
+
+  constructor(private standingsService: StandingsService){}
+
+  ngOnInit() {
+    this.getStandings()
+  }
+
+  getStandings() {
+    this.standingsService.getAll<Standings>('current/driverStandings.json').subscribe(
+      (data:Standings) => {
+        this.standingsData = data
+      },
+      (error) => {
+        console.error('Erro ao obter os dados de classificações', error);
+        
+      }
+    )
+  }
+
 }
