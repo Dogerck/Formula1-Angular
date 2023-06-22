@@ -14,10 +14,10 @@ export class StandingsComponent implements OnInit {
   constructor(private standingsService: StandingsService){}
 
   ngOnInit() {
-    this.getStandings()
+    this.getStanding()
   }
 
-  getStandings() {
+  getStanding() {
     this.standingsService.getAll<Standings>('current/driverStandings.json').subscribe({
       next: (data: Standings) => {
         this.standingsData = data
