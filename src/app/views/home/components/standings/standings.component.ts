@@ -18,14 +18,21 @@ export class StandingsComponent implements OnInit {
   }
 
   getStandings() {
-    this.standingsService.getAll<Standings>('current/driverStandings.json').subscribe(
-      (data:Standings) => {
+    this.standingsService.getAll<Standings>('current/driverStandings.json').subscribe({
+      next: (data: Standings) => {
         this.standingsData = data
-      },
-      (error) => {
-        console.error('Erro ao obter os dados de classificações', error);
-        
       }
+    }
+      
+      
+      
+      // (data:Standings) => {
+      //   this.standingsData = data
+      // },
+      // (error) => {
+      //   console.error('Erro ao obter os dados de classificações', error);
+        
+      // }
     )
   }
 

@@ -1,4 +1,4 @@
-<div *ngIf="standingsData">
+<div *ngIf="standingsData" >
     <table class="bordered striped centered">
         <thead>
             <tr>
@@ -14,7 +14,7 @@
                 <td class="position"> {{ driverStandings.position }} </td>
                 <td> {{ driverStandings.Driver.familyName }} </td>
                 <td class="flag"> <div class="country-flag">
-                        <!-- <img src="../../../../../assets/img/pilot-nat/{{driverStandings.Driver.driverId}}.png" alt="driver nationality"> -->
+                        <img src="../../../../../assets/img/pilot-nat/{{driverStandings.Driver.driverId}}.png" alt="driver nationality">
                     </div>
                 </td>
                 <td> {{ driverStandings.Constructors[0].name }} </td>
