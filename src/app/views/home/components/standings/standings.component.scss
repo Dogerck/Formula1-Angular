@@ -4,6 +4,11 @@ table {
     border-collapse: collapse;
     margin: auto;
     font-size: 0.8em;
+    height: 50px;
+
+    tbody {
+      overflow-y: auto;
+    }
 
     th,td {
       padding: 10px;

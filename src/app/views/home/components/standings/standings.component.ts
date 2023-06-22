@@ -22,18 +22,6 @@ export class StandingsComponent implements OnInit {
       next: (data: Standings) => {
         this.standingsData = data
       }
-    }
-      
-      
-      
-      // (data:Standings) => {
-      //   this.standingsData = data
-      // },
-      // (error) => {
-      //   console.error('Erro ao obter os dados de classificações', error);
-        
-      // }
-    )
+    })
   }
-
 }
