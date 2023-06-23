@@ -1,13 +1,18 @@
 @import '../../../../scss/global.scss';
 
-table {
+.tabela {
+  overflow: auto;
+  height: 100vh;
+  width: fit-content;
+  table {
     border-collapse: collapse;
     margin: auto;
     font-size: 0.8em;
-    height: 50px;
 
-    tbody {
-      overflow-y: auto;
+    thead th {
+      position: sticky;
+      top: 0;
+      background-color: #fafafa;
     }
 
     th,td {
@@ -53,16 +58,12 @@ table {
       text-align: center;
     }
   }
-  
-  
-  
-  
-  
-  
+}
 
   @media screen and #{$mobile} {
-    table {
-      
-      font-size: 0.6em;
+    .tabela {
+      table {
+        font-size: 0.6em;
+      }
     }
   }
