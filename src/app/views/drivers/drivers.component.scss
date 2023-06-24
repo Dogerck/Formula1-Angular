@@ -1,1 +1,90 @@
 @import '../../scss/global.scss';
+
+
+.container-cards {
+    display: grid;
+    margin: 20px 0 ;
+    grid-template-columns: repeat(auto-fit, minmax(329px, 330px));
+    gap: 50px;
+    align-self: center;
+    width: 70%;
+
+    .card {
+        width: 330px;
+        height: fit-content;
+        background-color: #fff;
+        border-top-right-radius: 15px;
+        border-top: 2px solid;
+        border-right: 2px solid;
+        padding: 10px 10px 0;
+        border-color: black;
+        cursor: pointer;    
+
+        &:hover {
+            border-color: #e10600;
+            transform: translateY(-8px);
+            transition: transform 0.4s;
+        }
+        .img-card {
+            width: 100%;
+            display: flex;
+            min-height: 100px;
+            align-items: flex-end;
+            justify-content: flex-end;
+            border-bottom: 2px solid black;
+            position: relative;
+
+            .pilot-number {
+                max-width: 110px;
+                position: absolute;
+                left: -20px;
+                top: 8px;
+                align-self: baseline;
+                margin: 5px;
+
+                &:hover {
+                    transform: rotatey(30deg);
+                    transition: transform 0.5s;
+                }
+            }
+            h3 {
+                text-align: end;
+                margin: 0;
+                font-size: 20px;
+
+                a {
+                    text-decoration: none;
+                    color: inherit;
+
+                    &:hover {
+                        font-size: 20.5px;
+                        transition: transform 1s;
+                    }
+                }
+            }
+
+            .firstName {
+                font-weight: 500;
+                position: absolute;
+                left: 0;
+                bottom: 25px;
+                font-size: 18px;
+            }
+            .secondName {
+                position: absolute;
+                left: 0;
+                bottom: 5px;
+            }
+        }
+        .text-content {
+            width: 100%;
+            height: auto;
+            padding-bottom: 5px;
+
+            p {
+                font-size: 14px;
+                line-height: 10px;
+            }
+        }
+    }
+}    
