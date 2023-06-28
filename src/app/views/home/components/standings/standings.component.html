@@ -10,15 +10,15 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let driverStandings of standingsData">
-                <td class="position"> {{ driverStandings.position }} </td>
-                <td> {{ driverStandings.Driver.familyName }} </td>
+            <tr *ngFor="let driverStanding of standingsData">
+                <td class="position"> {{ standingsData }} </td>
+                <td> {{ driverStanding }} </td>
                 <td class="flag"> <div class="country-flag">
-                        <img src="../../../../../assets/img/pilot-nat/{{driverStandings.Driver.driverId}}.png" alt="driver nationality">
+                        <img src="../../../../../assets/img/pilot-nat/{{driverStanding}}.png" alt="driver nationality">
                     </div>
                 </td>
-                <td> {{ driverStandings.Constructors[0].name }} </td>
-                <td class="points"> {{ driverStandings.points }} </td>
+                <td> {{ driverStanding }} </td>
+                <td class="points"> {{ driverStanding }} </td>
             </tr>
         </tbody>
     </table>

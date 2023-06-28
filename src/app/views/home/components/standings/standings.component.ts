@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MRData } from 'src/app/models/Ergast/MRData';
 import { DriverStanding } from 'src/app/models/driver-standing';
 import { StandingsService } from 'src/app/services/standings.service';
 
@@ -9,8 +10,8 @@ import { StandingsService } from 'src/app/services/standings.service';
 })
 export class StandingsComponent implements OnInit {
 
-  standingsData: DriverStanding[] | undefined
-  test: any
+  standingsData: MRData[] = []
+  
   constructor(private standingsService: StandingsService){}
 
   ngOnInit() {
@@ -18,8 +19,8 @@ export class StandingsComponent implements OnInit {
   }
 
   getStanding() {
-    this.standingsService.getAll<DriverStanding>('current/driverStandings.json').subscribe({
-      next: (data: DriverStanding) => {
+    this.standingsService.getAll<MRData>('current/driverStandings.json').subscribe({
+      next: (data: MRData) => {
         this.standingsData
         console.log(this.standingsData);
         
