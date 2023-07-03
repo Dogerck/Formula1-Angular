@@ -1,18 +1,18 @@
 <div class="c-container">
 
-    <div class="container-cards">
-        <div class="card" id="albon">
+    <div class="container-cards" *ngIf="driversData">
+        <div class="card" id="albon" *ngFor="let item of driversData.MRData.DriverTable.Drivers">
             <div class="img-card">
-                <img src="" class="pilot-number" alt="">
-                <img src="" alt="">
-                <h3 class="firstName"></h3>
+                <img src="../../../assets/img/pilot-number/{{item.driverId}}.png" class="pilot-number" alt="pilot number">
+                <img src="../../../assets/img/drivers/{{item.driverId}}.png" alt="pilot image">
+                <h3 class="firstName"> {{ item.givenName }} </h3>
                 <h3 class="secondName">
-                    <a href="" target="_blank"></a>
+                    <a href="{{item.url}}" target="_blank"> {{ item.familyName }}</a>
                 </h3>
             </div>
             <div class="text-content">
-                <p></p>
-                <p></p>
+                <p><b>Birthday:</b> {{ item.dateOfBirth }}</p>
+                <p><b>Nationality:</b> {{ item.nationality }}</p>
             </div>
         </div>
     </div>

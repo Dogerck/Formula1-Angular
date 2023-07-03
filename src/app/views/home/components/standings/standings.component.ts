@@ -11,8 +11,8 @@ import { StandingsService } from 'src/app/services/standings.service';
 export class StandingsComponent implements OnInit {
 
   standingsData: Standings | undefined;
-  
-  constructor(private standingsService: StandingsService){}
+
+  constructor(private standingsService: StandingsService) { }
 
   ngOnInit() {
     this.getStanding()
@@ -22,10 +22,7 @@ export class StandingsComponent implements OnInit {
     this.standingsService.getAll<Standings>('current/driverStandings.json').subscribe({
       next: (data: Standings) => {
         this.standingsData = data
-        console.log(data)
-        console.log(this.standingsData);
       }
     })
-  
-}
+  }
 }
