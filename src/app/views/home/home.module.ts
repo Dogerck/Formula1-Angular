@@ -4,12 +4,14 @@ import { HomeRoutingModule } from './home-routing.module';
 import { StandingsComponent } from './components/standings/standings.component';
 import { HomeComponent } from './home.component';
 import { HttpClientModule } from '@angular/common/http';
+import { NextRaceComponent } from './components/next-race/next-race.component';
 
 
 @NgModule({
   declarations: [
     StandingsComponent,
-    HomeComponent
+    HomeComponent,
+    NextRaceComponent
   ],
   imports: [
     CommonModule,
