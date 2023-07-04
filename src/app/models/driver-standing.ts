@@ -1,21 +1,5 @@
-export interface Standings {
-  MRData: MRData;
-}
-
-export interface MRData {
-  xmlns: string,
-  series: string,
-  url: string,
-  limit: string,
-  offset: string,
-  total: string,
-  StandingsTable: StandingsTable;
-}
-
-export interface StandingsTable {
-  season: string,
-  StandingsLists: StandingsLists []
-}
+import { Constructor } from "./constructor"
+import { Drivers } from "./driver"
 
 export interface StandingsLists {
   season: string,
@@ -32,20 +16,10 @@ export interface DriverStandings {
   Constructors: Constructors []
 }
 
-export interface Driver {
-  driverId: string,
-  permanentNumber: string,
-  code: string,
-  url: string,
-  givenName: string,
-  familyName: string,
-  dateOfBirth: string,
-  nationality: string
+export interface Driver extends Drivers {
+  
 }
 
-export interface Constructors {
-  constructorId: string,
-  url: string,
-  name: string,
-  nationality: string,
+export interface Constructors extends Constructor {
+
 }
