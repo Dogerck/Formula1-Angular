@@ -2,17 +2,20 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
+import { RouterModule } from '@angular/router';
+
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatSidenavModule} from '@angular/material/sidenav';
-import { RouterModule } from '@angular/router';
+import { SidenavComponent } from './sidenav/sidenav.component';
 
 
 @NgModule({
   declarations: [
     FooterComponent,
-    HeaderComponent
+    HeaderComponent,
+    SidenavComponent
   ],
   imports: [
     CommonModule,
@@ -24,7 +27,8 @@ import { RouterModule } from '@angular/router';
   ],
   exports: [
     FooterComponent,
-    HeaderComponent
+    HeaderComponent,
+    SidenavComponent
   ]
 })
 export class CoreModule { }

@@ -7,7 +7,7 @@ $mobile: "(max-width: 767px)";
 $xtablet: "(max-width: 992px)";
 $tablet: "(max-width: 1200px)";
 
-$iphone4: "(max-height: 530px)"; 
+$iphone4: "(max-height: 530px)";
 $iphone5: "(max-width: 350px)";
 $iphoneX: "(min-height: 800px)";
 
@@ -19,8 +19,8 @@ $iphoneX: "(min-height: 800px)";
 
 .c-container{
     margin: 0 auto;
-        
     padding: 0 15px;
+    overflow: hidden;
 
     @media (min-width: 576px) {
         max-width: 600px;

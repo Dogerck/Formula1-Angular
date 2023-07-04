@@ -20,8 +20,6 @@ export class NextRaceComponent implements OnInit {
     this.nextRaceService.getAll<Ergast>('current/next.json').subscribe({
       next: (data: Ergast) => {
         this.nextRaceData = data
-        console.log(this.nextRaceData);
-        
       }
     })
   }

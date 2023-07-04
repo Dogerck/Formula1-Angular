@@ -1,5 +1,5 @@
 <mat-toolbar class="header">
-    <button mat-icon-button class="menu-icon" (click)="opened=!opened" aria-label="menu icon">
+    <button mat-icon-button class="menu-icon" (click)="toggleSidenav()" aria-label="menu icon">
         <mat-icon>{{opened ? 'close' : 'menu'}}</mat-icon>
     </button>
     <img routerLink="home" class="logo-img" src="../../../assets/img/icons/f1_logo.svg" alt="F1 logo">
@@ -13,7 +13,7 @@
     </ul>
     <span class="spacer"></span>
 </mat-toolbar>
-<mat-sidenav-container>
+<!-- <mat-sidenav-container>
     <mat-sidenav class="sidenav" [(opened)]="opened" mode="push">
         <div class="lista-mobile">
             <a routerLink="home" (click)="opened = false"><span>Home</span></a>
@@ -27,4 +27,4 @@
     <mat-sidenav-content>
         <router-outlet></router-outlet>
     </mat-sidenav-content>
-</mat-sidenav-container>
+</mat-sidenav-container> -->

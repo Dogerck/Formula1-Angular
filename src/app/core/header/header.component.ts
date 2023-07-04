@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { TriggerService } from 'src/app/services/trigger.service';
 
 
 @Component({
@@ -7,5 +8,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent {
-  opened: boolean = false;
+  public opened: boolean = false;
+
+  constructor(private triggerService: TriggerService){}
+  
+  toggleSidenav() {
+    this.triggerService.toggleSidenav();
+  }
 }

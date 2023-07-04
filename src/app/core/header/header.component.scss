@@ -7,8 +7,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    // position: fixed;
-    // z-index: 999;
 
     .logo-img {
         height: 45%;
@@ -55,18 +53,6 @@
     }
 }
 
-mat-sidenav-container {
-    height: calc(205vh - 121vh);
-    .sidenav {
-        width: 100%;
-        background-color: var(--f1-primary);
-        .lista-mobile {
-            color: white;
-            list-style: none;
-        }
-    }
-}
-
 
 @media screen and #{$mobile} {
 
@@ -85,29 +71,6 @@ mat-sidenav-container {
         }
         .spacer {
             width: 48px;
-        }
-    }
-    mat-sidenav-container {
-        display: flex;
-    }
-    .lista-mobile {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        a {
-            background-color: var(--f1-primary);
-            height: 30px;
-            width: 90%;
-            text-decoration: none;
-            color: white;
-            border-bottom-right-radius: 10px;
-            border-bottom: 1px solid white;
-            border-right: 1px solid white;
-            margin: 0 0 20px 0;
-        }
-        a:first-child {
-            margin-top: 10px;
         }
     }
 }
