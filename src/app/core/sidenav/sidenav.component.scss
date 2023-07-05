@@ -2,7 +2,8 @@
 
 
 .side-nav-container {
-    // height: calc(100vh - 65px);
+    height: calc(100vh - 65px);
+    
     
     .sidenav {
         width: 100%;
@@ -29,9 +30,9 @@
             }
         }
     }
-    // .side-nav-content {
-    //     height: 100%;
-    // }
+    .side-nav-content {
+        margin-top: 65px;
+    }
 }
 
     
