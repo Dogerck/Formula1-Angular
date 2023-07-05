@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { TriggerService } from 'src/app/services/trigger.service';
+import { SidenavService } from 'src/app/services/sidenav.service';
 
 
 @Component({
@@ -10,9 +10,9 @@ import { TriggerService } from 'src/app/services/trigger.service';
 export class HeaderComponent {
   public opened: boolean = false;
 
-  constructor(private triggerService: TriggerService){}
+  constructor(private sidenav: SidenavService){}
   
-  toggleSidenav() {
-    this.triggerService.toggleSidenav();
+  menuChangeState() {
+    this.sidenav.sidebarChange('toggle');
   }
 }

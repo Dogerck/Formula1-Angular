@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { TriggerService } from './trigger.service';
+import { TriggerService } from './sidenav.service';
 
 describe('TriggerService', () => {
   let service: TriggerService;

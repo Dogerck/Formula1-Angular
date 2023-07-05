@@ -7,9 +7,6 @@ import { CoreModule } from './core/core.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HomeModule } from './views/home/home.module';
 
-
-
-
 @NgModule({
   declarations: [
     AppComponent,

@@ -9,13 +9,15 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import { SidenavComponent } from './sidenav/sidenav.component';
+import { SidenavDirective } from '../directives/sidenav.directive';
 
 
 @NgModule({
   declarations: [
     FooterComponent,
     HeaderComponent,
-    SidenavComponent
+    SidenavComponent,
+    SidenavDirective
   ],
   imports: [
     CommonModule,

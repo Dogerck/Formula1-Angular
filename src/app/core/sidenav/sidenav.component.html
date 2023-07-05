@@ -1,12 +1,12 @@
 <mat-sidenav-container class="side-nav-container">
-    <mat-sidenav class="sidenav" [(opened)]="opened" mode="push">
+    <mat-sidenav class="sidenav" [appSidenav]="drawer" #drawer mode="push">
         <div class="lista-mobile">
-            <a routerLink="home" (click)="opened = false"><span>Home</span></a>
-            <a routerLink="latest" (click)="opened = false"><span>Latest</span></a>
-            <a routerLink="schedule"(click)="opened = false"><span>Schedule</span></a>
-            <a routerLink="results"(click)="opened = false"><span>Results</span></a>
-            <a routerLink="drivers"(click)="opened = false"><span>Drivers</span></a>
-            <a routerLink="teams"(click)="opened = false"><span>Teams</span></a>
+            <a routerLink="home" (click)="menuChangeState()"><span>Home</span></a>
+            <a routerLink="latest" (click)="menuChangeState()"><span>Latest</span></a>
+            <a routerLink="schedule" (click)="menuChangeState()"><span>Schedule</span></a>
+            <a routerLink="results"(click)="menuChangeState()"><span>Results</span></a>
+            <a routerLink="drivers"(click)="menuChangeState()"><span>Drivers</span></a>
+            <a routerLink="teams"(click)="menuChangeState()"><span>Teams</span></a>
         </div>
     </mat-sidenav>
     <mat-sidenav-content class="side-nav-content">
