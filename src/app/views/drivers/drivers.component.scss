@@ -2,13 +2,13 @@
 
 
 .container-cards {
-    display: grid;
+    display: flex;
     margin: 20px 0 ;
-    grid-template-columns: repeat(auto-fit, minmax(329px, 330px));
+    // grid-template-columns: repeat(auto-fit, minmax(329px, 330px));
+    flex-wrap: wrap;
     gap: 50px;
-    align-self: center;
-    width: 70%;
-    // height: auto;
+    width: 100%;
+    justify-content: center;
 
     .card {
         width: 330px;
@@ -69,12 +69,13 @@
                 position: absolute;
                 left: 0;
                 bottom: 25px;
-                font-size: 18px;
+                font-size: 17px;
             }
             .secondName {
                 position: absolute;
                 left: 0;
                 bottom: 5px;
+                font-size: 18px;
             }
         }
         .text-content {
@@ -88,4 +89,4 @@
             }
         }
     }
-}    
+}
