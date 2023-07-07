@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MRData } from 'src/app/models/Ergast/MRData';
+
 import { Ergast } from 'src/app/models/Ergast/ergast';
 import { DriverStandings } from 'src/app/models/driver-standing';
 import { StandingsService } from 'src/app/services/standings.service';
@@ -11,7 +11,7 @@ import { StandingsService } from 'src/app/services/standings.service';
 })
 export class StandingsComponent implements OnInit {
 
-  standingsData: DriverStandings[] | undefined;
+  standingsData: DriverStandings[] = [];
 
   constructor(private standingsService: StandingsService) { }
 

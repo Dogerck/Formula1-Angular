@@ -10,19 +10,22 @@ import { DriversService } from 'src/app/services/drivers.service';
 })
 export class DriversComponent implements OnInit {
   
-  driversData: Drivers[] | undefined
+  driversData: Drivers[] = []
 
   constructor(private driversService: DriversService) {}
 
-  ngOnInit(): void {
-    this.getDrivers()  
-  }
-
+  
   getDrivers() {
     this.driversService.getAll<Ergast>('2023/drivers.json').subscribe({
       next: (data: Ergast) => {
         this.driversData = data.MRData.DriverTable.Drivers
+        console.log(this.driversData);
+        
       }
     })
+  }
+
+  ngOnInit(): void {
+    this.getDrivers()  
   }
 }

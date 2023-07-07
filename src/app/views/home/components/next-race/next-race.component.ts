@@ -10,7 +10,7 @@ import { NextRaceService } from 'src/app/services/next-race.service';
 })
 export class NextRaceComponent implements OnInit {
   
-  nextRaceData: Races | undefined
+  nextRaceData: Races | any
 
   constructor(private nextRaceService: NextRaceService) {}
   

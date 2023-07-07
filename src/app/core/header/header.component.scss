@@ -21,33 +21,51 @@
     }
     .lista-desktop {
         list-style:none;
-        flex-direction: row;
         display: flex;
         color: white;
         font-size: 14px;
         height: 100%;
-        align-items: center;
-        margin: 0;
         
-       a {
-        text-decoration: none;
-        color: white;
-        height: 100%;
-        li {
-            cursor: pointer;
+       li {
+        position: relative;
+        // .dash {
+        //     background-color: white;
+        //     width: 80%;
+        //     border-radius: 10px;
+        //     height: 3px;
+        //     position: absolute;
+        //     bottom: 15px;
+        // }
+        .active {
+            
+            &::after {
+                content: '';
+                background-color: white;
+                width: 70%;
+                border-radius: 10px;
+                height: 3px;
+                position: absolute;
+                bottom: 15px;
+            }
+        }
+        a {
             height: 100%;
-            margin: 0 5px;
             display: flex;
+            margin: 0 5px;
+            color: white;
+            cursor: pointer;
             align-items: center;
+            text-decoration: none;
             justify-content: center;
+            
 
             span {
-                margin: 0 5px;
+                margin: 0 10px;
             }
 
             &:hover {
-                background-color: #15151e;
                 height: 100%;
+                background-color: #15151e;
                 transition: all 0.3s ease-in-out;
             }
         }
