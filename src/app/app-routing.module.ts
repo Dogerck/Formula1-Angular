@@ -8,6 +8,8 @@ const routes: Routes = [
   {path: 'results', loadChildren: () => import('./views/results/results.module').then(f => f.ResultsModule) },
   {path: 'drivers', loadChildren: () => import('./views/drivers/drivers.module').then(f => f.DriversModule) },
   {path: 'teams', loadChildren: () => import('./views/teams/teams.module').then(f => f.TeamsModule) },
+  {path: 'not-found', loadChildren: () => import('./views/not-found/not-found.module').then(m => m.NotFoundModule) },
+  {path: '**', redirectTo: 'not-found', pathMatch: 'full'},
   {path: '', redirectTo: 'home', pathMatch: 'full'},
 ];
 

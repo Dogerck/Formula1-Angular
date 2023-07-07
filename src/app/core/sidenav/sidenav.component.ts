@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 import { SidenavService } from 'src/app/services/sidenav.service';
 @Component({
   selector: 'app-sidenav',
