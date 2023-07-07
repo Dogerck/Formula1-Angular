@@ -1,13 +1,12 @@
 import { TestBed } from '@angular/core/testing';
+import { SidenavService } from './sidenav.service';
 
-import { TriggerService } from './sidenav.service';
-
-describe('TriggerService', () => {
-  let service: TriggerService;
+describe('SidenavService', () => {
+  let service: SidenavService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(TriggerService);
+    service = TestBed.inject(SidenavService);
   });
 
   it('should be created', () => {
