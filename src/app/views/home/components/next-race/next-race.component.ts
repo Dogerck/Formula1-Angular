@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Ergast } from 'src/app/models/Ergast/ergast';
+import { Races } from 'src/app/models/races';
 import { NextRaceService } from 'src/app/services/next-race.service';
 
 @Component({
@@ -9,7 +10,7 @@ import { NextRaceService } from 'src/app/services/next-race.service';
 })
 export class NextRaceComponent implements OnInit {
   
-  nextRaceData: Ergast | undefined
+  nextRaceData: Races | undefined
 
   constructor(private nextRaceService: NextRaceService) {}
   
@@ -19,7 +20,7 @@ export class NextRaceComponent implements OnInit {
   nextRace() {
     this.nextRaceService.getAll<Ergast>('current/next.json').subscribe({
       next: (data: Ergast) => {
-        this.nextRaceData = data
+        this.nextRaceData = data.MRData.RaceTable.Races[0]
       }
     })
   }

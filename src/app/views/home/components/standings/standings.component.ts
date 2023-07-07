@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MRData } from 'src/app/models/Ergast/MRData';
 import { Ergast } from 'src/app/models/Ergast/ergast';
+import { DriverStandings } from 'src/app/models/driver-standing';
 import { StandingsService } from 'src/app/services/standings.service';
 
 @Component({
@@ -10,7 +11,7 @@ import { StandingsService } from 'src/app/services/standings.service';
 })
 export class StandingsComponent implements OnInit {
 
-  standingsData: Ergast | undefined;
+  standingsData: DriverStandings[] | undefined;
 
   constructor(private standingsService: StandingsService) { }
 
@@ -21,7 +22,7 @@ export class StandingsComponent implements OnInit {
   getStanding() {
     this.standingsService.getAll<Ergast>('current/driverStandings.json').subscribe({
       next: (data: Ergast) => {
-        this.standingsData = data
+        this.standingsData = data.MRData.StandingsTable.StandingsLists[0].DriverStandings
       }
     })
   }

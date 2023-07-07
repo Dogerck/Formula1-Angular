@@ -10,7 +10,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let driverStandings of standingsData.MRData.StandingsTable.StandingsLists[0].DriverStandings">
+            <tr *ngFor="let driverStandings of standingsData">
                 <td class="position"> {{ driverStandings.position }} </td>
                 <td> {{ driverStandings.Driver.familyName }} </td>
                 <td class="flag"> <div class="country-flag">

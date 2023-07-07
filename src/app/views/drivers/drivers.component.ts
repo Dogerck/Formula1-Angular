@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Ergast } from 'src/app/models/Ergast/ergast';
+import { Drivers } from 'src/app/models/driver';
 import { DriversService } from 'src/app/services/drivers.service';
 
 @Component({
@@ -9,7 +10,7 @@ import { DriversService } from 'src/app/services/drivers.service';
 })
 export class DriversComponent implements OnInit {
   
-  driversData: Ergast | undefined
+  driversData: Drivers[] | undefined
 
   constructor(private driversService: DriversService) {}
 
@@ -20,7 +21,7 @@ export class DriversComponent implements OnInit {
   getDrivers() {
     this.driversService.getAll<Ergast>('2023/drivers.json').subscribe({
       next: (data: Ergast) => {
-        this.driversData = data 
+        this.driversData = data.MRData.DriverTable.Drivers
       }
     })
   }
