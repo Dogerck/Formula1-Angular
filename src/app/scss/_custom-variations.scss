@@ -23,6 +23,8 @@ $iphoneX: "(min-height: 800px)";
     overflow: hidden;
     display: flex;
     justify-content: center;
+    align-items: center;
+    background-color: var(--f1-accent);
 
     @media (min-width: 576px) {
         max-width: 600px;
