@@ -1,24 +1,24 @@
 @import '../../../../scss/global.scss';
 
 .tabela {
-  overflow: auto;
   height: fit-content;
   width: fit-content;
+
   table {
     border-collapse: collapse;
     margin: auto;
     font-size: 0.8em;
+    height: 100px;
 
     thead th {
       position: sticky;
       top: 0;
-      background-color: #fafafa;
+      // background-color: #fafafa;
     }
 
     th,td {
       padding: 10px;
       text-align: start;
-      width: 100px;
       cursor: pointer;
     }
 
@@ -26,13 +26,8 @@
       font-weight: bold;
       font-size: 1.1em;
     }
-    tr:nth-child(even) {
-      background-color: #f4f4f4;
-    }
-    
-    tr:hover:nth-child(1n + 1) {
-      background-color: #c5c5c5;
-      color: #fff;
+    tr {
+      // background-color: #f4f4f4;
     }
     
     .flag {

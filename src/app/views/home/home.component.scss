@@ -5,10 +5,19 @@
     width: 100%;
     height: 500px;
 
+    @media screen and #{$mobile} {
+      flex-direction: column;
+    }
+      
+    
+
     .left-cards {
         display: flex;
         flex-direction: column;
         width: 50%;
+        @media screen and #{$mobile} {
+         width: 100%;
+        }
       }
 
     .card {
@@ -27,7 +36,29 @@
       
       .big-card {
         flex: 2;
-        overflow: auto;
+        overflow-y: auto;
+        display: flex;
+        justify-content: center;
+
+        scrollbar-width: thin;
+        scrollbar-color: black transparent;  
+        
+        &::-webkit-scrollbar {
+          width: 5px;
+          height: 3px;
+        }
+        
+        &::-webkit-scrollbar-track {
+          background: #3f3f3f;
+          padding: 5px;
+          border-top-right-radius: 4px;
+          border-bottom-right-radius: 4px;
+        }
+        
+        &::-webkit-scrollbar-thumb {
+          background-color: #dbfbfb;
+          border-radius: 4px;
+        }
       }
 
   }

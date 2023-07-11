@@ -28,17 +28,9 @@
         
        li {
         position: relative;
-        // .dash {
-        //     background-color: white;
-        //     width: 80%;
-        //     border-radius: 10px;
-        //     height: 3px;
-        //     position: absolute;
-        //     bottom: 15px;
-        // }
         .active {
-            
             &::after {
+                transform: translate(2deg);
                 content: '';
                 background-color: white;
                 width: 70%;

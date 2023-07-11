@@ -3,21 +3,22 @@
         <thead>
             <tr>
                 <th class="position">Position</th>
-                <th>Driver</th>
                 <th>Nationality</th>
-                <th>Team</th>
+                <th>Driver</th>
+                <!-- <th>Team</th> -->
                 <th class="points">Points</th>
             </tr>
         </thead>
         <tbody>
             <tr *ngFor="let driverStandings of standingsData">
                 <td class="position"> {{ driverStandings.position }} </td>
-                <td> {{ driverStandings.Driver.familyName }} </td>
-                <td class="flag"> <div class="country-flag">
+                <td class="flag"> 
+                    <div class="country-flag">
                         <img src="../../../../../assets/img/pilot-nat/{{driverStandings.Driver.driverId}}.png" alt="driver nationality">
                     </div>
                 </td>
-                <td> {{ driverStandings.Constructors[0].name }} </td>
+                <td> {{ driverStandings.Driver.familyName }} </td>
+                <!-- <td> {{ driverStandings.Constructors[0].name }} </td> -->
                 <td class="points"> {{ driverStandings.points }} </td>
             </tr>
         </tbody>
