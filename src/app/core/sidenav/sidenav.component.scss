@@ -2,11 +2,8 @@
 
 
 .side-nav-container {
-    // height: calc(100vh - 65px);
-
     .sidenav {
         width: 100%;
-        // height: calc(100vh - 65px);
         background-color: var(--f1-primary);
         
         .lista-mobile {
@@ -31,8 +28,8 @@
         }
     }
     .side-nav-content {
-        height: 100% !important; 
-        margin-top: 65px;
+        height: calc(100vh - 134px); 
+        margin-top: 70px;
         // background-color: var(--f1-accent);
     }
 }
