@@ -14,18 +14,19 @@ $iphoneX: "(min-height: 800px)";
 @mixin flexCenter {
     display: flex;
     align-items: center;
-    justify-content: end;
+    justify-content: center;
 }
 
 .c-container{
     margin: 0 auto;
-    padding: 0 15px;
+    padding: 15px;
     overflow: hidden;
     display: flex;
-    height: 100vh;
     justify-content: center;
     align-items: center;
-    background-color: var(--f1-accent);
+    padding-top: 74px;
+    flex-direction: column;
+    // background-color: var(--f1-accent);
 
     @media (min-width: 576px) {
         max-width: 600px;
