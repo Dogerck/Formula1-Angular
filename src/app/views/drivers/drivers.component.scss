@@ -48,6 +48,9 @@
                     transition: transform 0.5s;
                 }
             }
+            .pilot-img {
+                max-width: 185px;
+            }
             h3 {
                 text-align: end;
                 margin: 0;
@@ -67,8 +70,8 @@
             .firstName {
                 font-weight: 500;
                 position: absolute;
-                left: 0;
                 bottom: 25px;
+                left: 0;
                 font-size: 17px;
             }
             .secondName {
@@ -86,6 +89,7 @@
             p {
                 font-size: 14px;
                 line-height: 10px;
+                margin: 10px auto;
             }
         }
     }

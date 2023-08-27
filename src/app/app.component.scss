@@ -1,12 +1,10 @@
 .container {
-    // display: flex;
-    // flex-direction: column;
+    position: relative;
     min-height: 100vh;
 
     &_conteudo {
         padding-bottom: 4rem;
     }
-    // background-color: var(--f1-accent);
 
     .foot {
         position: absolute;
