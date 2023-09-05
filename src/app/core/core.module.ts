@@ -10,7 +10,7 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import { SidenavComponent } from './sidenav/sidenav.component';
 import { SidenavDirective } from '../directives/sidenav.directive';
-
+import { MatMenuModule } from '@angular/material/menu';
 
 @NgModule({
   declarations: [
@@ -26,6 +26,7 @@ import { SidenavDirective } from '../directives/sidenav.directive';
     MatToolbarModule,
     MatSidenavModule,
     RouterModule,
+    MatMenuModule
   ],
   exports: [
     FooterComponent,
