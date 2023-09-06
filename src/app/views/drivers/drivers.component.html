@@ -1,5 +1,5 @@
 <div class="c-container" >
-    <mat-spinner *ngIf="loaderService.loading$ | async"></mat-spinner>
+    <mat-spinner class="loader" *ngIf="loaderService.loading$ | async"></mat-spinner>
     <div class="container-cards" *ngIf="driversData || !(loaderService.loading$ | async)">
         <div class="card" id="albon" *ngFor="let item of driversData">
             <div class="img-card">

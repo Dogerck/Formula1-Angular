@@ -1,15 +1,16 @@
 @import '../../scss/global.scss';
 
 .container-cards {
-    display: flex;
-    margin: 20px 0 ;
-    // grid-template-columns: repeat(auto-fit, minmax(329px, 330px));
-    flex-wrap: wrap;
-    gap: 50px;
-    width: 100%;
+    display: grid;
+    align-items: center;
+    grid-template-columns: 330px 330px 330px;
+    gap: 40px;
     justify-content: center;
-    
 
+    @media screen and #{$mobile} {
+        grid-template-columns: 330px;
+    }
+    
     .card {
         width: 330px;
         height: fit-content;
@@ -20,7 +21,7 @@
         padding: 10px 10px 0;
         border-color: var(--f1-accent);
         cursor: pointer;    
-
+        
         &:hover {
             border-color: #e10600;
             transform: translateY(-8px);
@@ -34,7 +35,7 @@
             justify-content: flex-end;
             border-bottom: 2px solid black;
             position: relative;
-
+            
             .pilot-number {
                 max-width: 110px;
                 position: absolute;
@@ -42,7 +43,7 @@
                 top: 8px;
                 align-self: baseline;
                 margin: 5px;
-
+                
                 &:hover {
                     transform: rotatey(30deg);
                     transition: transform 0.5s;
@@ -55,7 +56,7 @@
                 text-align: end;
                 margin: 0;
                 font-size: 20px;
-
+                
                 a {
                     text-decoration: none;
                     color: inherit;
@@ -66,7 +67,7 @@
                     }
                 }
             }
-
+            
             .firstName {
                 font-weight: 500;
                 position: absolute;
@@ -85,7 +86,7 @@
             width: 100%;
             height: auto;
             padding-bottom: 5px;
-
+            
             p {
                 font-size: 14px;
                 line-height: 10px;
@@ -93,4 +94,8 @@
             }
         }
     }
+}
+
+.loader {
+    margin-top: 100px;
 }
