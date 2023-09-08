@@ -1,10 +1,10 @@
 <div class="standings-content" *ngIf="standingsData" >
     <ul class="standings-list" *ngFor="let driverStandings of standingsData">
-        <li class="f1-podium--item">
-            <span> {{ driverStandings.position }} </span>
-            <span> {{ driverStandings.Driver.givenName }} <b>{{ driverStandings.Driver.familyName }}</b> </span>
-            <span> {{ driverStandings.Constructors[0].name }} </span>
-            <span> {{ driverStandings.points }} pts</span>
+        <li>
+            <span class="standings-list--position"> {{ driverStandings.position }} </span>
+            <span class="standings-list--name"> {{ driverStandings.Driver.givenName }} <b>{{ driverStandings.Driver.familyName }}</b> </span>
+            <span class="standings-list--team"> {{ driverStandings.Constructors[0].name }} </span>
+            <span class="standings-list--points"> {{ driverStandings.points }} pts</span>
         </li>
     </ul>
 </div>    
