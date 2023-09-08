@@ -1,26 +1,10 @@
-<div class="tabela" *ngIf="standingsData" >
-    <table class="bordered striped centered">
-        <thead>
-            <tr>
-                <th class="position">Position</th>
-                <th>Nationality</th>
-                <th>Driver</th>
-                <!-- <th>Team</th> -->
-                <th class="points">Points</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let driverStandings of standingsData">
-                <td class="position"> {{ driverStandings.position }} </td>
-                <td class="flag"> 
-                    <div class="country-flag">
-                        <img src="../../../../../assets/img/pilot-nat/{{driverStandings.Driver.driverId}}.png" alt="driver nationality">
-                    </div>
-                </td>
-                <td> {{ driverStandings.Driver.familyName }} </td>
-                <!-- <td> {{ driverStandings.Constructors[0].name }} </td> -->
-                <td class="points"> {{ driverStandings.points }} </td>
-            </tr>
-        </tbody>
-    </table>
+<div class="standings-content" *ngIf="standingsData" >
+    <ul class="standings-list" *ngFor="let driverStandings of standingsData">
+        <li class="f1-podium--item">
+            <span> {{ driverStandings.position }} </span>
+            <span> {{ driverStandings.Driver.givenName }} <b>{{ driverStandings.Driver.familyName }}</b> </span>
+            <span> {{ driverStandings.Constructors[0].name }} </span>
+            <span> {{ driverStandings.points }} pts</span>
+        </li>
+    </ul>
 </div>    

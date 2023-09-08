@@ -1,105 +1,135 @@
 @import '../../scss/global.scss';
 
-.container-cards {
-    display: grid;
-    align-items: center;
-    grid-template-columns: 330px 330px 330px;
-    gap: 40px;
-    justify-content: center;
-
-    @media screen and #{$tablet} {
-        grid-template-columns: 330px 330px;
-    }
-
-    @media screen and #{$mobile} {
-        grid-template-columns: 330px;
-    }
+.c-container {
     
-    .card {
-        width: 330px;
-        height: fit-content;
-        background-color: #fff;
-        border-top-right-radius: 15px;
-        border-top: 2px solid;
-        border-right: 2px solid;
-        padding: 10px 10px 0;
-        border-color: var(--f1-accent);
-        cursor: pointer;    
-        
-        &:hover {
-            border-color: #e10600;
-            transform: translateY(-8px);
-            transition: transform 0.4s;
-        }
-        .img-card {
-            width: 100%;
-            display: flex;
-            min-height: 100px;
-            align-items: flex-end;
-            justify-content: flex-end;
-            border-bottom: 2px solid black;
-            position: relative;
-            
-            .pilot-number {
-                max-width: 110px;
-                position: absolute;
-                left: -20px;
-                top: 8px;
-                align-self: baseline;
-                margin: 5px;
-                
-                &:hover {
-                    transform: rotatey(30deg);
-                    transition: transform 0.5s;
-                }
-            }
-            .pilot-img {
-                max-width: 185px;
-            }
-            h3 {
-                text-align: end;
-                margin: 0;
-                font-size: 20px;
-                
-                a {
-                    text-decoration: none;
-                    color: inherit;
 
+    h1 {
+        font-family: F1Bold;
+        font-size: 40px;
+        margin-bottom: 20px;
+    
+        @media screen and #{$mobile} {
+            font-size: 30px;
+        }
+    }
+
+    .text-card {
+        width: 1050px;
+        height: fit-content;
+        background-color: #dddddd;
+        border-radius: 15px;
+        padding: 20px;
+        margin-bottom: 40px;
+
+        @media screen and #{$tablet} {
+            width: 690px;
+        }
+
+        @media screen and #{$mobile} {
+            width: 330px;
+        }
+    }
+    .container-cards {
+        display: grid;
+        align-items: center;
+        grid-template-columns: 330px 330px 330px;
+        gap: 30px;
+        justify-content: center;
+    
+        @media screen and #{$tablet} {
+            grid-template-columns: 330px 330px;
+        }
+    
+        @media screen and #{$mobile} {
+            grid-template-columns: 330px;
+        }
+        
+        .card {
+            width: 330px;
+            height: fit-content;
+            // background-color: #fff;
+            border-top-right-radius: 15px;
+            border-top: 3px solid;
+            border-right: 3px solid;
+            padding: 10px 10px 0;
+            border-color: var(--f1-accent);
+            cursor: pointer;    
+            
+            &:hover {
+                border-color: #e10600;
+                transform: translateY(-8px);
+                transition: transform 0.4s;
+            }
+            .img-card {
+                width: 100%;
+                display: flex;
+                min-height: 100px;
+                align-items: flex-end;
+                justify-content: flex-end;
+                border-bottom: 2px solid black;
+                position: relative;
+                
+                .pilot-number {
+                    max-width: 110px;
+                    position: absolute;
+                    left: -20px;
+                    top: 8px;
+                    align-self: baseline;
+                    margin: 5px;
+                    
                     &:hover {
-                        font-size: 20.5px;
-                        transition: transform 1s;
+                        transform: rotatey(30deg);
+                        transition: transform 0.5s;
                     }
                 }
+                .pilot-img {
+                    max-width: 185px;
+                }
+                h3 {
+                    text-align: end;
+                    margin: 0;
+                    font-size: 20px;
+                    
+                    a {
+                        text-decoration: none;
+                        color: inherit;
+    
+                        &:hover {
+                            font-size: 20.5px;
+                            transition: transform 1s;
+                        }
+                    }
+                }
+                
+                .firstName {
+                    font-weight: 500;
+                    position: absolute;
+                    bottom: 25px;
+                    left: 0;
+                    font-size: 17px;
+                }
+                .secondName {
+                    position: absolute;
+                    left: 0;
+                    bottom: 5px;
+                    font-size: 18px;
+                }
             }
-            
-            .firstName {
-                font-weight: 500;
-                position: absolute;
-                bottom: 25px;
-                left: 0;
-                font-size: 17px;
-            }
-            .secondName {
-                position: absolute;
-                left: 0;
-                bottom: 5px;
-                font-size: 18px;
-            }
-        }
-        .text-content {
-            width: 100%;
-            height: auto;
-            padding-bottom: 5px;
-            
-            p {
-                font-size: 14px;
-                line-height: 10px;
-                margin: 10px auto;
+            .text-content {
+                width: 100%;
+                height: auto;
+                padding-bottom: 5px;
+                
+                p {
+                    font-size: 14px;
+                    line-height: 10px;
+                    margin: 10px auto;
+                }
             }
         }
     }
-}
-
-.loader {
-    margin-top: 100px;
+    
+    .loader {
+        margin-top: 100px;
+    }
 }

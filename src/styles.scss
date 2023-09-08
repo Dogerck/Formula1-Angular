@@ -67,6 +67,12 @@ body {
     margin: 0;
     font-family:F1Regular, Roboto, "Helvetica Neue", sans-serif;
     font-size: 16px;
+    background-color: #F1F1F1;
+
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    font-feature-settings: "cv11", "salt", "ss01", "ss03", "cv01", "cv02", "cv03", "cv04", "cv05", "cv06", "cv09", "cv10";
 
     --f1-primary: #{$f1-primary};
     --f1-accent: #{$f1-accent};

@@ -1,64 +1,18 @@
 @import '../../../../scss/global.scss';
 
-.tabela {
-  height: fit-content;
-  width: fit-content;
 
-  table {
-    border-collapse: collapse;
-    margin: auto;
-    font-size: 0.8em;
-    height: 100px;
-
-    thead th {
-      position: sticky;
-      top: 0;
-      // background-color: #fafafa;
-    }
-
-    th,td {
-      padding: 10px;
-      text-align: start;
-      cursor: pointer;
-    }
-
-    th {
-      font-weight: bold;
-      font-size: 1.1em;
-    }
-    tr {
-      // background-color: #f4f4f4;
-    }
-    
-    .flag {
-      display: flex;
-      justify-content: center;
-
-      .country-flag {
-        border-radius: 5px;
-        border: 1px solid #949498;
-        width: 42px;
-        height: 26px;
-        overflow: hidden;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-      }
-      .country-flag img {
-        width: 100%;
-        height: auto;
-      }
-    }
-    .position, .points {
-      text-align: center;
-    }
+.standings-content {
+  width: 100%;
+  .standings-list {
+    width: 100%;
+    list-style: none;
+    background-color: #fff;
+    margin-bottom: 3px;
+    height: 55px;
+    padding: 15px 30px;
+    display: flex;
+    align-items: center;
+    border-radius: 5px;
   }
+
 }
-
-  @media screen and #{$mobile} {
-    .tabela {
-      table {
-        font-size: 0.6em;
-      }
-    }
-  }

@@ -12,13 +12,14 @@ import { LoaderService } from 'src/app/services/loader-service.service';
 export class DriversComponent implements OnInit {
   
   driversData: Drivers[] = []
+  currentYear = new Date().getFullYear()
 
   constructor(private driversService: DriversService, public loaderService: LoaderService) {}
 
   
   getDrivers() {
     this.loaderService.show();
-    this.driversService.getAll<Ergast>('2023/drivers.json').subscribe(
+    this.driversService.getAll<Ergast>(this.currentYear + '/drivers.json').subscribe(
        (data: Ergast) => {
         this.driversData = data.MRData.DriverTable.Drivers
         console.log(this.driversData);
@@ -33,6 +34,6 @@ export class DriversComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getDrivers()  
+    this.getDrivers()
   }
 }
