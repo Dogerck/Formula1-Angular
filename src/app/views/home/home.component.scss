@@ -65,6 +65,9 @@
   
   app-standings {
     width: 70%;
+    @media screen and #{$mobile} {
+      width: 100%;
+    }
   }
   
   

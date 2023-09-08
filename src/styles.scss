@@ -5,7 +5,7 @@
 // have to load a single css file for Angular Material in your app.
 // Be sure that you only ever include this mixin once!
 @include mat.core();
-@import './app/scss/colors';
+@import './app/scss/global.scss';
 
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
@@ -66,7 +66,6 @@ body {
 body {
     margin: 0;
     font-family:F1Regular, Roboto, "Helvetica Neue", sans-serif;
-    font-size: 16px;
     background-color: #F1F1F1;
 
     -webkit-font-smoothing: antialiased;
@@ -76,4 +75,8 @@ body {
 
     --f1-primary: #{$f1-primary};
     --f1-accent: #{$f1-accent};
+
+    @media screen and #{$mobile} {
+      font-size: 0.8em;
+    }
 }
