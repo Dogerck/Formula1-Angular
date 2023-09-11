@@ -21,6 +21,8 @@ export class NextRaceComponent implements OnInit {
     this.nextRaceService.getAll<Ergast>('current/next.json').subscribe({
       next: (data: Ergast) => {
         this.nextRaceData = data.MRData.RaceTable.Races[0]
+        console.log(this.nextRaceData);
+        
       }
     })
   }
