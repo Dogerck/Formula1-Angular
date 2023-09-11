@@ -3,9 +3,10 @@ import { CommonModule } from '@angular/common';
 import { HomeRoutingModule } from './home-routing.module';
 import { StandingsComponent } from './components/standings/standings.component';
 import { HomeComponent } from './home.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NextRaceComponent } from './components/next-race/next-race.component';
-
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner'; 
+import { LoaderInterceptor } from 'src/app/interceptors/interceptor-loader.interceptor';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,15 @@ import { NextRaceComponent } from './components/next-race/next-race.component';
   imports: [
     CommonModule,
     HomeRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    MatProgressSpinnerModule
+  ],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: LoaderInterceptor,
+      multi: true
+    }
   ],
   exports: [
     StandingsComponent,

@@ -19,17 +19,17 @@ export class DriversComponent implements OnInit {
   
   getDrivers() {
     this.loaderService.show();
-    this.driversService.getAll<Ergast>(this.currentYear + '/drivers.json').subscribe(
-       (data: Ergast) => {
+    this.driversService.getAll<Ergast>(this.currentYear + '/drivers.json').subscribe({
+      next: (data: Ergast) => {
         this.driversData = data.MRData.DriverTable.Drivers
         console.log(this.driversData);
-      },(error) => {
-        console.log("Erro:", error);
         this.loaderService.hide();
       },
-      () => {
-      this.loaderService.hide();
-     })
+      error: (error) => {
+        console.log("Erro:", error);
+        this.loaderService.hide();
+      }
+    })
     
   }
 

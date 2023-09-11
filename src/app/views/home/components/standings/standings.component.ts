@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { Ergast } from 'src/app/models/Ergast/ergast';
 import { DriverStandings } from 'src/app/models/driver-standing';
+import { LoaderService } from 'src/app/services/loader-service.service';
 import { StandingsService } from 'src/app/services/standings.service';
 
 @Component({
@@ -14,7 +15,7 @@ export class StandingsComponent implements OnInit {
   standingsData: DriverStandings[] = [];
   currentYear = new Date().getFullYear()
 
-  constructor(private standingsService: StandingsService) { }
+  constructor(private standingsService: StandingsService, public loaderService: LoaderService) { }
 
   ngOnInit() {
     this.getStanding()
@@ -23,10 +24,15 @@ export class StandingsComponent implements OnInit {
   }
 
   getStanding() {
+    this.loaderService.show()
     this.standingsService.getAll<Ergast>('current/driverStandings.json').subscribe({
       next: (data: Ergast) => {
-        this.standingsData = data.MRData.StandingsTable.StandingsLists[0].DriverStandings
-        console.log(this.standingsData);
+        this.standingsData = data.MRData.StandingsTable.StandingsLists[0].DriverStandings;
+        this.loaderService.hide()
+      },
+      error: (error) => {
+        console.log('Erro:', error);
+        this.loaderService.hide()
       }
     })
   }
