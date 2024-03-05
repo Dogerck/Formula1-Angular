@@ -42,15 +42,15 @@ export class StandingsComponent implements OnInit {
   }
 
   teamColors: { [key: string]: string } = {
-    'Mercedes': '#6CD3BF',
+    'Mercedes': '#27F4D2',
     'Red Bull': '#3671C6',
-    'Aston Martin': '#358C75',
-    'Ferrari': '#F91536',
-    'McLaren': '#F58020',
-    'Alpine F1 Team': '#2293D1',
-    'Williams': '#37BEDD',
+    'Aston Martin': '#229971',
+    'Ferrari': '#E8002D',
+    'McLaren': '#ff8000',
+    'Alpine F1 Team': '#FF87BC',
+    'Williams': '#64C4FF',
     'Haas F1 Team': '#B6BABD',
-    'Alfa Romeo': '#C92D4B',
-    'AlphaTauri': '#5E8FAA'
+    'Sauber': '#52E252',
+    'RB F1 Team': '#6692FF'
   };
 }
