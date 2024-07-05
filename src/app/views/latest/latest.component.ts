@@ -6,7 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./latest.component.scss']
 })
 export class LatestComponent {
-  ngAfterViewInit(): void {
-    (<any>window).twttr.widgets.load();
-}
+
 }
