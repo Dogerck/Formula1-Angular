@@ -7,12 +7,16 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NextRaceComponent } from './components/next-race/next-race.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner'; 
 import { LoaderInterceptor } from 'src/app/interceptors/interceptor-loader.interceptor';
+import { ConvertToLocalTimeDirective } from 'src/app/directives/convert-to-local-time.directive';
+import { ConvertToLocalDateDirective } from 'src/app/directives/convert-to-local-date.directive';
 
 @NgModule({
   declarations: [
     StandingsComponent,
     HomeComponent,
-    NextRaceComponent
+    NextRaceComponent,
+    ConvertToLocalTimeDirective,
+    ConvertToLocalDateDirective
   ],
   imports: [
     CommonModule,

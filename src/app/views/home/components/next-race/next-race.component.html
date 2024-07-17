@@ -1,4 +1,12 @@
+<h2>Next race </h2>
 <div class="content" *ngIf="nextRaceData">
-    <p>{{ nextRaceData.season }}</p>
-    <p>{{ nextRaceData.raceName }}</p>
+    <h3>{{ nextRaceData.raceName }}</h3>
+    <p> {{ formattedDateRange }}</p>
+    <p>First practice: <span appConvertToLocalTime="{{nextRaceData.FirstPractice.time}}"></span></p>
+    <p>Second practice: <span appConvertToLocalTime="{{ nextRaceData.SecondPractice.time }}"></span></p>
+    <p>Third practice: <span appConvertToLocalTime="{{ nextRaceData.ThirdPractice.time }}"></span></p>
+    <p>Qualifying: <span appConvertToLocalTime="{{ nextRaceData.Qualifying.time }}"></span></p>
+    <p>Race: <span appConvertToLocalTime="{{ nextRaceData.time }}"></span></p>
+    <div class="round"><p> Round: {{ nextRaceData.round }}</p></div>
+    <img class="img-flag" src="./assets/img/circuit-flags/{{ nextRaceData.Circuit.circuitId }}.png" alt="{{ nextRaceData.Circuit.Location.country }} flag">
 </div>

@@ -10,20 +10,33 @@ import { NextRaceService } from 'src/app/services/next-race.service';
 })
 export class NextRaceComponent implements OnInit {
   
-  nextRaceData: Races | any
+  nextRaceData: Races | any;
+  formattedDateRange!: string;
 
   constructor(private nextRaceService: NextRaceService) {}
   
   ngOnInit(): void {
-    this.nextRace()
+    this.nextRace();
   }
+
   nextRace() {
-    this.nextRaceService.getAll<Ergast>('current/next.json').subscribe({
+    this.nextRaceService.getAll<Ergast>('2024/5.json').subscribe({
       next: (data: Ergast) => {
-        this.nextRaceData = data.MRData.RaceTable.Races[0]
-        console.log(this.nextRaceData);
-        
+        this.nextRaceData = data.MRData.RaceTable.Races[0];
+        this.formattedDateRange = this.formatDateRange(this.nextRaceData.FirstPractice.date, this.nextRaceData.date);
       }
-    })
+    });
+  }
+
+  private convertToLocalTime(utcTime: string): string {
+    const date = new Date(`1970-01-01T${utcTime}Z`);
+    return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+  }
+
+  private formatDateRange(startDate: string, endDate: string): string {
+    const start = new Date(startDate + 'T00:00:00Z');
+    const end = new Date(endDate + 'T00:00:00Z');
+    const options: Intl.DateTimeFormatOptions = { day: '2-digit', month: 'short', year: 'numeric' };
+    return `${start.toLocaleDateString('en-GB', options)} - ${end.toLocaleDateString('en-GB', options)}`;
   }
 }

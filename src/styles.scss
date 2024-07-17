@@ -75,6 +75,7 @@ body {
 
     --f1-primary: #{$f1-primary};
     --f1-accent: #{$f1-accent};
+    --white: #{$white};
 
     @media screen and #{$mobile} {
       font-size: 0.8em;

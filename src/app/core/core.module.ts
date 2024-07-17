@@ -11,13 +11,14 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import { SidenavComponent } from './sidenav/sidenav.component';
 import { SidenavDirective } from '../directives/sidenav.directive';
 import { MatMenuModule } from '@angular/material/menu';
+import { ConvertToLocalTimeDirective } from '../directives/convert-to-local-time.directive';
 
 @NgModule({
   declarations: [
     FooterComponent,
     HeaderComponent,
     SidenavComponent,
-    SidenavDirective
+    SidenavDirective,
   ],
   imports: [
     CommonModule,
@@ -31,7 +32,7 @@ import { MatMenuModule } from '@angular/material/menu';
   exports: [
     FooterComponent,
     HeaderComponent,
-    SidenavComponent
+    SidenavComponent,
   ]
 })
 export class CoreModule { }

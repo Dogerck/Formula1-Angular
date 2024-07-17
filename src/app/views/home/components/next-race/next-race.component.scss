@@ -3,6 +3,40 @@
 .content {
     width: 100%;
     height: 200px;
-    background-color: var(--f1-accent);
-    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: var(--white);
+    border-radius: 5px;
+    color: var(--f1-accent);
+    position: relative;
+
+    .round {
+        top: 5px;
+        left: 5px;
+        height: 30px;
+        padding: 0 5px;
+        border-radius: 5px;
+        display: flex;
+        position: absolute;
+        width: fit-content;
+        align-items: center;
+        color: var(--white);
+        justify-content: center;
+        background-color: var(--f1-accent);
+    }
+
+    .img-flag {
+        top: 5px;
+        right: 5px;
+        height: 30px;
+        position: absolute;
+        border-radius: 5px;
+    }
 }
+
+h2 {
+    margin: 20px 0;
+    text-align: center;
+  }
