@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Ergast } from 'src/app/models/Ergast/ergast';
 import { Races } from 'src/app/models/races';
+import { LoaderService } from 'src/app/services/loader-service.service';
 import { NextRaceService } from 'src/app/services/next-race.service';
 
 @Component({
@@ -13,17 +14,23 @@ export class NextRaceComponent implements OnInit {
   nextRaceData: Races | any;
   formattedDateRange!: string;
 
-  constructor(private nextRaceService: NextRaceService) {}
+  constructor(private nextRaceService: NextRaceService, public loaderService: LoaderService) {}
   
   ngOnInit(): void {
     this.nextRace();
   }
 
   nextRace() {
+    this.loaderService.show();
     this.nextRaceService.getAll<Ergast>('current/next.json').subscribe({
       next: (data: Ergast) => {
         this.nextRaceData = data.MRData.RaceTable.Races[0];
         this.formattedDateRange = this.formatDateRange(this.nextRaceData.FirstPractice.date, this.nextRaceData.date);
+        this.loaderService.hide();
+      },
+      error: (error) => {
+        console.log('Erro:', error);
+        this.loaderService.hide();
       }
     });
   }
