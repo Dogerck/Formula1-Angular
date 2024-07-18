@@ -31,7 +31,7 @@ export class NextRaceComponent implements OnInit {
   private formatDateRange(startDate: string, endDate: string): string {
     const start = new Date(startDate + 'T00:00:00Z');
     const end = new Date(endDate + 'T00:00:00Z');
-    start.setDate(start.getDate() + 1)
+    start.setDate(start.getDate() + 1);
     const options: Intl.DateTimeFormatOptions = { day: '2-digit', month: 'short', year: 'numeric' };
     return `${start.toLocaleDateString('en-GB', options)} - ${end.toLocaleDateString('en-GB', options)}`;
   }

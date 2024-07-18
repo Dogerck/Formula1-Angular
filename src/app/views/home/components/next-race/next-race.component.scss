@@ -25,6 +25,9 @@
         color: var(--white);
         justify-content: center;
         background-color: var(--f1-accent);
+        p {
+            margin: 0;
+        }
     }
 
     .img-flag {
@@ -33,6 +36,12 @@
         height: 30px;
         position: absolute;
         border-radius: 5px;
+    }
+    h3, p {
+        margin-bottom: 5px;
+    }
+    span {
+        font-weight: bold;
     }
 }
 

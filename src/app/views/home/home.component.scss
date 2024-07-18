@@ -71,7 +71,10 @@
   }
 
   app-next-race {
-    width: 100%;
+    width: 70%;
+    @media screen and #{$mobile} {
+      width: 100%;
+    }
   }
   
   
