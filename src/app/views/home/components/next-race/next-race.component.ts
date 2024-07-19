@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { Ergast } from 'src/app/models/Ergast/ergast';
 import { Races } from 'src/app/models/races';
 import { LoaderService } from 'src/app/services/loader-service.service';
@@ -13,6 +14,7 @@ export class NextRaceComponent implements OnInit {
   
   nextRaceData: Races | any;
   formattedDateRange!: string;
+  private subscription: Subscription | undefined;
 
   constructor(private nextRaceService: NextRaceService, public loaderService: LoaderService) {}
   
@@ -22,7 +24,7 @@ export class NextRaceComponent implements OnInit {
 
   nextRace() {
     this.loaderService.show();
-    this.nextRaceService.getAll<Ergast>('current/next.json').subscribe({
+    this.subscription = this.nextRaceService.getAll<Ergast>('current/next.json').subscribe({
       next: (data: Ergast) => {
         this.nextRaceData = data.MRData.RaceTable.Races[0];
         this.formattedDateRange = this.formatDateRange(this.nextRaceData.FirstPractice.date, this.nextRaceData.date);
@@ -33,6 +35,11 @@ export class NextRaceComponent implements OnInit {
         this.loaderService.hide();
       }
     });
+  }
+  ngOnDestroy(): void { 
+    if (this.subscription) { 
+      this.subscription.unsubscribe(); 
+    } 
   }
 
   private formatDateRange(startDate: string, endDate: string): string {

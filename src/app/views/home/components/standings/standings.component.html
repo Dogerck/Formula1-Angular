@@ -1,6 +1,6 @@
 <h2>Driver Standings </h2>
 <div class="standings-content">
-    <!-- <mat-spinner *ngIf="loaderService.loading$ | async"></mat-spinner> -->
+    <mat-spinner *ngIf="loaderService.loading$ | async"></mat-spinner>
     <ul *ngFor="let driverStandings of standingsData">
         <li class="standings-list" *ngIf="standingsData">
             <span class="standings-list--position"> {{ driverStandings.position }} </span>

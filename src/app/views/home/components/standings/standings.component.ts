@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 
 import { Ergast } from 'src/app/models/Ergast/ergast';
 import { DriverStandings } from 'src/app/models/driver-standing';
@@ -14,7 +15,8 @@ export class StandingsComponent implements OnInit {
 
   standingsData: DriverStandings[] = [];
   currentYear = new Date().getFullYear()
-
+  private subscription: Subscription | undefined;
+  
   constructor(private standingsService: StandingsService, public loaderService: LoaderService) { }
 
   ngOnInit() {
@@ -25,7 +27,7 @@ export class StandingsComponent implements OnInit {
 
   getStanding() {
     this.loaderService.show()
-    this.standingsService.getAll<Ergast>('current/driverStandings.json').subscribe({
+    this.subscription = this.standingsService.getAll<Ergast>('current/driverStandings.json').subscribe({
       next: (data: Ergast) => {
         this.standingsData = data.MRData.StandingsTable.StandingsLists[0].DriverStandings;
         this.loaderService.hide()
@@ -35,6 +37,12 @@ export class StandingsComponent implements OnInit {
         this.loaderService.hide()
       }
     })
+  }
+
+  ngOnDestroy(): void { 
+    if (this.subscription) { 
+      this.subscription.unsubscribe(); 
+    } 
   }
 
   getTeamColor(teamName: string): string {
