@@ -17,7 +17,8 @@ export class ConvertToLocalDateDirective implements OnInit {
 
   private convertToLocalDate(utcDate: string): string {
     const date = new Date(utcDate);
+    const localDate = new Date(date.getTime() + date.getTimezoneOffset() * 60000);
     const options: Intl.DateTimeFormatOptions = { day: '2-digit', month: 'short', year: 'numeric' };
-    return date.toLocaleDateString('en-GB', options);
+    return localDate.toLocaleDateString('en-GB', options);
   }
 }

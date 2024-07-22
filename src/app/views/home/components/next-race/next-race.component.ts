@@ -24,10 +24,12 @@ export class NextRaceComponent implements OnInit {
 
   nextRace() {
     this.loaderService.show();
-    this.subscription = this.nextRaceService.getAll<Ergast>('current/next.json').subscribe({
+    this.subscription = this.nextRaceService.getAll<Ergast>('current/last.json').subscribe({
       next: (data: Ergast) => {
         this.nextRaceData = data.MRData.RaceTable.Races[0];
         this.formattedDateRange = this.formatDateRange(this.nextRaceData.FirstPractice.date, this.nextRaceData.date);
+        console.log(this.nextRaceData.date);
+        
         this.loaderService.hide();
       },
       error: (error) => {
@@ -45,8 +47,9 @@ export class NextRaceComponent implements OnInit {
   private formatDateRange(startDate: string, endDate: string): string {
     const start = new Date(startDate + 'T00:00:00Z');
     const end = new Date(endDate + 'T00:00:00Z');
-    start.setDate(start.getDate() + 1);
+    const localStart = new Date(start.getTime() + start.getTimezoneOffset() * 60000);
+    const localEnd = new Date(end.getTime() + end.getTimezoneOffset() * 60000);
     const options: Intl.DateTimeFormatOptions = { day: '2-digit', month: 'short', year: 'numeric' };
-    return `${start.toLocaleDateString('en-GB', options)} - ${end.toLocaleDateString('en-GB', options)}`;
+  return `${localStart.toLocaleDateString('en-GB', options)} - ${localEnd.toLocaleDateString('en-GB', options)}`;
   }
 }
