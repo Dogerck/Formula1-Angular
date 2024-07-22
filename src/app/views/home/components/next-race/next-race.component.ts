@@ -24,7 +24,7 @@ export class NextRaceComponent implements OnInit {
 
   nextRace() {
     this.loaderService.show();
-    this.subscription = this.nextRaceService.getAll<Ergast>('current/last.json').subscribe({
+    this.subscription = this.nextRaceService.getAll<Ergast>('current/next.json').subscribe({
       next: (data: Ergast) => {
         this.nextRaceData = data.MRData.RaceTable.Races[0];
         this.formattedDateRange = this.formatDateRange(this.nextRaceData.FirstPractice.date, this.nextRaceData.date);
