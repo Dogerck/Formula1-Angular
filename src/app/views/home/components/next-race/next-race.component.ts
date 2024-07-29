@@ -45,11 +45,11 @@ export class NextRaceComponent implements OnInit {
   }
 
   private formatDateRange(startDate: string, endDate: string): string {
-    const start = new Date(startDate + 'T00:00:00Z');
     const end = new Date(endDate + 'T00:00:00Z');
-    const localStart = new Date(start.getTime() + start.getTimezoneOffset() * 60000);
+    const start = new Date(startDate + 'T00:00:00Z');
     const localEnd = new Date(end.getTime() + end.getTimezoneOffset() * 60000);
+    const localStart = new Date(start.getTime() + start.getTimezoneOffset() * 60000);
     const options: Intl.DateTimeFormatOptions = { day: '2-digit', month: 'short', year: 'numeric' };
-  return `${localStart.toLocaleDateString('en-GB', options)} - ${localEnd.toLocaleDateString('en-GB', options)}`;
+    return `${localStart.toLocaleDateString('en-GB', options)} - ${localEnd.toLocaleDateString('en-GB', options)}`;
   }
 }
