@@ -76,6 +76,18 @@
       width: 100%;
     }
   }
+
+  iframe {
+    width: 70%;
+    position: static; 
+    visibility: visible;
+    height: 800px; 
+    display: block; 
+    flex-grow: 1;
+    @media screen and #{$mobile} {
+      width: 100%;
+    }
+  }
   
   
   
