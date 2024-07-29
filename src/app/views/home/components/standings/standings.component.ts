@@ -15,6 +15,7 @@ export class StandingsComponent implements OnInit {
 
   standingsData: DriverStandings[] = [];
   currentYear = new Date().getFullYear()
+  topThree: DriverStandings[] = [];
   private subscription: Subscription | undefined;
   
   constructor(private standingsService: StandingsService, public loaderService: LoaderService) { }
@@ -30,6 +31,8 @@ export class StandingsComponent implements OnInit {
     this.subscription = this.standingsService.getAll<Ergast>('current/driverStandings.json').subscribe({
       next: (data: Ergast) => {
         this.standingsData = data.MRData.StandingsTable.StandingsLists[0].DriverStandings;
+        this.topThree = this.standingsData.slice(0,3)
+        this.topThree = [this.topThree[1], this.topThree[0], this.topThree[2]];
         this.loaderService.hide()
       },
       error: (error) => {
