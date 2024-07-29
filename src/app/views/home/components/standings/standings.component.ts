@@ -44,7 +44,7 @@ export class StandingsComponent implements OnInit {
 
   ngOnDestroy(): void { 
     if (this.subscription) { 
-      this.subscription.unsubscribe(); 
+      this.subscription.unsubscribe();
     } 
   }
 

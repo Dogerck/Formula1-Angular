@@ -14,5 +14,5 @@
         <div class="round"><p> Round: {{ nextRaceData.round }}</p></div>
         <img class="img-flag" src="./assets/img/circuit-flags/{{ nextRaceData.Circuit.circuitId }}.png" alt="{{ nextRaceData.Circuit.Location.country }} flag">
     </div>
-    <p *ngIf="nextRaceData === undefined && !(loaderService.loading$ | async)">No data.</p>
+    <p *ngIf="!this.nextRaceData && !(loaderService.loading$ | async)">No data.</p>
 </div>
