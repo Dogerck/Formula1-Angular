@@ -20,4 +20,5 @@
             </div>
         </div>
     </div>
+    <p *ngIf="driversData.length === 0 && !(loaderService.loading$ | async)">No data.</p>
 </div>

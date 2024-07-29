@@ -24,6 +24,8 @@ export class DriversComponent implements OnInit {
     this.subscription = this.driversService.getAll<Ergast>(this.currentYear + '/drivers.json').subscribe({
       next: (data: Ergast) => {
         this.driversData = data.MRData.DriverTable.Drivers
+        console.log(this.driversData.map(driver => driver.givenName));
+        
         this.loaderService.hide();
       },
       error: (error) => {
