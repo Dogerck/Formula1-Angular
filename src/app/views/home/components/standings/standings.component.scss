@@ -43,8 +43,8 @@
             top: -95px;
           }
           .pilot-img {
-            max-width: 185px;
-            top: -185px;
+            max-width: 232px;
+            top: -184px;
             right: 0;
           }
         }
@@ -67,7 +67,7 @@
         padding: 25px;
 
         .pilot-img {
-          max-width: 170px;
+          max-width: 214px;
           position: absolute;
           top: -170px;
           right: 0;
@@ -93,15 +93,17 @@
         }
 
         p {
-          &:nth-child(1) {
-            font-size: 14px;
+          font-size: 18px;
+
+          &:nth-child(2) {
+            font-size: 12px;
           }
         }
         .position {
           color: #38383f;
           position: absolute;
           top: -80px;
-          font-size: 22px;
+          font-size: 26px;
         }
       }
     }
