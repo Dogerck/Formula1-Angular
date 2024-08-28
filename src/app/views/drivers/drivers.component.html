@@ -3,22 +3,30 @@
     <div class="text-card">
         <p>Check out this season's official F1 line-up. Full breakdown of drivers, points and current positions. Follow your favourite F1 drivers on and off the track.</p>
     </div>
-    <mat-spinner class="loader" *ngIf="loaderService.loading$ | async"></mat-spinner>
-    <div class="container-cards" *ngIf="driversData || !(loaderService.loading$ | async)">
-        <div class="card" id="albon" *ngFor="let item of driversData">
-            <div class="img-card">
-                <img src="./assets/img/pilot-number/{{ item.driverId }}.png" class="pilot-number" alt="pilot number">
-                <img src="./assets/img/drivers/{{ item.driverId }}.png" class="pilot-img" alt="pilot image">
-                <h3 class="firstName"> {{ item.givenName }} </h3>
-                <h3 class="secondName">
-                    <a href="{{ item.url }}" target="_blank"> {{ item.familyName }}</a>
-                </h3>
-            </div>
-            <div class="text-content">
-                <p><b>Birthday:</b> {{ item.dateOfBirth }}</p>
-                <p><b>Nationality:</b> {{ item.nationality }}</p>
-            </div>
+    @if(loaderService.loading$ | async) {
+        <mat-spinner class="loader"></mat-spinner>
+    }
+    @if(driversData || !(loaderService.loading$ | async)) {
+        <div class="container-cards">
+            @for(item of driversData; track item) {
+                <div class="card" id="albon">
+                        <div class="img-card">
+                            <img src="./assets/img/pilot-number/{{ item.driverId }}.png" class="pilot-number" alt="pilot number">
+                            <img src="./assets/img/drivers/{{ item.driverId }}.png" class="pilot-img" alt="pilot image">
+                            <h3 class="firstName"> {{ item.givenName }} </h3>
+                            <h3 class="secondName">
+                                <a href="{{ item.url }}" target="_blank"> {{ item.familyName }}</a>
+                            </h3>
+                        </div>
+                        <div class="text-content">
+                            <p><b>Birthday:</b> {{ item.dateOfBirth }}</p>
+                            <p><b>Nationality:</b> {{ item.nationality }}</p>
+                        </div>
+                </div>
+            }
         </div>
-    </div>
-    <p *ngIf="driversData.length === 0 && !(loaderService.loading$ | async)">No data.</p>
+    }
+    @if(driversData.length === 0 && !(loaderService.loading$ | async)) {
+        <p>No data.</p>
+    }
 </div>
