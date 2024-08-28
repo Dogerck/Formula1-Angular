@@ -71,10 +71,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "Formula1-Angular:build:production"
+              "buildTarget": "Formula1-Angular:build:production"
             },
             "development": {
-              "browserTarget": "Formula1-Angular:build:development"
+              "buildTarget": "Formula1-Angular:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -82,7 +82,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "Formula1-Angular:build"
+            "buildTarget": "Formula1-Angular:build"
           }
         },
         "test": {
