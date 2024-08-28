@@ -21,7 +21,7 @@ export class DriversComponent implements OnInit {
   
   getDrivers() {
     this.loaderService.show();
-    this.subscription = this.driversService.getAll<Ergast>(this.currentYear + '/drvers.json').subscribe({
+    this.subscription = this.driversService.getAll<Ergast>(this.currentYear + '/drivers.json').subscribe({
       next: (data: Ergast) => {
         this.driversData = data.MRData.DriverTable.Drivers
         console.log(this.driversData.map(driver => driver.givenName));
