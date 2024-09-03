@@ -1,18 +1,20 @@
 <h2>Driver Standings </h2>
 <div class="standings-content">
-    <div class="topThree">
-        @for(topThree of topThree; track topThree) {
-            <div class="topThree_card">
-                <div class="card-bottom" [style.border-color]="getTeamColor(topThree.Constructors[0].name)">
-                    <img class="pilot-img" src="./assets/img/drivers/{{ topThree.Driver.driverId }}.png" alt="">
-                    <p>{{topThree.Driver.givenName}}</p>
-                    <p><b>{{topThree.Driver.familyName}}</b></p>
-                    <p class="position"><b>{{ topThree.position }}</b></p>
-                    <img class="img-flag" src="./assets/img/pilot-nat/{{ topThree.Driver.driverId }}.png" alt="{{ topThree.Driver.driverId }} flag">
+    @if(topThree) {
+        <div class="topThree">
+            @for(topThree of topThree; track topThree) {
+                <div class="topThree_card">
+                    <div class="card-bottom" [style.border-color]="getTeamColor(topThree.Constructors[0].name)">
+                        <img class="pilot-img" src="./assets/img/drivers/{{ topThree.Driver.driverId }}.png" alt="">
+                        <p>{{topThree.Driver.givenName}}</p>
+                        <p><b>{{topThree.Driver.familyName}}</b></p>
+                        <p class="position"><b>{{ topThree.position }}</b></p>
+                        <img class="img-flag" src="./assets/img/pilot-nat/{{ topThree.Driver.driverId }}.png" alt="{{ topThree.Driver.driverId }} flag">
+                    </div>
                 </div>
-            </div>
-        }
-    </div>
+            }
+        </div>
+    }
     @if(loaderService.loading$ | async) {
         <mat-spinner></mat-spinner>
     }
