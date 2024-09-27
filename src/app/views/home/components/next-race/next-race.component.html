@@ -9,8 +9,17 @@
                 <h3>{{ nextRaceData.raceName }}</h3>
                 <p> {{ formattedDateRange }}</p>
                 <div style="display: flex;"><p style="margin-right: auto;">Practice 1:</p><span style="margin-left: auto;" appConvertToLocalTime="{{nextRaceData.FirstPractice.time}}"></span></div>
-                <div style="display: flex;"><p style="margin-right: auto;">Practice 2:</p><span style="margin-left: auto;" appConvertToLocalTime="{{ nextRaceData.SecondPractice.time }}"></span></div>
-                <div style="display: flex;"><p style="margin-right: auto;">Practice 3:</p><span style="margin-left: auto;" appConvertToLocalTime="{{ nextRaceData.ThirdPractice.time }}"></span></div>
+                @if(nextRaceData?.SprintQualifying?.time) {
+                    <div style="display: flex;"><p style="margin-right: auto;">Sprint Qualifying:</p><span style="margin-left: auto;" appConvertToLocalTime="{{ nextRaceData.SprintQualifying.time }}"></span></div>
+                }@else {
+                    <div style="display: flex;"><p style="margin-right: auto;">Practice 2:</p><span style="margin-left: auto;" appConvertToLocalTime="{{ nextRaceData.SecondPractice.time }}"></span></div>
+                }
+                @if(nextRaceData?.ThirdPractice?.time) {
+                    <div style="display: flex;"><p style="margin-right: auto;">Practice 3:</p><span style="margin-left: auto;" appConvertToLocalTime="{{ nextRaceData.ThirdPractice.time }}"></span></div>
+                }
+                @if(nextRaceData?.Sprint?.time) {
+                    <div style="display: flex;"><p style="margin-right: auto;">Sprint:</p><span style="margin-left: auto;" appConvertToLocalTime="{{ nextRaceData.Sprint.time }}"></span></div>
+                }
                 <div style="display: flex;"><p style="display: flex;">Qualifying:</p><span style="margin-left: auto;" appConvertToLocalTime="{{ nextRaceData.Qualifying.time }}"></span></div>
                 <div style="display: flex;"><p style="display: flex;">Race:</p><span style="margin-left: auto;" appConvertToLocalTime="{{ nextRaceData.time }}"></span></div>
             </div>

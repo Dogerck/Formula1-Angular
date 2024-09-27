@@ -29,6 +29,8 @@ export class NextRaceComponent implements OnInit {
         this.nextRaceData = data.MRData.RaceTable.Races[0];
         this.formattedDateRange = this.formatDateRange(this.nextRaceData.FirstPractice.date, this.nextRaceData.date);
         this.loaderService.hide();
+        console.log(this.nextRaceData);
+        
       },
       error: (error) => {
         console.log('Erro:', error);
