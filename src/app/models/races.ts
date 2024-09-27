@@ -12,6 +12,7 @@ export interface Races {
     ThirdPractice: ThirdPractice,
     Qualifying: Qualifying,
     Sprint: Sprint,
+    SprintQualifying: SprintQualifying
 }
 
 export interface Circuit extends circuits {}
@@ -26,3 +27,4 @@ export interface SecondPractice extends dateTimeGenric {}
 export interface ThirdPractice extends dateTimeGenric {}
 export interface Qualifying extends dateTimeGenric {}
 export interface Sprint extends dateTimeGenric {}
+export interface SprintQualifying extends dateTimeGenric {}
