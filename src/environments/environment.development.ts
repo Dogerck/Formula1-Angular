@@ -1,4 +1,4 @@
 export const environment = {
     production: false,
-    apiUrl: 'https://ergast.com/api/f1/'
+    apiUrl: 'https://api.jolpi.ca/ergast/f1/'
 };
