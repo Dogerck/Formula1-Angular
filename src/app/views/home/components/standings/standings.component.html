@@ -29,10 +29,9 @@
                     <span class="standings-list--points f1-label"> <b>{{ driverStandings.points }}</b> pts</span>
                 </li>
             }
+        }@empty {
+            <p>No data.</p>
         }
     </ul>
-    @if(standingsData.length === 0 && !(loaderService.loading$ | async)) {
-        <p>No data.</p>
-    }
 </div>    
 <h2>Last news </h2>

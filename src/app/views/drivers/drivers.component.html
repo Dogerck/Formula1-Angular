@@ -23,10 +23,9 @@
                             <p><b>Nationality:</b> {{ item.nationality }}</p>
                         </div>
                 </div>
+            }@empty {
+                <p>No data.</p>        
             }
         </div>
-    }
-    @if(driversData.length === 0 && !(loaderService.loading$ | async)) {
-        <p>No data.</p>
     }
 </div>
