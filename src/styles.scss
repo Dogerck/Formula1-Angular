@@ -10,15 +10,15 @@
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
-$Formula1-Angular-primary: mat.define-palette($f1-primary-pallete);
-$Formula1-Angular-accent: mat.define-palette($f1-accent-pallete);
+$Formula1-Angular-primary: mat.m2-define-palette($f1-primary-pallete);
+$Formula1-Angular-accent: mat.m2-define-palette($f1-accent-pallete);
 
 // The warn palette is optional (defaults to red).
-$Formula1-Angular-warn: mat.define-palette(mat.$red-palette);
+$Formula1-Angular-warn: mat.m2-define-palette(mat.$m2-red-palette);
 
 // Create the theme object. A theme consists of configurations for individual
 // theming systems such as "color" or "typography".
-$Formula1-Angular-theme: mat.define-light-theme((
+$Formula1-Angular-theme: mat.m2-define-light-theme((
   color: (
     primary: $Formula1-Angular-primary,
     accent: $Formula1-Angular-accent,
