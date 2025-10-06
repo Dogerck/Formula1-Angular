@@ -4,7 +4,8 @@ import { Subscription } from 'rxjs';
 import { SidenavActions, SidenavService } from '../services/sidenav.service';
 
 @Directive({
-  selector: '[appSidenav]'
+    selector: '[appSidenav]',
+    standalone: false
 })
 export class SidenavDirective implements OnDestroy{
 

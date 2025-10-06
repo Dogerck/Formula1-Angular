@@ -6,9 +6,10 @@ import { LoaderService } from 'src/app/services/loader-service.service';
 import { NextRaceService } from 'src/app/services/next-race.service';
 
 @Component({
-  selector: 'app-next-race',
-  templateUrl: './next-race.component.html',
-  styleUrls: ['./next-race.component.scss']
+    selector: 'app-next-race',
+    templateUrl: './next-race.component.html',
+    styleUrls: ['./next-race.component.scss'],
+    standalone: false
 })
 export class NextRaceComponent implements OnInit {
   

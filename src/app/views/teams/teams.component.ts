@@ -6,9 +6,10 @@ import { ConstructorsService } from 'src/app/services/constructors.service';
 import { LoaderService } from 'src/app/services/loader-service.service';
 
 @Component({
-  selector: 'app-teams',
-  templateUrl: './teams.component.html',
-  styleUrls: ['./teams.component.scss']
+    selector: 'app-teams',
+    templateUrl: './teams.component.html',
+    styleUrls: ['./teams.component.scss'],
+    standalone: false
 })
 export class TeamsComponent {
   constructorsData: Constructor[] = [];

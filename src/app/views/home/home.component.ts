@@ -2,9 +2,10 @@ import { AfterViewInit, Component, ElementRef, inject, Renderer2, ViewChild } fr
 import { LoaderService } from 'src/app/services/loader-service.service';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+    selector: 'app-home',
+    templateUrl: './home.component.html',
+    styleUrls: ['./home.component.scss'],
+    standalone: false
 })
 export class HomeComponent implements AfterViewInit {
   @ViewChild('iframe', { static: false }) iframe!: ElementRef<HTMLIFrameElement>;

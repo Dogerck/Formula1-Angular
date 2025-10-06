@@ -6,9 +6,10 @@ import { DriversService } from 'src/app/services/drivers.service';
 import { LoaderService } from 'src/app/services/loader-service.service';
 
 @Component({
-  selector: 'app-drivers',
-  templateUrl: './drivers.component.html',
-  styleUrls: ['./drivers.component.scss']
+    selector: 'app-drivers',
+    templateUrl: './drivers.component.html',
+    styleUrls: ['./drivers.component.scss'],
+    standalone: false
 })
 export class DriversComponent implements OnInit {
   
