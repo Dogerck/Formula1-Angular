@@ -1,5 +1,14 @@
 <section class="next-race">
-    <div class="label section-label">Next Race &mdash; Round {{ nextRaceData()?.round }}</div>
+    <div class="section-label-row">
+        <div class="label section-label">Next Race &mdash; Round {{ nextRaceData()?.round }}</div>
+        @if(trackTimezone()) {
+            <button type="button" class="label time-toggle" (click)="toggleTimeMode()">
+                <span [class.time-toggle__option--active]="timeMode() === 'local'" class="time-toggle__option">Local</span>
+                /
+                <span [class.time-toggle__option--active]="timeMode() === 'track'" class="time-toggle__option">Track</span>
+            </button>
+        }
+    </div>
 
     @if(loaderService.loading()) {
         <div class="loading-panel cut-card">
@@ -18,38 +27,38 @@
             <div class="hero-sessions">
                 <div class="session">
                     <div class="label">Practice 1</div>
-                    <div class="mono session-time" appConvertToLocalTime="{{ race.FirstPractice.time }}"></div>
+                    <div class="mono session-time" [appSessionTime]="sessionIso(race.FirstPractice.date, race.FirstPractice.time)" [appSessionTimeZone]="activeTimezone()"></div>
                 </div>
                 @if(race.SprintQualifying?.time) {
                     <div class="session">
                         <div class="label">Sprint Qualifying</div>
-                        <div class="mono session-time" appConvertToLocalTime="{{ race.SprintQualifying.time }}"></div>
+                        <div class="mono session-time" [appSessionTime]="sessionIso(race.SprintQualifying.date, race.SprintQualifying.time)" [appSessionTimeZone]="activeTimezone()"></div>
                     </div>
                 } @else {
                     <div class="session">
                         <div class="label">Practice 2</div>
-                        <div class="mono session-time" appConvertToLocalTime="{{ race.SecondPractice.time }}"></div>
+                        <div class="mono session-time" [appSessionTime]="sessionIso(race.SecondPractice.date, race.SecondPractice.time)" [appSessionTimeZone]="activeTimezone()"></div>
                     </div>
                 }
                 @if(race.ThirdPractice?.time) {
                     <div class="session">
                         <div class="label">Practice 3</div>
-                        <div class="mono session-time" appConvertToLocalTime="{{ race.ThirdPractice.time }}"></div>
+                        <div class="mono session-time" [appSessionTime]="sessionIso(race.ThirdPractice.date, race.ThirdPractice.time)" [appSessionTimeZone]="activeTimezone()"></div>
                     </div>
                 }
                 @if(race.Sprint?.time) {
                     <div class="session">
                         <div class="label">Sprint</div>
-                        <div class="mono session-time" appConvertToLocalTime="{{ race.Sprint.time }}"></div>
+                        <div class="mono session-time" [appSessionTime]="sessionIso(race.Sprint.date, race.Sprint.time)" [appSessionTimeZone]="activeTimezone()"></div>
                     </div>
                 }
                 <div class="session">
                     <div class="label">Qualifying</div>
-                    <div class="mono session-time" appConvertToLocalTime="{{ race.Qualifying.time }}"></div>
+                    <div class="mono session-time" [appSessionTime]="sessionIso(race.Qualifying.date, race.Qualifying.time)" [appSessionTimeZone]="activeTimezone()"></div>
                 </div>
                 <div class="session session--race">
                     <div class="label">Race</div>
-                    <div class="mono session-time" appConvertToLocalTime="{{ race.time }}"></div>
+                    <div class="mono session-time" [appSessionTime]="sessionIso(race.date, race.time)" [appSessionTimeZone]="activeTimezone()"></div>
                 </div>
             </div>
         </div>

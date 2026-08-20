@@ -3,8 +3,35 @@
 .next-race {
     width: 100%;
 
-    .section-label {
+    .section-label-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
         margin-bottom: 14px;
+    }
+
+    .section-label {
+        margin-bottom: 0;
+    }
+
+    .time-toggle {
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 0;
+        display: flex;
+        gap: 4px;
+        color: var(--text-faint);
+
+        &__option {
+            &--active {
+                color: var(--cyan);
+            }
+        }
+
+        &:hover {
+            color: var(--text-dim);
+        }
     }
 
     .loading-panel {
