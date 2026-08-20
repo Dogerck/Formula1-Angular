@@ -2,6 +2,7 @@ import { AfterViewInit, Component, ElementRef, ChangeDetectionStrategy, signal, 
 import { NextRaceComponent } from './components/next-race/next-race.component';
 import { StandingsComponent } from './components/standings/standings.component';
 import { MatProgressSpinner } from '@angular/material/progress-spinner';
+import { F1TimelineComponent } from "./components/x-timeline/x-timeline.component";
 
 interface TwitterWidgets {
   ready(callback: (twttr: { widgets: { load(el?: HTMLElement): Promise<HTMLElement[]> } }) => void): void;
@@ -22,7 +23,7 @@ const FEED_LOAD_TIMEOUT_MS = 8000;
     templateUrl: './home.component.html',
     styleUrls: ['./home.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [NextRaceComponent, StandingsComponent, MatProgressSpinner]
+    imports: [NextRaceComponent, StandingsComponent, MatProgressSpinner, F1TimelineComponent]
 })
 export class HomeComponent implements AfterViewInit {
   readonly feedContainer = viewChild.required<ElementRef<HTMLElement>>('feedContainer');
@@ -30,25 +31,8 @@ export class HomeComponent implements AfterViewInit {
   feedState = signal<FeedState>('loading');
 
   ngAfterViewInit(): void {
-    const timeout = setTimeout(() => this.feedState.set('error'), FEED_LOAD_TIMEOUT_MS);
-
-    if (!window.twttr) {
-      clearTimeout(timeout);
-      this.feedState.set('error');
-      return;
+    if ((window as any).twttr && (window as any).twttr.widgets) {
+      (window as any).twttr.widgets.load();
     }
-
-    window.twttr.ready(twttr => {
-      twttr.widgets
-        .load(this.feedContainer().nativeElement)
-        .then(widgets => {
-          clearTimeout(timeout);
-          this.feedState.set(widgets.length ? 'loaded' : 'error');
-        })
-        .catch(() => {
-          clearTimeout(timeout);
-          this.feedState.set('error');
-        });
-    });
   }
 }
