@@ -1,0 +1,16 @@
+<mat-sidenav-container class="side-nav-container">
+    <mat-sidenav class="sidenav" mode="over" position="start" [opened]="mobileNav.opened()" (closedStart)="mobileNav.close()">
+        <div class="brand-mark"></div>
+        <nav class="lista-mobile">
+            <a routerLink="home" routerLinkActive="active" (click)="mobileNav.close()">Home</a>
+            <a routerLink="latest" routerLinkActive="active" (click)="mobileNav.close()">Latest</a>
+            <a routerLink="schedule" routerLinkActive="active" (click)="mobileNav.close()">Schedule</a>
+            <a routerLink="results" routerLinkActive="active" (click)="mobileNav.close()">Results</a>
+            <a routerLink="drivers" routerLinkActive="active" (click)="mobileNav.close()">Drivers</a>
+            <a routerLink="teams" routerLinkActive="active" (click)="mobileNav.close()">Teams</a>
+        </nav>
+    </mat-sidenav>
+    <mat-sidenav-content class="side-nav-content">
+        <router-outlet></router-outlet>
+    </mat-sidenav-content>
+</mat-sidenav-container>

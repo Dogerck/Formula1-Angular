@@ -1,6 +1,6 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { HeaderComponent } from './core/header/header.component';
-import { RouterOutlet } from '@angular/router';
+import { SidenavComponent } from './core/sidenav/sidenav.component';
 import { FooterComponent } from './core/footer/footer.component';
 
 @Component({
@@ -8,7 +8,7 @@ import { FooterComponent } from './core/footer/footer.component';
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [HeaderComponent, RouterOutlet, FooterComponent]
+    imports: [HeaderComponent, SidenavComponent, FooterComponent]
 })
 export class AppComponent {
   title = 'Formula1-Angular';

@@ -1,15 +1,7 @@
 <mat-toolbar class="header">
-    <button mat-icon-button class="menu-icon" [matMenuTriggerFor]="menu" aria-label="menu icon">
+    <button mat-icon-button class="menu-icon" (click)="mobileNav.toggle()" aria-label="menu icon">
         <mat-icon>menu</mat-icon>
     </button>
-    <mat-menu #menu="matMenu">
-        <button mat-menu-item routerLink="home">Home</button>
-        <button mat-menu-item routerLink="latest">Latest</button>
-        <button mat-menu-item routerLink="schedule">Schedule</button>
-        <button mat-menu-item routerLink="results">Results</button>
-        <button mat-menu-item routerLink="drivers">Drivers</button>
-        <button mat-menu-item routerLink="teams">Teams</button>
-    </mat-menu>
     <a routerLink="home" class="brand">
         <span class="brand-mark"></span>
         <span class="disp brand-name">Apex</span>
