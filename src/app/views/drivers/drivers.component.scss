@@ -70,13 +70,19 @@
                 position: relative;
                 
                 .pilot-number {
-                    max-width: 110px;
                     position: absolute;
-                    left: -20px;
-                    top: 8px;
+                    left: -10px;
+                    top: 0;
                     align-self: baseline;
                     margin: 5px;
-                    
+                    font-family: F1Bold, sans-serif;
+                    font-size: 48px;
+                    font-weight: 700;
+                    line-height: 1;
+                    color: #fff;
+                    -webkit-text-stroke: 2px var(--f1-accent);
+                    paint-order: stroke fill;
+
                     &:hover {
                         transform: rotatey(30deg);
                         transition: transform 0.5s;

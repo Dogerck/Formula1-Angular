@@ -11,8 +11,8 @@
             @for(item of driversData(); track item) {
                 <div class="card" id="albon">
                         <div class="img-card">
-                            <img src="./assets/img/pilot-number/{{ item.driverId }}.png" class="pilot-number" alt="pilot number">
-                            <img src="./assets/img/drivers/{{ item.driverId }}.png" class="pilot-img" alt="pilot image">
+                            <span class="pilot-number">{{ item.permanentNumber }}</span>
+                            <img [appWikipediaPhoto]="item.url" class="pilot-img" alt="{{ item.givenName }} {{ item.familyName }}">
                             <h3 class="firstName"> {{ item.givenName }} </h3>
                             <h3 class="secondName">
                                 <a href="{{ item.url }}" target="_blank"> {{ item.familyName }}</a>

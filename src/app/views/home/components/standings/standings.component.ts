@@ -6,13 +6,15 @@ import { Ergast } from 'src/app/models/Ergast/ergast';
 import { LoaderService } from 'src/app/services/loader-service.service';
 import { StandingsService } from 'src/app/services/standings.service';
 import { MatProgressSpinner } from '@angular/material/progress-spinner';
+import { WikipediaPhotoDirective } from 'src/app/directives/wikipedia-photo.directive';
+import { FlagDirective } from 'src/app/directives/flag.directive';
 
 @Component({
     selector: 'app-standings',
     templateUrl: './standings.component.html',
     styleUrls: ['./standings.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [MatProgressSpinner]
+    imports: [MatProgressSpinner, WikipediaPhotoDirective, FlagDirective]
 })
 export class StandingsComponent {
   private standingsService = inject(StandingsService);

@@ -24,7 +24,7 @@
                 <div style="display: flex;"><p style="display: flex;">Race:</p><span style="margin-left: auto;" appConvertToLocalTime="{{ nextRaceData.time }}"></span></div>
             </div>
             <div class="round"><p> Round: {{ nextRaceData.round }}</p></div>
-            <img class="img-flag" src="./assets/img/circuit-flags/{{ nextRaceData.Circuit.circuitId }}.png" alt="{{ nextRaceData.Circuit.Location.country }} flag">
+            <img class="img-flag" [appFlag]="nextRaceData.Circuit.Location.country" alt="{{ nextRaceData.Circuit.Location.country }} flag">
         </div>
     }
     @if(!nextRaceData() && !loaderService.loading()) {

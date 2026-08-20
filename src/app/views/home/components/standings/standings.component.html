@@ -7,11 +7,11 @@
             @for(topThree of topThree(); track topThree) {
                 <div class="topThree_card">
                     <div class="card-bottom" [style.border-color]="getTeamColor(topThree.Constructors[0].name)">
-                        <img class="pilot-img" src="./assets/img/drivers/{{ topThree.Driver.driverId }}.png" alt="">
+                        <img class="pilot-img" [appWikipediaPhoto]="topThree.Driver.url" alt="{{ topThree.Driver.givenName }} {{ topThree.Driver.familyName }}">
                         <p>{{topThree.Driver.givenName}}</p>
                         <p><b>{{topThree.Driver.familyName}}</b></p>
                         <p class="position"><b>{{ topThree.position }}</b></p>
-                        <img class="img-flag" src="./assets/img/pilot-nat/{{ topThree.Driver.driverId }}.png" alt="{{ topThree.Driver.driverId }} flag">
+                        <img class="img-flag" [appFlag]="topThree.Driver.nationality" alt="{{ topThree.Driver.nationality }} flag">
                     </div>
                 </div>
             }

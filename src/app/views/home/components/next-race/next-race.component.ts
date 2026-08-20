@@ -6,13 +6,14 @@ import { LoaderService } from 'src/app/services/loader-service.service';
 import { NextRaceService } from 'src/app/services/next-race.service';
 import { MatProgressSpinner } from '@angular/material/progress-spinner';
 import { ConvertToLocalTimeDirective } from '../../../../directives/convert-to-local-time.directive';
+import { FlagDirective } from '../../../../directives/flag.directive';
 
 @Component({
     selector: 'app-next-race',
     templateUrl: './next-race.component.html',
     styleUrls: ['./next-race.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [MatProgressSpinner, ConvertToLocalTimeDirective]
+    imports: [MatProgressSpinner, ConvertToLocalTimeDirective, FlagDirective]
 })
 export class NextRaceComponent {
   private nextRaceService = inject(NextRaceService);

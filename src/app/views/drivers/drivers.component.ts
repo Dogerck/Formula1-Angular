@@ -5,13 +5,14 @@ import { Ergast } from 'src/app/models/Ergast/ergast';
 import { DriversService } from 'src/app/services/drivers.service';
 import { LoaderService } from 'src/app/services/loader-service.service';
 import { MatProgressSpinner } from '@angular/material/progress-spinner';
+import { WikipediaPhotoDirective } from 'src/app/directives/wikipedia-photo.directive';
 
 @Component({
     selector: 'app-drivers',
     templateUrl: './drivers.component.html',
     styleUrls: ['./drivers.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [MatProgressSpinner]
+    imports: [MatProgressSpinner, WikipediaPhotoDirective]
 })
 export class DriversComponent {
   private driversService = inject(DriversService);
