@@ -1,5 +1,12 @@
 @import '../../scss/global.scss';
 
+// Custom elements default to `display: inline` in the absence of an explicit
+// rule, which breaks height/overflow calculations for the block-level
+// mat-drawer-container this host wraps (it was silently overlapping the
+// footer that comes after it in the DOM).
+:host {
+    display: block;
+}
 
 .side-nav-container {
     background-color: var(--bg);
@@ -51,8 +58,8 @@
     }
 
     .side-nav-content {
-        height: calc(100vh - 70px);
         margin-top: 70px;
+        min-height: calc(100vh - 70px);
         background-color: var(--bg);
     }
 }
