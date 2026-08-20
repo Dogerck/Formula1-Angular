@@ -1,0 +1,18 @@
+.circuit-track {
+    display: block;
+    width: 100%;
+    height: auto;
+
+    &__outline {
+        fill: none;
+        stroke: var(--border-strong);
+        stroke-width: 1.4;
+        stroke-linejoin: round;
+        stroke-linecap: round;
+    }
+
+    &__dot {
+        fill: var(--cyan);
+        filter: drop-shadow(0 0 3px var(--cyan));
+    }
+}

@@ -23,6 +23,7 @@
                 <h1 class="disp race-name">{{ race.raceName }}</h1>
                 <div class="circuit-line">{{ race.Circuit.circuitName }} &middot; {{ race.Circuit.Location.locality }}, {{ race.Circuit.Location.country }}</div>
                 <div class="label date-range">{{ formattedDateRange() }}</div>
+                <app-circuit-track [circuitId]="race.Circuit.circuitId" class="track-art"></app-circuit-track>
             </div>
             <div class="hero-sessions">
                 <div class="session">

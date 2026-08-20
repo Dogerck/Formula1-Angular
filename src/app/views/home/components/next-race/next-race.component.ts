@@ -8,6 +8,7 @@ import { MatProgressSpinner } from '@angular/material/progress-spinner';
 import { FlagDirective } from '../../../../directives/flag.directive';
 import { SessionTimeDirective } from '../../../../directives/session-time.directive';
 import { getCircuitTimezone } from 'src/app/constants/circuit-timezones';
+import { CircuitTrackComponent } from 'src/app/shared/circuit-track/circuit-track.component';
 
 type TimeMode = 'local' | 'track';
 
@@ -16,7 +17,7 @@ type TimeMode = 'local' | 'track';
     templateUrl: './next-race.component.html',
     styleUrls: ['./next-race.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [MatProgressSpinner, FlagDirective, SessionTimeDirective]
+    imports: [MatProgressSpinner, FlagDirective, SessionTimeDirective, CircuitTrackComponent]
 })
 export class NextRaceComponent {
   private nextRaceService = inject(NextRaceService);
