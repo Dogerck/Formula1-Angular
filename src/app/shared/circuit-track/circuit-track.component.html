@@ -1,8 +1,10 @@
 @if(trackPath(); as d) {
   <svg viewBox="0 0 100 100" class="circuit-track" aria-hidden="true" focusable="false">
     <path [attr.d]="d" class="circuit-track__outline"></path>
-    <circle r="1.8" class="circuit-track__dot">
-      <animateMotion [attr.path]="d" dur="7s" repeatCount="indefinite"></animateMotion>
-    </circle>
+    @if(animated()) {
+      <circle r="1.8" class="circuit-track__dot">
+        <animateMotion [attr.path]="d" dur="7s" repeatCount="indefinite"></animateMotion>
+      </circle>
+    }
   </svg>
 }

@@ -4,11 +4,12 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { CircuitTrackComponent } from './circuit-track.component';
 
 @Component({
-  template: `<app-circuit-track [circuitId]="circuitId"></app-circuit-track>`,
+  template: `<app-circuit-track [circuitId]="circuitId" [animated]="animated"></app-circuit-track>`,
   imports: [CircuitTrackComponent]
 })
 class HostComponent {
   circuitId = 'zandvoort';
+  animated = true;
 }
 
 describe('CircuitTrackComponent', () => {
@@ -31,5 +32,20 @@ describe('CircuitTrackComponent', () => {
     fixture.detectChanges();
     const svg = fixture.nativeElement.querySelector('svg');
     expect(svg).toBeNull();
+  });
+
+  it('renders the animated dot by default', () => {
+    fixture.detectChanges();
+    const dot = fixture.nativeElement.querySelector('.circuit-track__dot');
+    expect(dot).toBeTruthy();
+  });
+
+  it('omits the animated dot when animated is false', () => {
+    fixture.componentInstance.animated = false;
+    fixture.detectChanges();
+    const dot = fixture.nativeElement.querySelector('.circuit-track__dot');
+    const path = fixture.nativeElement.querySelector('.circuit-track__outline');
+    expect(dot).toBeNull();
+    expect(path).toBeTruthy();
   });
 });

@@ -9,6 +9,7 @@ import { CIRCUIT_TRACKS } from 'src/app/constants/circuit-tracks';
 })
 export class CircuitTrackComponent {
   readonly circuitId = input.required<string>();
+  readonly animated = input(true);
 
   protected trackPath = computed(() => CIRCUIT_TRACKS[this.circuitId()] ?? null);
 }
