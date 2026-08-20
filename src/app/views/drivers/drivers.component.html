@@ -3,12 +3,12 @@
     <div class="text-card">
         <p>Check out this season's official F1 line-up. Full breakdown of drivers, points and current positions. Follow your favourite F1 drivers on and off the track.</p>
     </div>
-    @if(loaderService.loading$ | async) {
+    @if(loaderService.loading()) {
         <mat-spinner class="loader"></mat-spinner>
     }
-    @if(driversData || !(loaderService.loading$ | async)) {
+    @if(driversData() || !loaderService.loading()) {
         <div class="container-cards">
-            @for(item of driversData; track item) {
+            @for(item of driversData(); track item) {
                 <div class="card" id="albon">
                         <div class="img-card">
                             <img src="./assets/img/pilot-number/{{ item.driverId }}.png" class="pilot-number" alt="pilot number">

@@ -4,7 +4,7 @@ import { Component, ChangeDetectionStrategy } from '@angular/core';
     selector: 'app-schedule',
     templateUrl: './schedule.component.html',
     styleUrls: ['./schedule.component.scss'],
-    changeDetection: ChangeDetectionStrategy.Eager
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ScheduleComponent {
 

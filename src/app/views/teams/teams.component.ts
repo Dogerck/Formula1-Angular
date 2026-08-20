@@ -1,6 +1,6 @@
-import { Component, ChangeDetectionStrategy, inject } from '@angular/core';
-import { Subscription } from 'rxjs';
-import { Constructor } from 'src/app/models/constructor';
+import { Component, ChangeDetectionStrategy, computed, inject } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { catchError, of } from 'rxjs';
 import { Ergast } from 'src/app/models/Ergast/ergast';
 import { ConstructorsService } from 'src/app/services/constructors.service';
 import { LoaderService } from 'src/app/services/loader-service.service';
@@ -9,36 +9,21 @@ import { LoaderService } from 'src/app/services/loader-service.service';
     selector: 'app-teams',
     templateUrl: './teams.component.html',
     styleUrls: ['./teams.component.scss'],
-    changeDetection: ChangeDetectionStrategy.Eager
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TeamsComponent {
   private constructorService = inject(ConstructorsService);
   loaderService = inject(LoaderService);
 
-  constructorsData: Constructor[] = [];
-  private subscription: Subscription | undefined;
-
-  ngOnInit() {
-    this.getConstructor()
-  }
-
-  getConstructor() {
-    this.loaderService.show()
-    this.subscription = this.constructorService.getAll<Ergast>('current/constructors.json').subscribe({
-      next: (data: Ergast) => {
-        this.constructorsData = data.MRData.ConstructorTable.Constructors;
-        this.loaderService.hide()
-      },
-      error: (error) => {
+  private ergast = toSignal(
+    this.constructorService.getAll<Ergast>('current/constructors.json').pipe(
+      catchError(error => {
         console.log('Erro:', error);
-        this.loaderService.hide()
-      }
-    })
-  }
+        return of(null);
+      })
+    ),
+    { initialValue: null }
+  );
 
-  ngOnDestroy(): void { 
-    if (this.subscription) { 
-      this.subscription.unsubscribe();
-    } 
-  }
+  constructorsData = computed(() => this.ergast()?.MRData.ConstructorTable.Constructors ?? []);
 }

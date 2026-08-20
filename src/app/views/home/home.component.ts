@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, inject, Renderer2, ChangeDetectionStrategy, viewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, inject, Renderer2, ChangeDetectionStrategy, signal, viewChild } from '@angular/core';
 import { LoaderService } from 'src/app/services/loader-service.service';
 import { NextRaceComponent } from './components/next-race/next-race.component';
 import { StandingsComponent } from './components/standings/standings.component';
@@ -8,7 +8,7 @@ import { MatProgressSpinner } from '@angular/material/progress-spinner';
     selector: 'app-home',
     templateUrl: './home.component.html',
     styleUrls: ['./home.component.scss'],
-    changeDetection: ChangeDetectionStrategy.Eager,
+    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [NextRaceComponent, StandingsComponent, MatProgressSpinner]
 })
 export class HomeComponent implements AfterViewInit {
@@ -16,17 +16,14 @@ export class HomeComponent implements AfterViewInit {
 
   readonly iframe = viewChild.required<ElementRef<HTMLIFrameElement>>('iframe');
   private renderer = inject(Renderer2);
-  loading: boolean = true;
-
+  loading = signal(true);
 
   ngAfterViewInit(): void {
     const iframe = this.iframe();
     this.renderer.setStyle(iframe.nativeElement, 'display', 'none');
     iframe.nativeElement.onload = () => {
-      this.loading = false;
-      this.renderer.setStyle(this.iframe().nativeElement, 'display', 'block');
-    };   
-    console.log(iframe.nativeElement);
-    
+      this.loading.set(false);
+      this.renderer.setStyle(iframe.nativeElement, 'display', 'block');
+    };
+  }
 }
- }

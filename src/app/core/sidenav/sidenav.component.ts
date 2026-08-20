@@ -7,7 +7,7 @@ import { RouterLink, RouterOutlet } from '@angular/router';
     selector: 'app-sidenav',
     templateUrl: './sidenav.component.html',
     styleUrls: ['./sidenav.component.scss'],
-    changeDetection: ChangeDetectionStrategy.Eager,
+    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [MatSidenavContainer, MatSidenav, SidenavDirective, RouterLink, MatSidenavContent, RouterOutlet]
 })
 export class SidenavComponent {

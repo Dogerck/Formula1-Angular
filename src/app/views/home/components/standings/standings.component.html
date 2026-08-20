@@ -2,9 +2,9 @@
 <br>
 <br>
 <div class="standings-content">
-    @if(topThree) {
+    @if(topThree().length) {
         <div class="topThree">
-            @for(topThree of topThree; track topThree) {
+            @for(topThree of topThree(); track topThree) {
                 <div class="topThree_card">
                     <div class="card-bottom" [style.border-color]="getTeamColor(topThree.Constructors[0].name)">
                         <img class="pilot-img" src="./assets/img/drivers/{{ topThree.Driver.driverId }}.png" alt="">
@@ -17,20 +17,18 @@
             }
         </div>
     }
-    @if(loaderService.loading$ | async) {
+    @if(loaderService.loading()) {
         <mat-spinner></mat-spinner>
     }
     <ul>
-        @for(driverStandings of standingsData; track driverStandings) {
-            @if(standingsData) {
-                <li class="standings-list">
-                    <span class="standings-list--position"> {{ driverStandings.position }} </span>
-                    <span class="team-color" [style.background-color]="getTeamColor(driverStandings.Constructors[0].name)"></span>
-                    <span class="standings-list--name"> {{ driverStandings.Driver.givenName }} <b>{{ driverStandings.Driver.familyName }}</b> </span>
-                    <span class="standings-list--team"> {{ driverStandings.Constructors[0].name }} </span>
-                    <span class="standings-list--points f1-label"> <b>{{ driverStandings.points }}</b> pts</span>
-                </li>
-            }
+        @for(driverStandings of standingsData(); track driverStandings) {
+            <li class="standings-list">
+                <span class="standings-list--position"> {{ driverStandings.position }} </span>
+                <span class="team-color" [style.background-color]="getTeamColor(driverStandings.Constructors[0].name)"></span>
+                <span class="standings-list--name"> {{ driverStandings.Driver.givenName }} <b>{{ driverStandings.Driver.familyName }}</b> </span>
+                <span class="standings-list--team"> {{ driverStandings.Constructors[0].name }} </span>
+                <span class="standings-list--points f1-label"> <b>{{ driverStandings.points }}</b> pts</span>
+            </li>
         }@empty {
             <p>No data.</p>
         }

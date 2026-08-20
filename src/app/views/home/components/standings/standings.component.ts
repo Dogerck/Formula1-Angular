@@ -1,57 +1,41 @@
-import { Component, OnInit, ChangeDetectionStrategy, inject } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { Component, ChangeDetectionStrategy, computed, inject } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { catchError, of } from 'rxjs';
 
 import { Ergast } from 'src/app/models/Ergast/ergast';
-import { DriverStandings } from 'src/app/models/driver-standing';
 import { LoaderService } from 'src/app/services/loader-service.service';
 import { StandingsService } from 'src/app/services/standings.service';
 import { MatProgressSpinner } from '@angular/material/progress-spinner';
-import { AsyncPipe } from '@angular/common';
 
 @Component({
     selector: 'app-standings',
     templateUrl: './standings.component.html',
     styleUrls: ['./standings.component.scss'],
-    changeDetection: ChangeDetectionStrategy.Eager,
-    imports: [MatProgressSpinner, AsyncPipe]
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [MatProgressSpinner]
 })
-export class StandingsComponent implements OnInit {
+export class StandingsComponent {
   private standingsService = inject(StandingsService);
   loaderService = inject(LoaderService);
 
+  currentYear = new Date().getFullYear();
 
-  standingsData: DriverStandings[] = [];
-  currentYear = new Date().getFullYear()
-  topThree: DriverStandings[] = [];
-  private subscription: Subscription | undefined;
-
-  ngOnInit() {
-    this.getStanding()
-    
-    
-  }
-
-  getStanding() {
-    this.loaderService.show()
-    this.subscription = this.standingsService.getAll<Ergast>('current/driverStandings.json').subscribe({
-      next: (data: Ergast) => {
-        this.standingsData = data.MRData.StandingsTable.StandingsLists[0].DriverStandings;
-        this.topThree = this.standingsData.slice(0,3)
-        this.topThree = [this.topThree[1], this.topThree[0], this.topThree[2]];
-        this.loaderService.hide()
-      },
-      error: (error) => {
+  private ergast = toSignal(
+    this.standingsService.getAll<Ergast>('current/driverStandings.json').pipe(
+      catchError(error => {
         console.log('Erro:', error);
-        this.loaderService.hide()
-      }
-    })
-  }
+        return of(null);
+      })
+    ),
+    { initialValue: null }
+  );
 
-  ngOnDestroy(): void { 
-    if (this.subscription) { 
-      this.subscription.unsubscribe();
-    } 
-  }
+  standingsData = computed(() => this.ergast()?.MRData.StandingsTable.StandingsLists[0].DriverStandings ?? []);
+
+  topThree = computed(() => {
+    const [first, second, third] = this.standingsData();
+    return [second, first, third].filter(Boolean);
+  });
 
   getTeamColor(teamName: string): string {
     return this.teamColors[teamName] || '#000000'; // Use uma cor padrão caso a equipe não esteja na lista

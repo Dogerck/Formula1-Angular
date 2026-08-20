@@ -9,6 +9,7 @@ export interface Races {
     date: string,
     time: string,
     FirstPractice: FirstPractice,
+    SecondPractice: SecondPractice,
     ThirdPractice: ThirdPractice,
     Qualifying: Qualifying,
     Sprint: Sprint,

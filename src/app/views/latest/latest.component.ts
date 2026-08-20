@@ -4,7 +4,7 @@ import { Component, ChangeDetectionStrategy } from '@angular/core';
     selector: 'app-latest',
     templateUrl: './latest.component.html',
     styleUrls: ['./latest.component.scss'],
-    changeDetection: ChangeDetectionStrategy.Eager
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LatestComponent {
 
