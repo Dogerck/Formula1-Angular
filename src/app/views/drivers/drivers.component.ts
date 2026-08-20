@@ -6,13 +6,14 @@ import { DriversService } from 'src/app/services/drivers.service';
 import { LoaderService } from 'src/app/services/loader-service.service';
 import { MatProgressSpinner } from '@angular/material/progress-spinner';
 import { WikipediaPhotoDirective } from 'src/app/directives/wikipedia-photo.directive';
+import { FlagDirective } from 'src/app/directives/flag.directive';
 
 @Component({
     selector: 'app-drivers',
     templateUrl: './drivers.component.html',
     styleUrls: ['./drivers.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [MatProgressSpinner, WikipediaPhotoDirective]
+    imports: [MatProgressSpinner, WikipediaPhotoDirective, FlagDirective]
 })
 export class DriversComponent {
   private driversService = inject(DriversService);

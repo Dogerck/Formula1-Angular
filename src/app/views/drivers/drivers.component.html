@@ -1,30 +1,32 @@
-<div class="c-container" >
-    <h1>F1 Drivers {{currentYear}} </h1>
-    <div class="text-card">
-        <p>Check out this season's official F1 line-up. Full breakdown of drivers, points and current positions. Follow your favourite F1 drivers on and off the track.</p>
+<div class="page">
+    <div class="page-head">
+        <div class="label">Grid &middot; {{ currentYear }} Season</div>
+        <h1 class="disp page-title">Drivers</h1>
+        <p class="page-intro">Check out this season&rsquo;s official F1 line-up. Full breakdown of drivers, points and current positions.</p>
     </div>
+
     @if(loaderService.loading()) {
-        <mat-spinner class="loader"></mat-spinner>
+        <div class="loading-panel cut-card">
+            <mat-spinner diameter="36"></mat-spinner>
+        </div>
     }
-    @if(driversData() || !loaderService.loading()) {
-        <div class="container-cards">
-            @for(item of driversData(); track item) {
-                <div class="card" id="albon">
-                        <div class="img-card">
-                            <span class="pilot-number">{{ item.permanentNumber }}</span>
-                            <img [appWikipediaPhoto]="item.url" class="pilot-img" alt="{{ item.givenName }} {{ item.familyName }}">
-                            <h3 class="firstName"> {{ item.givenName }} </h3>
-                            <h3 class="secondName">
-                                <a href="{{ item.url }}" target="_blank"> {{ item.familyName }}</a>
-                            </h3>
+
+    @if(driversData().length || !loaderService.loading()) {
+        <div class="driver-grid">
+            @for(item of driversData(); track item.driverId) {
+                <div class="driver-card cut-card">
+                    <div class="mono driver-number">{{ item.permanentNumber }}</div>
+                    <img class="driver-photo" [appWikipediaPhoto]="item.url" alt="{{ item.givenName }} {{ item.familyName }}">
+                    <div class="driver-info">
+                        <div class="disp driver-name">{{ item.familyName }}</div>
+                        <div class="driver-meta">
+                            <span class="label">{{ item.givenName }}</span>
+                            <img class="img-flag" [appFlag]="item.nationality" alt="{{ item.nationality }} flag">
                         </div>
-                        <div class="text-content">
-                            <p><b>Birthday:</b> {{ item.dateOfBirth }}</p>
-                            <p><b>Nationality:</b> {{ item.nationality }}</p>
-                        </div>
+                    </div>
                 </div>
-            }@empty {
-                <p>No data.</p>        
+            } @empty {
+                <p class="label">No data.</p>
             }
         </div>
     }

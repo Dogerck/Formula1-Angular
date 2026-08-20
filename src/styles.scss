@@ -10,11 +10,17 @@
 
 // M3 theme built from the F1 brand colors (see _theme-colors.scss, generated with
 // `ng generate @angular/material:m3-theme --primary-color="#e10600" --secondary-color="#15151e"`).
+// Dark theme-type + the APEX type system (see _tokens.scss) so Material components
+// (menu, toolbar, buttons, spinner) match the rest of the redesign.
 $Formula1-Angular-theme: mat.define-theme((
   color: (
-    theme-type: light,
+    theme-type: dark,
     primary: $primary-palette,
     tertiary: $tertiary-palette,
+  ),
+  typography: (
+    plain-family: 'Barlow, sans-serif',
+    brand-family: 'Titillium Web, sans-serif',
   ),
 ));
 
@@ -24,21 +30,6 @@ $Formula1-Angular-theme: mat.define-theme((
 @include mat.core-theme($Formula1-Angular-theme);
 @include mat.all-component-themes($Formula1-Angular-theme);
 
-@font-face {
-    font-family: F1Regular;
-    src: url(./assets/fonts/Formula1-Regular_web_0.ttf);
-    font-display: swap;
-}
-@font-face {
-    font-family: F1Bold;
-    src: url(./assets/fonts/Formula1-Bold_web_0.ttf);
-    font-display: swap;
-}
-@font-face {
-    font-family: F1Wide;
-    src: url(./assets/fonts/Formula1-Wide_web_0.ttf);
-    font-display: swap;
-}
 *,
 *:before,
 *:after {
@@ -58,17 +49,14 @@ body {
 
 body {
     margin: 0;
-    font-family:F1Regular, Roboto, "Helvetica Neue", sans-serif;
-    background-color: #F1F1F1;
+    font-family: 'Barlow', "Helvetica Neue", sans-serif;
+    background-color: var(--bg);
+    color: var(--text);
 
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
     font-feature-settings: "cv11", "salt", "ss01", "ss03", "cv01", "cv02", "cv03", "cv04", "cv05", "cv06", "cv09", "cv10";
-
-    --f1-primary: #{$f1-primary};
-    --f1-accent: #{$f1-accent};
-    --white: #{$white};
 
     @media screen and #{$mobile} {
       font-size: 0.8em;

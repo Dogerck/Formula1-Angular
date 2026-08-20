@@ -1,170 +1,128 @@
 @import "../../../../scss/global.scss";
 
-.standings-content {
-  flex-direction: column;
-  @include flexCenter;
+.standings {
   width: 100%;
 
-  .topThree {
-    justify-content: space-between;
-    height: fit-content;
-    margin-bottom: 20px;
-    align-items: end;
+  .section-label {
+    margin-bottom: 14px;
+  }
+
+  .standings-label {
+    margin-top: 32px;
+  }
+
+  .loading-panel {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    min-height: 120px;
     display: flex;
-    width: 100%;
+    align-items: center;
+    justify-content: center;
+  }
 
-    &_card {
-      background-color: var(--white);
-      position: relative;
-      border-radius: 5px;
-      height: 200px;
-      width: 208px;
+  .podium {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
 
-      @media screen and #{$xtablet} {
-        &:nth-child(2) {
-          width: 100% !important;
-        }
-
-        &:first-child {
-          display: none;
-        }
-
-        &:last-child {
-          display: none;
-        }
-      }
-
-      &:nth-child(2) {
-        height: 220px;
-        width: 208px;
-
-        .card-bottom {
-          .position {
-            top: -95px;
-          }
-          .pilot-img {
-            max-width: 232px;
-            top: -184px;
-            right: 0;
-          }
-        }
-      }
-
-      .card-bottom {
-        display: flex;
-        justify-content: center;
-        flex-direction: column;
-        position: absolute;
-        width: 100%;
-        height: 110px;
-        bottom: 0;
-        border-bottom-left-radius: 5px;
-        border-bottom-right-radius: 5px;
-        background-color: #38383f;
-        border-top: 10px solid red;
-        color: var(--white);
-        font-size: 18px;
-        padding: 25px;
-
-        .pilot-img {
-          max-width: 214px;
-          position: absolute;
-          top: -224px;
-          right: -10px;
-          z-index: 998;
-        }
-
-        .img-flag {
-          top: 10px;
-          right: 10px;
-          height: 20px;
-          position: absolute;
-          border-radius: 4px;
-          border: 1px solid rgb(192, 192, 192);
-
-          &:nth-child(2) {
-            top: 0;
-          }
-          @media screen and #{$xtablet} {
-            top: 30px;
-            right: 20px;
-            height: 40px;
-          }
-        }
-
-        p {
-          font-size: 18px;
-
-          &:nth-child(2) {
-            font-size: 12px;
-          }
-        }
-        .position {
-          color: #38383f;
-          position: absolute;
-          top: -80px;
-          font-size: 26px;
-        }
-      }
+    @media screen and #{$mobile} {
+      grid-template-columns: 1fr;
     }
   }
 
-  ul {
-    width: 100%;
-    .standings-list {
-      width: 100%;
-      list-style: none;
-      background-color: #fff;
-      margin-bottom: 3px;
-      height: 50px;
-      padding: 15px 25px;
+  .podium-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 24px;
+    position: relative;
+    overflow: hidden;
+
+    &--first {
+      border-color: var(--border-strong);
+    }
+
+    .podium-rank {
+      position: absolute;
+      top: 8px;
+      right: 16px;
+      font-size: 80px;
+      font-weight: 700;
+      color: rgba(255, 255, 255, .05);
+      line-height: 1;
+    }
+
+    .podium-photo-row {
       display: flex;
-      align-items: center;
-      border-radius: 5px;
-      transition: 0.4s cubic-bezier(0.35, 0.15, 0.6, 1);
+      gap: 16px;
+      align-items: flex-end;
 
-      &:hover {
-        background-color: var(--f1-accent);
-        color: #fff;
-      }
-
-      &--position {
-        margin-right: 10px;
-        width: 25px;
-        text-align: right;
+      .podium-photo {
+        width: 88px;
+        height: 88px;
+        object-fit: cover;
+        object-position: top;
+        background-color: var(--surface-2);
+        filter: grayscale(.15);
       }
 
-      &--name {
-        margin-right: 10px;
+      .podium-pos {
+        font-size: 13px;
       }
 
-      &--team {
-        margin-right: 10px;
-        font-size: 0.7em;
-        color: #a1a1a1;
+      .podium-name {
+        font-size: 22px;
       }
+    }
 
-      &--points {
-        margin-left: auto;
-        font-size: 0.8em;
-        color: #000 !important;
-      }
-      .f1-label {
-        border-radius: 15px;
-        padding: 3px 10px;
-        background-color: #ededed;
-      }
-      .team-color {
-        width: 5px; /* Ajuste conforme necessário */
-        height: 13px; /* Ajuste conforme necessário */
-        display: inline-block;
-        margin-right: 10px; /* Espaçamento entre a cor da equipe e a posição do piloto */
-        // background-color: #ff0000; /* Cor de exemplo, você vai substituir com a cor da equipe dinâmica */
+    .podium-points-row {
+      margin-top: 18px;
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      border-top: 1px solid var(--border);
+      padding-top: 14px;
+
+      .podium-points {
+        font-size: 26px;
       }
     }
   }
-}
-h2 {
-  margin: 70px 0;
-  text-align: center;
+
+  .standings-table {
+    border-top: 1px solid var(--border);
+  }
+
+  .standings-row {
+    display: grid;
+    grid-template-columns: 40px 8px 1fr auto auto;
+    align-items: center;
+    gap: 0 14px;
+    padding: 14px 4px;
+    border-bottom: 1px solid var(--border);
+
+    &__position {
+      color: var(--text-dim);
+    }
+
+    .team-color {
+      height: 16px;
+      width: 4px;
+    }
+
+    &__name {
+      font-size: 15px;
+    }
+
+    &__team {
+      justify-self: end;
+      white-space: nowrap;
+    }
+
+    &__points {
+      justify-self: end;
+      min-width: 44px;
+      text-align: right;
+      font-size: 16px;
+    }
+  }
 }

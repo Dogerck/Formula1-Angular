@@ -1,6 +1,7 @@
 .container {
     position: relative;
     min-height: 100vh;
+    background-color: var(--bg);
 
     &_conteudo {
         padding-bottom: 4rem;

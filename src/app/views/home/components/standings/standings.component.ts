@@ -7,14 +7,14 @@ import { LoaderService } from 'src/app/services/loader-service.service';
 import { StandingsService } from 'src/app/services/standings.service';
 import { MatProgressSpinner } from '@angular/material/progress-spinner';
 import { WikipediaPhotoDirective } from 'src/app/directives/wikipedia-photo.directive';
-import { FlagDirective } from 'src/app/directives/flag.directive';
+import { getTeamColor } from 'src/app/constants/team-colors';
 
 @Component({
     selector: 'app-standings',
     templateUrl: './standings.component.html',
     styleUrls: ['./standings.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [MatProgressSpinner, WikipediaPhotoDirective, FlagDirective]
+    imports: [MatProgressSpinner, WikipediaPhotoDirective]
 })
 export class StandingsComponent {
   private standingsService = inject(StandingsService);
@@ -34,25 +34,11 @@ export class StandingsComponent {
 
   standingsData = computed(() => this.ergast()?.MRData.StandingsTable.StandingsLists[0].DriverStandings ?? []);
 
-  topThree = computed(() => {
-    const [first, second, third] = this.standingsData();
-    return [second, first, third].filter(Boolean);
-  });
+  topThree = computed(() => this.standingsData().slice(0, 3));
+
+  restOfStandings = computed(() => this.standingsData().slice(3));
 
   getTeamColor(teamName: string): string {
-    return this.teamColors[teamName] || '#000000'; // Use uma cor padrão caso a equipe não esteja na lista
+    return getTeamColor(teamName);
   }
-
-  teamColors: { [key: string]: string } = {
-    'Mercedes': '#27F4D2',
-    'Red Bull': '#3671C6',
-    'Aston Martin': '#229971',
-    'Ferrari': '#E8002D',
-    'McLaren': '#ff8000',
-    'Alpine F1 Team': '#FF87BC',
-    'Williams': '#64C4FF',
-    'Haas F1 Team': '#B6BABD',
-    'Sauber': '#52E252',
-    'RB F1 Team': '#6692FF'
-  };
 }

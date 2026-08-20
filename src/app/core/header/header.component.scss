@@ -1,80 +1,91 @@
 @import '../../scss/global.scss';
 
 .header {
-    background-color: var(--f1-primary);
+    background-color: var(--surface);
+    border-bottom: 1px solid var(--border);
     width: 100%;
     display: flex;
-    justify-content: center;
     align-items: center;
     position: fixed;
     z-index: 999;
 
-    .logo-img {
-        height: 45%;
+    .brand {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        text-decoration: none;
         cursor: pointer;
+
+        .brand-mark {
+            width: 10px;
+            height: 28px;
+            background-color: var(--red);
+            transform: skewX(-12deg);
+        }
+
+        .brand-name {
+            font-size: 20px;
+            letter-spacing: .06em;
+            color: var(--text);
+        }
     }
 
-    .menu-icon{
-        color: white;
+    .menu-icon {
+        color: var(--text);
         display: none;
     }
+
     .lista-desktop {
-        list-style:none;
+        list-style: none;
         display: flex;
-        color: white;
-        font-size: 14px;
         height: 100%;
-        
-       li {
-        position: relative;
-        .active {
-            &::after {
-                transform: translate(2deg);
-                content: '';
-                background-color: white;
-                width: 70%;
-                border-radius: 10px;
-                height: 3px;
-                position: absolute;
-                bottom: 15px;
-            }
-        }
-        a {
-            height: 100%;
-            display: flex;
-            margin: 0 5px;
-            color: white;
-            cursor: pointer;
-            align-items: center;
-            text-decoration: none;
-            justify-content: center;
-            
+        margin: 0;
+        padding: 0;
 
-            span {
-                margin: 0 10px;
+        li {
+            position: relative;
+
+            .active {
+                color: var(--text) !important;
+
+                &::after {
+                    content: '';
+                    background-color: var(--red);
+                    width: 100%;
+                    height: 2px;
+                    position: absolute;
+                    bottom: 26px;
+                }
             }
 
-            &:hover {
+            a {
                 height: 100%;
-                background-color: #15151e;
-                transition: all 0.3s ease-in-out;
+                display: flex;
+                margin: 0 18px;
+                cursor: pointer;
+                align-items: center;
+                text-decoration: none;
+                justify-content: center;
+                white-space: nowrap;
+
+                &:hover {
+                    color: var(--text);
+                }
             }
         }
-       }
     }
 }
 
 
 @media screen and #{$mobile} {
 
-    .header { 
+    .header {
         justify-content: center;
 
         .menu-icon{
-            color: white;
             display: inherit;
         }
-        img {
+        .brand {
             flex: 1 1 auto;
         }
         .lista-desktop{
@@ -85,4 +96,3 @@
         }
     }
 }
-

@@ -1,1 +1,38 @@
-@import '../../scss/global.scss'
+@import '../../scss/global.scss';
+
+.page {
+    min-height: calc(100vh - 140px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 24px;
+
+    .code {
+        font-size: 20px;
+        color: var(--red);
+        margin-bottom: 8px;
+    }
+
+    .title {
+        font-size: 56px;
+        margin: 0 0 16px;
+    }
+
+    .intro {
+        color: var(--text-dim);
+        font-size: 15px;
+        margin: 0 0 32px;
+    }
+
+    .back-link {
+        color: var(--cyan);
+        text-decoration: none;
+        cursor: pointer;
+
+        &:hover {
+            color: var(--red);
+        }
+    }
+}

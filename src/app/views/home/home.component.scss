@@ -1,95 +1,32 @@
 @import '../../scss/global.scss';
 
-.card-container {
+.page {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 96px 24px 64px;
     display: flex;
-    width: 100%;
-    height: 500px;
+    flex-direction: column;
+    gap: 48px;
+}
 
-    @media screen and #{$mobile} {
-      flex-direction: column;
+.feed {
+    .section-label {
+        margin-bottom: 14px;
     }
-      
-    
 
-    .left-cards {
+    .feed-panel {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        min-height: 200px;
         display: flex;
-        flex-direction: column;
-        width: 50%;
-        @media screen and #{$mobile} {
-         width: 100%;
-        }
-      }
-
-    .card {
-        background-color: #a8a8a8;
-        border-radius: 4px;
-        padding: 16px;
-        margin-bottom: 16px;
-        margin-left: 16px;
-        
-      }
-
-      .small-card {
-        flex: 1;
-        overflow: auto;
-      }
-      
-      .big-card {
-        flex: 2;
-        overflow-y: auto;
-        display: flex;
+        align-items: center;
         justify-content: center;
+        overflow: hidden;
 
-        scrollbar-width: thin;
-        scrollbar-color: black transparent;  
-        
-        &::-webkit-scrollbar {
-          width: 5px;
-          height: 3px;
+        iframe {
+            width: 100%;
+            min-height: 700px;
+            border: none;
         }
-        
-        &::-webkit-scrollbar-track {
-          background: #3f3f3f;
-          padding: 5px;
-          border-top-right-radius: 4px;
-          border-bottom-right-radius: 4px;
-        }
-        
-        &::-webkit-scrollbar-thumb {
-          background-color: #dbfbfb;
-          border-radius: 4px;
-        }
-      }
-
-  }
-  
-  app-standings {
-    width: 70%;
-    @media screen and #{$mobile} {
-      width: 100%;
     }
-  }
-
-  app-next-race {
-    width: 70%;
-    @media screen and #{$mobile} {
-      width: 100%;
-    }
-  }
-
-  iframe {
-    width: 70%;
-    position: static; 
-    visibility: visible;
-    height: 800px; 
-    display: block; 
-    flex-grow: 1;
-    @media screen and #{$mobile} {
-      width: 100%;
-    }
-  }
-  
-  
-  
-  
-  
+}

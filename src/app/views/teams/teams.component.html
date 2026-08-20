@@ -1,5 +1,39 @@
-@for (a of constructorsData(); track a) {
-  <div>
-    <p>{{ a.name }}</p>
-  </div>
-}
+<div class="page">
+    <div class="page-head">
+        <div class="label">Constructors&rsquo; Championship</div>
+        <h1 class="disp page-title">Teams</h1>
+    </div>
+
+    @if(loaderService.loading()) {
+        <div class="loading-panel cut-card">
+            <mat-spinner diameter="36"></mat-spinner>
+        </div>
+    }
+
+    @if(standingsData().length) {
+        <div class="teams-table">
+            <div class="teams-row teams-row--head label">
+                <span>Pos</span>
+                <span></span>
+                <span>Team</span>
+                <span class="align-end">Wins</span>
+                <span class="align-end">Points</span>
+                <span></span>
+            </div>
+            @for(team of standingsData(); track team.Constructor.constructorId) {
+                <div class="teams-row">
+                    <span class="mono">{{ team.position }}</span>
+                    <span class="team-swatch" [style.background-color]="getTeamColor(team.Constructor.name)"></span>
+                    <span class="disp team-name">{{ team.Constructor.name }}</span>
+                    <span class="mono align-end team-wins">{{ team.wins }}</span>
+                    <span class="mono align-end team-points">{{ team.points }}</span>
+                    <span class="team-bar">
+                        <span class="team-bar__fill" [style.width.%]="pointsShare(team.points)" [style.background-color]="getTeamColor(team.Constructor.name)"></span>
+                    </span>
+                </div>
+            }
+        </div>
+    } @else if(!loaderService.loading()) {
+        <p class="label">No data.</p>
+    }
+</div>

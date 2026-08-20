@@ -1,54 +1,95 @@
 @import '../../../../scss/global.scss';
 
-.content {
+.next-race {
     width: 100%;
-    height: 200px;
-    display: flex;
-    border-radius: 5px;
-    position: relative;
-    align-items: center;
-    flex-direction: column;
-    color: var(--f1-accent);
-    justify-content: center;
-    background-color: var(--white);
 
-    .round {
-        top: 5px;
-        left: 5px;
-        height: 30px;
+    .section-label {
+        margin-bottom: 14px;
+    }
+
+    .loading-panel {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        min-height: 160px;
         display: flex;
-        padding: 0 5px;
-        border-radius: 5px;
-        position: absolute;
-        width: fit-content;
         align-items: center;
-        color: var(--white);
         justify-content: center;
-        background-color: var(--f1-accent);
-        p {
-            margin: 0;
+    }
+
+    .hero {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        display: flex;
+        flex-wrap: wrap;
+
+        @media screen and #{$mobile} {
+            flex-direction: column;
         }
     }
 
-    .img-flag {
-        top: 5px;
-        right: 5px;
-        height: 30px;
-        position: absolute;
-        border-radius: 5px;
+    .hero-identity {
+        flex: 1 1 320px;
+        padding: 32px;
+        border-right: 1px solid var(--border);
+        position: relative;
+
+        @media screen and #{$mobile} {
+            border-right: none;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .img-flag {
+            position: absolute;
+            top: 24px;
+            right: 24px;
+            height: 22px;
+            border-radius: 2px;
+        }
+
+        .race-name {
+            font-size: 40px;
+            line-height: 1;
+            margin: 0 0 10px;
+            max-width: 90%;
+
+            @media screen and #{$mobile} {
+                font-size: 30px;
+            }
+        }
+
+        .circuit-line {
+            color: var(--text-dim);
+            font-size: 14px;
+            margin-bottom: 12px;
+        }
     }
-    h3, p {
-        margin-bottom: 5px;
-    }
-    h3 {
-        text-align: center;
-    }
-    span {
-        font-weight: bold;
+
+    .hero-sessions {
+        flex: 1 1 380px;
+        padding: 32px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px 32px;
+        align-content: center;
+
+        .session--race {
+            grid-column: 1 / -1;
+            border-top: 1px solid var(--border);
+            padding-top: 18px;
+
+            .label {
+                color: var(--cyan);
+            }
+
+            .session-time {
+                color: var(--cyan);
+                font-size: 30px;
+            }
+        }
+
+        .session-time {
+            font-size: 20px;
+            margin-top: 6px;
+        }
     }
 }
-
-h2 {
-    margin: 20px 0;
-    text-align: center;
-  }

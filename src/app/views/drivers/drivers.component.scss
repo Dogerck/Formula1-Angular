@@ -1,141 +1,105 @@
 @import '../../scss/global.scss';
 
-.c-container {
-    
+.page {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 96px 24px 64px;
+}
 
-    h1 {
-        font-family: F1Bold;
-        font-size: 40px;
-        margin-bottom: 20px;
-    
+.page-head {
+    margin-bottom: 32px;
+    max-width: 640px;
+
+    .page-title {
+        font-size: 44px;
+        margin: 10px 0 14px;
+
         @media screen and #{$mobile} {
-            font-size: 30px;
+            font-size: 32px;
         }
     }
 
-    .text-card {
-        width: 1050px;
-        height: fit-content;
-        background-color: #dddddd;
-        border-radius: 15px;
-        padding: 20px;
-        margin-bottom: 40px;
-
-        @media screen and #{$tablet} {
-            width: 690px;
-        }
-
-        @media screen and #{$mobile} {
-            width: 330px;
-        }
+    .page-intro {
+        color: var(--text-dim);
+        font-size: 15px;
+        line-height: 1.5;
+        margin: 0;
     }
-    .container-cards {
-        display: grid;
-        align-items: center;
-        grid-template-columns: 330px 330px 330px;
-        gap: 30px;
-        justify-content: center;
-    
-        @media screen and #{$tablet} {
-            grid-template-columns: 330px 330px;
-        }
-    
-        @media screen and #{$mobile} {
-            grid-template-columns: 330px;
-        }
-        
-        .card {
-            width: 330px;
-            height: fit-content;
-            // background-color: #fff;
-            border-top-right-radius: 15px;
-            border-top: 3px solid;
-            border-right: 3px solid;
-            padding: 10px 10px 0;
-            border-color: var(--f1-accent);
-            cursor: pointer;    
-            
-            &:hover {
-                border-color: #e10600;
-                transform: translateY(-8px);
-                transition: transform 0.4s;
-            }
-            .img-card {
-                width: 100%;
-                display: flex;
-                min-height: 100px;
-                align-items: flex-end;
-                justify-content: flex-end;
-                border-bottom: 2px solid black;
-                position: relative;
-                
-                .pilot-number {
-                    position: absolute;
-                    left: -10px;
-                    top: 0;
-                    align-self: baseline;
-                    margin: 5px;
-                    font-family: F1Bold, sans-serif;
-                    font-size: 48px;
-                    font-weight: 700;
-                    line-height: 1;
-                    color: #fff;
-                    -webkit-text-stroke: 2px var(--f1-accent);
-                    paint-order: stroke fill;
+}
 
-                    &:hover {
-                        transform: rotatey(30deg);
-                        transition: transform 0.5s;
-                    }
-                }
-                .pilot-img {
-                    max-width: 185px;
-                }
-                h3 {
-                    text-align: end;
-                    margin: 0;
-                    font-size: 20px;
-                    
-                    a {
-                        text-decoration: none;
-                        color: inherit;
-    
-                        &:hover {
-                            font-size: 20.5px;
-                            transition: transform 1s;
-                        }
-                    }
-                }
-                
-                .firstName {
-                    font-weight: 500;
-                    position: absolute;
-                    bottom: 25px;
-                    left: 0;
-                    font-size: 17px;
-                }
-                .secondName {
-                    position: absolute;
-                    left: 0;
-                    bottom: 5px;
-                    font-size: 18px;
-                }
-            }
-            .text-content {
-                width: 100%;
-                height: auto;
-                padding-bottom: 5px;
-                
-                p {
-                    font-size: 14px;
-                    line-height: 10px;
-                    margin: 10px auto;
-                }
+.loading-panel {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    min-height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.driver-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+
+    @media screen and #{$xtablet} {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media screen and #{$mobile} {
+        grid-template-columns: 1fr;
+    }
+}
+
+.driver-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    position: relative;
+    overflow: hidden;
+    transition: border-color .3s ease;
+
+    &:hover {
+        border-color: var(--red);
+    }
+
+    .driver-number {
+        position: absolute;
+        top: 14px;
+        left: 14px;
+        font-weight: 700;
+        font-size: 44px;
+        line-height: 1;
+        color: transparent;
+        -webkit-text-stroke: 1.5px var(--red);
+        z-index: 2;
+    }
+
+    .driver-photo {
+        width: 100%;
+        height: 280px;
+        object-fit: cover;
+        object-position: top;
+        display: block;
+        background-color: var(--surface-2);
+        filter: grayscale(.1);
+    }
+
+    .driver-info {
+        padding: 18px 20px;
+
+        .driver-name {
+            font-size: 22px;
+        }
+
+        .driver-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 8px;
+
+            .img-flag {
+                height: 14px;
+                border-radius: 2px;
             }
         }
-    }
-    
-    .loader {
-        margin-top: 100px;
     }
 }

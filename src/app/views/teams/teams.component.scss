@@ -1,0 +1,92 @@
+@import '../../scss/global.scss';
+
+.page {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 96px 24px 64px;
+}
+
+.page-head {
+    margin-bottom: 32px;
+
+    .page-title {
+        font-size: 44px;
+        margin: 10px 0 0;
+
+        @media screen and #{$mobile} {
+            font-size: 32px;
+        }
+    }
+}
+
+.loading-panel {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    min-height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.teams-table {
+    border-top: 1px solid var(--border-strong);
+}
+
+.teams-row {
+    display: grid;
+    grid-template-columns: 40px 10px 1fr 90px 90px 140px;
+    align-items: center;
+    gap: 0 20px;
+    padding: 18px 4px;
+    border-bottom: 1px solid var(--border);
+
+    .align-end {
+        justify-self: end;
+    }
+
+    &--head {
+        padding-bottom: 12px;
+        border-bottom: 1px solid var(--border-strong);
+    }
+
+    .team-swatch {
+        height: 32px;
+    }
+
+    .team-name {
+        font-size: 20px;
+
+        @media screen and #{$mobile} {
+            font-size: 16px;
+        }
+    }
+
+    .team-wins,
+    .team-points {
+        color: var(--text-dim);
+    }
+
+    .team-points {
+        color: var(--text);
+        font-size: 22px;
+    }
+
+    .team-bar {
+        display: block;
+        height: 6px;
+        background: var(--surface-2);
+
+        &__fill {
+            display: block;
+            height: 100%;
+        }
+    }
+
+    @media screen and #{$mobile} {
+        grid-template-columns: 28px 8px 1fr 60px 60px;
+
+        .team-bar {
+            display: none;
+        }
+    }
+}

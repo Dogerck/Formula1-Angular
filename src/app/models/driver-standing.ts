@@ -1,10 +1,12 @@
 import { Constructor } from "./constructor"
 import { Drivers } from "./driver"
+import { ConstructorStanding } from "./constructor-standing"
 
 export interface StandingsLists {
   season: string,
   round: string,
-  DriverStandings: DriverStandings []
+  DriverStandings?: DriverStandings [],
+  ConstructorStandings?: ConstructorStanding []
 }
 
 export interface DriverStandings {

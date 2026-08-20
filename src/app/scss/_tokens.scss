@@ -1,0 +1,42 @@
+// Design tokens for the APEX visual system (dark, telemetry-inspired).
+:root {
+  --bg: #0b0b0e;
+  --surface: #17171d;
+  --surface-2: #1e1e26;
+  --border: rgba(255, 255, 255, .08);
+  --border-strong: rgba(255, 255, 255, .16);
+  --text: #f4f4f2;
+  --text-dim: #9a9aa6;
+  --text-faint: #64646f;
+  --red: #e10600;
+  --red-dim: #7d0400;
+  --cyan: #27f4d2;
+}
+
+// Display / heading type — condensed, bold, uppercase.
+.disp {
+  font-family: 'Titillium Web', sans-serif;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+// Eyebrow / label type — small caps-style wide tracking.
+.label {
+  font-family: 'Titillium Web', sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .14em;
+  font-size: 11px;
+  color: var(--text-dim);
+}
+
+// Tabular numerals for stats, times, points — telemetry-readout feel.
+.mono {
+  font-family: 'Space Mono', monospace;
+  font-variant-numeric: tabular-nums;
+}
+
+// Diagonal-cut corner used on cards and hero panels instead of rounded corners.
+.cut-card {
+  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 18px), calc(100% - 18px) 100%, 0 100%);
+}

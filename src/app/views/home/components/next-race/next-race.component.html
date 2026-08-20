@@ -1,33 +1,61 @@
-<h2>Next race </h2>
-<div style="display: flex; justify-content: center; align-items: center;">
+<section class="next-race">
+    <div class="label section-label">Next Race &mdash; Round {{ nextRaceData()?.round }}</div>
+
     @if(loaderService.loading()) {
-        <mat-spinner></mat-spinner>
-    }
-    @if(nextRaceData(); as nextRaceData) {
-        <div class="content">
-            <div style=" flex-direction: row;" >
-                <h3>{{ nextRaceData.raceName }}</h3>
-                <p> {{ formattedDateRange() }}</p>
-                <div style="display: flex;"><p style="margin-right: auto;">Practice 1:</p><span style="margin-left: auto;" appConvertToLocalTime="{{nextRaceData.FirstPractice.time}}"></span></div>
-                @if(nextRaceData.SprintQualifying?.time) {
-                    <div style="display: flex;"><p style="margin-right: auto;">Sprint Qualifying:</p><span style="margin-left: auto;" appConvertToLocalTime="{{ nextRaceData.SprintQualifying.time }}"></span></div>
-                }@else {
-                    <div style="display: flex;"><p style="margin-right: auto;">Practice 2:</p><span style="margin-left: auto;" appConvertToLocalTime="{{ nextRaceData.SecondPractice.time }}"></span></div>
-                }
-                @if(nextRaceData.ThirdPractice?.time) {
-                    <div style="display: flex;"><p style="margin-right: auto;">Practice 3:</p><span style="margin-left: auto;" appConvertToLocalTime="{{ nextRaceData.ThirdPractice.time }}"></span></div>
-                }
-                @if(nextRaceData.Sprint?.time) {
-                    <div style="display: flex;"><p style="margin-right: auto;">Sprint:</p><span style="margin-left: auto;" appConvertToLocalTime="{{ nextRaceData.Sprint.time }}"></span></div>
-                }
-                <div style="display: flex;"><p style="display: flex;">Qualifying:</p><span style="margin-left: auto;" appConvertToLocalTime="{{ nextRaceData.Qualifying.time }}"></span></div>
-                <div style="display: flex;"><p style="display: flex;">Race:</p><span style="margin-left: auto;" appConvertToLocalTime="{{ nextRaceData.time }}"></span></div>
-            </div>
-            <div class="round"><p> Round: {{ nextRaceData.round }}</p></div>
-            <img class="img-flag" [appFlag]="nextRaceData.Circuit.Location.country" alt="{{ nextRaceData.Circuit.Location.country }} flag">
+        <div class="loading-panel cut-card">
+            <mat-spinner diameter="36"></mat-spinner>
         </div>
     }
-    @if(!nextRaceData() && !loaderService.loading()) {
-        <p>No data.</p>
+
+    @if(nextRaceData(); as race) {
+        <div class="hero cut-card">
+            <div class="hero-identity">
+                <img class="img-flag" [appFlag]="race.Circuit.Location.country" alt="{{ race.Circuit.Location.country }} flag">
+                <h1 class="disp race-name">{{ race.raceName }}</h1>
+                <div class="circuit-line">{{ race.Circuit.circuitName }} &middot; {{ race.Circuit.Location.locality }}, {{ race.Circuit.Location.country }}</div>
+                <div class="label date-range">{{ formattedDateRange() }}</div>
+            </div>
+            <div class="hero-sessions">
+                <div class="session">
+                    <div class="label">Practice 1</div>
+                    <div class="mono session-time" appConvertToLocalTime="{{ race.FirstPractice.time }}"></div>
+                </div>
+                @if(race.SprintQualifying?.time) {
+                    <div class="session">
+                        <div class="label">Sprint Qualifying</div>
+                        <div class="mono session-time" appConvertToLocalTime="{{ race.SprintQualifying.time }}"></div>
+                    </div>
+                } @else {
+                    <div class="session">
+                        <div class="label">Practice 2</div>
+                        <div class="mono session-time" appConvertToLocalTime="{{ race.SecondPractice.time }}"></div>
+                    </div>
+                }
+                @if(race.ThirdPractice?.time) {
+                    <div class="session">
+                        <div class="label">Practice 3</div>
+                        <div class="mono session-time" appConvertToLocalTime="{{ race.ThirdPractice.time }}"></div>
+                    </div>
+                }
+                @if(race.Sprint?.time) {
+                    <div class="session">
+                        <div class="label">Sprint</div>
+                        <div class="mono session-time" appConvertToLocalTime="{{ race.Sprint.time }}"></div>
+                    </div>
+                }
+                <div class="session">
+                    <div class="label">Qualifying</div>
+                    <div class="mono session-time" appConvertToLocalTime="{{ race.Qualifying.time }}"></div>
+                </div>
+                <div class="session session--race">
+                    <div class="label">Race</div>
+                    <div class="mono session-time" appConvertToLocalTime="{{ race.time }}"></div>
+                </div>
+            </div>
+        </div>
     }
-</div>
+
+    @if(!nextRaceData() && !loaderService.loading()) {
+        <p class="label">No data.</p>
+    }
+</section>
