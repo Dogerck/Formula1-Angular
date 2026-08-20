@@ -1,4 +1,66 @@
-<div class="c-container">
-    <p>latest works</p>
-</div>
+<div class="page">
+    @if(loaderService.loading()) {
+        <div class="loading-panel cut-card">
+            <mat-spinner diameter="36"></mat-spinner>
+        </div>
+    }
 
+    @if(lastRace(); as race) {
+        <section class="winner-hero cut-card">
+            @if(winner(); as winner) {
+                <div class="winner-photo">
+                    <img [appWikipediaPhoto]="winner.Driver.url" alt="{{ winner.Driver.givenName }} {{ winner.Driver.familyName }}">
+                </div>
+                <div class="winner-info">
+                    <div class="label winner-round">Round {{ race.round }} &middot; {{ race.raceName }}</div>
+                    <h1 class="disp winner-headline">{{ winner.Driver.familyName }}<br>Wins</h1>
+                    <div class="winner-stats">
+                        <div>
+                            <div class="label">Winner</div>
+                            <div class="mono winner-stat">{{ winner.Time?.time }}</div>
+                        </div>
+                        <div>
+                            <div class="label">Margin</div>
+                            <div class="mono winner-stat winner-stat--cyan">{{ margin() }}</div>
+                        </div>
+                        <div>
+                            <div class="label">Laps</div>
+                            <div class="mono winner-stat">{{ winner.laps }}</div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </section>
+
+        @if(podium().length) {
+            <section class="podium-strip">
+                <div class="label section-label">Podium</div>
+                <div class="podium-grid">
+                    @for(result of podium(); track result.Driver.driverId) {
+                        <div class="podium-item">
+                            <span class="mono podium-item__pos" [class.podium-item__pos--first]="result.position === '1'">{{ result.position }}</span>
+                            <img class="podium-item__photo" [appWikipediaPhoto]="result.Driver.url" alt="{{ result.Driver.familyName }}">
+                            <div>
+                                <div class="podium-item__name">{{ result.Driver.familyName }}</div>
+                                <div class="label" style="margin-top:2px;">{{ result.Constructor.name }}</div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </section>
+        }
+
+        @if(nextRace(); as next) {
+            <section class="next-teaser cut-card">
+                <div class="next-teaser__info">
+                    <span class="mono next-teaser__tag">Next Up</span>
+                    <span class="disp next-teaser__name">{{ next.raceName }}</span>
+                    <span class="label">{{ next.Circuit.Location.locality }}</span>
+                </div>
+                <a routerLink="/schedule" class="label next-teaser__link">View Schedule &rarr;</a>
+            </section>
+        }
+    } @else if(!loaderService.loading()) {
+        <p class="label">No data.</p>
+    }
+</div>

@@ -1,1 +1,44 @@
-<p>results works!</p>
+<div class="page">
+    @if(loaderService.loading()) {
+        <div class="loading-panel cut-card">
+            <mat-spinner diameter="36"></mat-spinner>
+        </div>
+    }
+
+    @if(race(); as race) {
+        <div class="page-head">
+            <div>
+                <div class="label">Round {{ race.round }} &middot; {{ race.raceName }}</div>
+                <h1 class="disp page-title">Race Results</h1>
+            </div>
+            <div class="mono circuit-meta">{{ race.Circuit.circuitName }}</div>
+        </div>
+
+        <div class="results-table">
+            <div class="results-row results-row--head label">
+                <span>Pos</span>
+                <span></span>
+                <span>Driver</span>
+                <span>Team</span>
+                <span class="align-end">Grid</span>
+                <span class="align-end">Time / Gap</span>
+                <span class="align-end">Pts</span>
+            </div>
+            @for(result of results(); track result.Driver.driverId) {
+                <div class="results-row" [class.results-row--podium]="+result.position <= 3">
+                    <span class="mono results-row__position">{{ result.position }}</span>
+                    <span class="team-swatch" [style.background-color]="getTeamColor(result.Constructor.name)"></span>
+                    <span class="results-row__driver">{{ result.Driver.givenName }} {{ result.Driver.familyName }}</span>
+                    <span class="label results-row__team">{{ result.Constructor.name }}</span>
+                    <span class="mono align-end results-row__grid">P{{ result.grid }}</span>
+                    <span class="mono align-end results-row__time">{{ result.Time?.time ?? result.status }}</span>
+                    <span class="mono align-end results-row__points" [class.results-row__points--win]="result.position === '1'">{{ result.points }}</span>
+                </div>
+            } @empty {
+                <p class="label">No data.</p>
+            }
+        </div>
+    } @else if(!loaderService.loading()) {
+        <p class="label">No data.</p>
+    }
+</div>

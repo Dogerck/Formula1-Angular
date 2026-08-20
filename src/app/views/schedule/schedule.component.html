@@ -1,1 +1,37 @@
-<p>schedule works!</p>
+<div class="page">
+    <div class="page-head">
+        <div class="label">{{ scheduleData().length }} Rounds &middot; {{ currentYear }}</div>
+        <h1 class="disp page-title">Schedule</h1>
+    </div>
+
+    @if(loaderService.loading()) {
+        <div class="loading-panel cut-card">
+            <mat-spinner diameter="36"></mat-spinner>
+        </div>
+    }
+
+    @if(scheduleData().length) {
+        <div class="race-list">
+            @for(race of scheduleData(); track race.round) {
+                <div class="race-row" [class.race-row--next]="race.status === 'next'" [class.race-row--done]="race.status === 'done'">
+                    <span class="mono race-row__round">{{ race.round }}</span>
+                    <span class="label race-row__status">
+                        @switch (race.status) {
+                            @case ('done') { &#10003; Done }
+                            @case ('next') { &#9654; Next }
+                            @default { Upcoming }
+                        }
+                    </span>
+                    <div class="race-row__name">
+                        <div class="race-row__gp">{{ race.raceName }}</div>
+                        <div class="label race-row__circuit">{{ race.Circuit.circuitName }} &middot; {{ race.Circuit.Location.locality }}</div>
+                    </div>
+                    <img class="img-flag" [appFlag]="race.Circuit.Location.country" alt="{{ race.Circuit.Location.country }} flag">
+                    <span class="mono race-row__date" appConvertToLocalDate="{{ race.date }}"></span>
+                </div>
+            }
+        </div>
+    } @else if(!loaderService.loading()) {
+        <p class="label">No data.</p>
+    }
+</div>

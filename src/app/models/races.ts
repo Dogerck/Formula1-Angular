@@ -1,4 +1,5 @@
 import { circuits } from "./circuits";
+import { Result } from "./result";
 
 export interface Races {
     season: string,
@@ -13,7 +14,8 @@ export interface Races {
     ThirdPractice: ThirdPractice,
     Qualifying: Qualifying,
     Sprint: Sprint,
-    SprintQualifying: SprintQualifying
+    SprintQualifying: SprintQualifying,
+    Results?: Result[]
 }
 
 export interface Circuit extends circuits {}

@@ -1,0 +1,107 @@
+@import '../../scss/global.scss';
+
+.page {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 96px 24px 64px;
+}
+
+.page-head {
+    margin-bottom: 32px;
+
+    .page-title {
+        font-size: 44px;
+        margin: 10px 0 0;
+
+        @media screen and #{$mobile} {
+            font-size: 32px;
+        }
+    }
+}
+
+.loading-panel {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    min-height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.race-list {
+    border-top: 1px solid var(--border-strong);
+}
+
+.race-row {
+    display: grid;
+    grid-template-columns: 56px 100px 1fr 24px 90px;
+    align-items: center;
+    gap: 20px;
+    padding: 20px 24px;
+    border-bottom: 1px solid var(--border);
+
+    &__round {
+        font-size: 18px;
+        color: var(--text-dim);
+    }
+
+    &__status {
+        color: var(--text-faint);
+    }
+
+    &__gp {
+        font-weight: 600;
+    }
+
+    &__circuit {
+        margin-top: 4px;
+    }
+
+    &__date {
+        text-align: right;
+    }
+
+    .img-flag {
+        height: 18px;
+        border-radius: 2px;
+        justify-self: center;
+    }
+
+    &--done {
+        opacity: .5;
+    }
+
+    &--next {
+        background: var(--surface);
+        border-left: 3px solid var(--red);
+        border-bottom-color: var(--border-strong);
+
+        .race-row__round {
+            color: var(--red);
+        }
+
+        .race-row__status {
+            color: var(--red);
+        }
+
+        .race-row__date {
+            color: var(--cyan);
+        }
+    }
+
+    @media screen and #{$mobile} {
+        grid-template-columns: 40px 1fr 20px;
+        row-gap: 8px;
+
+        &__status,
+        &__date {
+            grid-column: 2;
+            justify-self: start;
+            text-align: left;
+        }
+
+        .img-flag {
+            grid-row: 1;
+        }
+    }
+}
