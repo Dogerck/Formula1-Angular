@@ -1,3 +1,5 @@
-<div *ngFor="let a of constructorsData">
+@for (a of constructorsData; track a) {
+  <div>
     <p>{{ a.name }}</p>
-</div>
+  </div>
+}
