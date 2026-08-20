@@ -32,6 +32,10 @@ export class DriversComponent {
 
   driversData = computed(() => {
     const drivers = this.ergast()?.MRData.DriverTable.Drivers ?? [];
-    return drivers.map(driver => ({ ...driver, driverId: driver.driverId.trim() }));
+    return drivers
+      // current/drivers.json also includes reserve drivers who only did a practice
+      // session, with no url/nationality/number/dateOfBirth - keep only full profiles
+      .filter(driver => driver.url)
+      .map(driver => ({ ...driver, driverId: driver.driverId.trim() }));
   });
 }
