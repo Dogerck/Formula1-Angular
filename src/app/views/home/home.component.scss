@@ -22,11 +22,31 @@
         align-items: center;
         justify-content: center;
         overflow: hidden;
+        width: 100%;
 
         iframe {
             width: 100%;
             min-height: 700px;
             border: none;
+        }
+    }
+
+    .feed-fallback {
+        text-align: center;
+        padding: 40px 24px;
+
+        p {
+            margin: 0 0 12px;
+        }
+
+        &__link {
+            color: var(--cyan);
+            text-decoration: none;
+            cursor: pointer;
+
+            &:hover {
+                color: var(--red);
+            }
         }
     }
 }
