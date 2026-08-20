@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, inject } from '@angular/core';
 import { Subscription } from 'rxjs';
 
 import { Ergast } from 'src/app/models/Ergast/ergast';
@@ -16,13 +16,14 @@ import { AsyncPipe } from '@angular/common';
     imports: [MatProgressSpinner, AsyncPipe]
 })
 export class StandingsComponent implements OnInit {
+  private standingsService = inject(StandingsService);
+  loaderService = inject(LoaderService);
+
 
   standingsData: DriverStandings[] = [];
   currentYear = new Date().getFullYear()
   topThree: DriverStandings[] = [];
   private subscription: Subscription | undefined;
-  
-  constructor(private standingsService: StandingsService, public loaderService: LoaderService) { }
 
   ngOnInit() {
     this.getStanding()

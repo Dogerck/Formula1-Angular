@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, inject } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Ergast } from 'src/app/models/Ergast/ergast';
 import { Races } from 'src/app/models/races';
@@ -16,12 +16,13 @@ import { AsyncPipe } from '@angular/common';
     imports: [MatProgressSpinner, ConvertToLocalTimeDirective, AsyncPipe]
 })
 export class NextRaceComponent implements OnInit {
+  private nextRaceService = inject(NextRaceService);
+  loaderService = inject(LoaderService);
+
   
   nextRaceData: Races | any;
   formattedDateRange!: string;
   private subscription: Subscription | undefined;
-
-  constructor(private nextRaceService: NextRaceService, public loaderService: LoaderService) {}
   
   ngOnInit(): void {
     this.nextRace();

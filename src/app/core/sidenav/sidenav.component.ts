@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy, inject } from '@angular/core';
 import { SidenavService } from 'src/app/services/sidenav.service';
 import { MatSidenavContainer, MatSidenav, MatSidenavContent } from '@angular/material/sidenav';
 import { SidenavDirective } from '../../directives/sidenav.directive';
@@ -11,9 +11,9 @@ import { RouterLink, RouterOutlet } from '@angular/router';
     imports: [MatSidenavContainer, MatSidenav, SidenavDirective, RouterLink, MatSidenavContent, RouterOutlet]
 })
 export class SidenavComponent {
-  public opened: boolean = false;
+  private sidenav = inject(SidenavService);
 
-  constructor(private sidenav: SidenavService){}
+  public opened: boolean = false;
 
   menuChangeState() {
     this.sidenav.sidebarChange('toggle');

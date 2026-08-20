@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, inject } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Ergast } from 'src/app/models/Ergast/ergast';
 import { Drivers } from 'src/app/models/driver';
@@ -15,12 +15,13 @@ import { AsyncPipe } from '@angular/common';
     imports: [MatProgressSpinner, AsyncPipe]
 })
 export class DriversComponent implements OnInit {
+  private driversService = inject(DriversService);
+  loaderService = inject(LoaderService);
+
   
   driversData: Drivers[] = []
   currentYear = new Date().getFullYear()
   private subscription: Subscription | undefined
-
-  constructor(private driversService: DriversService, public loaderService: LoaderService) {}
 
   
   getDrivers() {

@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy, inject } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Constructor } from 'src/app/models/constructor';
 import { Ergast } from 'src/app/models/Ergast/ergast';
@@ -12,10 +12,11 @@ import { LoaderService } from 'src/app/services/loader-service.service';
     changeDetection: ChangeDetectionStrategy.Eager
 })
 export class TeamsComponent {
+  private constructorService = inject(ConstructorsService);
+  loaderService = inject(LoaderService);
+
   constructorsData: Constructor[] = [];
   private subscription: Subscription | undefined;
-  
-  constructor(private constructorService: ConstructorsService, public loaderService: LoaderService) {}
 
   ngOnInit() {
     this.getConstructor()

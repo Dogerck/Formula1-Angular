@@ -1,30 +1,32 @@
-import { Directive, Input, OnDestroy } from '@angular/core';
+import { Directive, OnDestroy, inject, input } from '@angular/core';
 import { MatDrawer } from '@angular/material/sidenav';
 import { Subscription } from 'rxjs';
 import { SidenavActions, SidenavService } from '../services/sidenav.service';
 
 @Directive({ selector: '[appSidenav]' })
 export class SidenavDirective implements OnDestroy{
+  private sidenav = inject(SidenavService);
 
-  @Input()appSidenav!: MatDrawer;
+  readonly appSidenav = input.required<MatDrawer>();
   private sidenavSubscription!: Subscription;
 
-  constructor(private sidenav: SidenavService) {
+  constructor() {
     this.sidebarController();
    }
 
    sidebarController() {
     this.sidenavSubscription = this.sidenav.changeMenu$.subscribe((action: SidenavActions) => {
-      if(this.appSidenav) {
+      const drawer = this.appSidenav();
+      if(drawer) {
         switch (action) {
           case 'toggle':
-            this.appSidenav.toggle();
+            drawer.toggle();
             break;
           case 'close':
-            this.appSidenav.close();
+            drawer.close();
             break;
           case 'open':
-            this.appSidenav.open();
+            drawer.open();
             break;
           default:
             break;

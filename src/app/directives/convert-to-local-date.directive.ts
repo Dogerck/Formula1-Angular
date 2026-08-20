@@ -1,14 +1,14 @@
-import { Directive, ElementRef, Input, OnInit } from '@angular/core';
+import { Directive, ElementRef, OnInit, inject, input } from '@angular/core';
 
 @Directive({ selector: '[appConvertToLocalDate]' })
 export class ConvertToLocalDateDirective implements OnInit {
-  @Input('appConvertToLocalDate') utcDate!: string;
+  private el = inject(ElementRef);
 
-  constructor(private el: ElementRef) {}
+  readonly utcDate = input.required<string>({ alias: 'appConvertToLocalDate' });
 
   ngOnInit(): void {
-    if (this.utcDate) {
-      const formattedDate = this.convertToLocalDate(this.utcDate);
+    if (this.utcDate()) {
+      const formattedDate = this.convertToLocalDate(this.utcDate());
       this.el.nativeElement.innerText = formattedDate;
     }
   }
