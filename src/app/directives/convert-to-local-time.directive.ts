@@ -1,9 +1,6 @@
 import { Directive, ElementRef, Input, OnInit } from '@angular/core';
 
-@Directive({
-    selector: '[appConvertToLocalTime]',
-    standalone: false
-})
+@Directive({ selector: '[appConvertToLocalTime]' })
 export class ConvertToLocalTimeDirective implements OnInit {
   @Input('appConvertToLocalTime') utcTime!: string;
   

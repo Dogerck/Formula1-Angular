@@ -4,13 +4,16 @@ import { Ergast } from 'src/app/models/Ergast/ergast';
 import { Races } from 'src/app/models/races';
 import { LoaderService } from 'src/app/services/loader-service.service';
 import { NextRaceService } from 'src/app/services/next-race.service';
+import { MatProgressSpinner } from '@angular/material/progress-spinner';
+import { ConvertToLocalTimeDirective } from '../../../../directives/convert-to-local-time.directive';
+import { AsyncPipe } from '@angular/common';
 
 @Component({
     selector: 'app-next-race',
     templateUrl: './next-race.component.html',
     styleUrls: ['./next-race.component.scss'],
     changeDetection: ChangeDetectionStrategy.Eager,
-    standalone: false
+    imports: [MatProgressSpinner, ConvertToLocalTimeDirective, AsyncPipe]
 })
 export class NextRaceComponent implements OnInit {
   

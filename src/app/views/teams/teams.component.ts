@@ -9,8 +9,7 @@ import { LoaderService } from 'src/app/services/loader-service.service';
     selector: 'app-teams',
     templateUrl: './teams.component.html',
     styleUrls: ['./teams.component.scss'],
-    changeDetection: ChangeDetectionStrategy.Eager,
-    standalone: false
+    changeDetection: ChangeDetectionStrategy.Eager
 })
 export class TeamsComponent {
   constructorsData: Constructor[] = [];

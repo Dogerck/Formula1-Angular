@@ -5,13 +5,15 @@ import { Ergast } from 'src/app/models/Ergast/ergast';
 import { DriverStandings } from 'src/app/models/driver-standing';
 import { LoaderService } from 'src/app/services/loader-service.service';
 import { StandingsService } from 'src/app/services/standings.service';
+import { MatProgressSpinner } from '@angular/material/progress-spinner';
+import { AsyncPipe } from '@angular/common';
 
 @Component({
     selector: 'app-standings',
     templateUrl: './standings.component.html',
     styleUrls: ['./standings.component.scss'],
     changeDetection: ChangeDetectionStrategy.Eager,
-    standalone: false
+    imports: [MatProgressSpinner, AsyncPipe]
 })
 export class StandingsComponent implements OnInit {
 

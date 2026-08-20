@@ -3,10 +3,7 @@ import { MatDrawer } from '@angular/material/sidenav';
 import { Subscription } from 'rxjs';
 import { SidenavActions, SidenavService } from '../services/sidenav.service';
 
-@Directive({
-    selector: '[appSidenav]',
-    standalone: false
-})
+@Directive({ selector: '[appSidenav]' })
 export class SidenavDirective implements OnDestroy{
 
   @Input()appSidenav!: MatDrawer;

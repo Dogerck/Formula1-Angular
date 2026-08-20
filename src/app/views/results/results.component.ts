@@ -4,8 +4,7 @@ import { Component, ChangeDetectionStrategy } from '@angular/core';
     selector: 'app-results',
     templateUrl: './results.component.html',
     styleUrls: ['./results.component.scss'],
-    changeDetection: ChangeDetectionStrategy.Eager,
-    standalone: false
+    changeDetection: ChangeDetectionStrategy.Eager
 })
 export class ResultsComponent {
 

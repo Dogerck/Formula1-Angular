@@ -4,13 +4,15 @@ import { Ergast } from 'src/app/models/Ergast/ergast';
 import { Drivers } from 'src/app/models/driver';
 import { DriversService } from 'src/app/services/drivers.service';
 import { LoaderService } from 'src/app/services/loader-service.service';
+import { MatProgressSpinner } from '@angular/material/progress-spinner';
+import { AsyncPipe } from '@angular/common';
 
 @Component({
     selector: 'app-drivers',
     templateUrl: './drivers.component.html',
     styleUrls: ['./drivers.component.scss'],
     changeDetection: ChangeDetectionStrategy.Eager,
-    standalone: false
+    imports: [MatProgressSpinner, AsyncPipe]
 })
 export class DriversComponent implements OnInit {
   
