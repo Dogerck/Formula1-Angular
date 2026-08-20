@@ -148,6 +148,40 @@
     }
 }
 
+.highlights {
+    .section-label {
+        margin-bottom: 14px;
+    }
+
+    .highlights-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+
+        @media screen and #{$mobile} {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    .highlight-card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        padding: 24px;
+
+        .highlight-name {
+            font-size: 24px;
+        }
+
+        .highlight-time {
+            font-size: 26px;
+
+            &--cyan {
+                color: var(--cyan);
+            }
+        }
+    }
+}
+
 .next-teaser {
     display: flex;
     align-items: center;

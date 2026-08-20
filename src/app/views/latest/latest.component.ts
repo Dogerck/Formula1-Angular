@@ -31,6 +31,16 @@ export class LatestComponent {
     { initialValue: null }
   );
 
+  private qualifyingErgast = toSignal(
+    this.resultsService.getAll<Ergast>('current/last/qualifying.json').pipe(
+      catchError(error => {
+        console.log('Erro:', error);
+        return of(null);
+      })
+    ),
+    { initialValue: null }
+  );
+
   private nextRaceErgast = toSignal(
     this.nextRaceService.getAll<Ergast>('current/next.json').pipe(
       catchError(error => {
@@ -43,11 +53,20 @@ export class LatestComponent {
 
   lastRace = computed(() => this.lastRaceErgast()?.MRData.RaceTable.Races[0] ?? null);
 
-  podium = computed(() => this.lastRace()?.Results?.slice(0, 3) ?? []);
+  private results = computed(() => this.lastRace()?.Results ?? []);
+
+  podium = computed(() => this.results().slice(0, 3));
 
   winner = computed(() => this.podium()[0] ?? null);
 
   margin = computed(() => this.podium()[1]?.Time?.time ?? '');
+
+  fastestLap = computed(() => this.results().find(result => result.FastestLap?.rank === '1') ?? null);
+
+  pole = computed(() => {
+    const race = this.qualifyingErgast()?.MRData.RaceTable.Races[0] ?? null;
+    return race?.QualifyingResults?.[0] ?? null;
+  });
 
   nextRace = computed(() => this.nextRaceErgast()?.MRData.RaceTable.Races[0] ?? null);
 }

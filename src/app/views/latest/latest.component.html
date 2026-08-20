@@ -50,6 +50,30 @@
             </section>
         }
 
+        @if(pole() || fastestLap()) {
+            <section class="highlights">
+                <div class="label section-label">Weekend Highlights</div>
+                <div class="highlights-grid">
+                    @if(pole(); as pole) {
+                        <div class="highlight-card cut-card">
+                            <div class="label">Pole Position</div>
+                            <div class="disp highlight-name">{{ pole.Driver.givenName }} {{ pole.Driver.familyName }}</div>
+                            <div class="label" style="margin:4px 0 12px;">{{ pole.Constructor.name }}</div>
+                            <div class="mono highlight-time">{{ pole.Q3 ?? pole.Q2 ?? pole.Q1 }}</div>
+                        </div>
+                    }
+                    @if(fastestLap(); as fastest) {
+                        <div class="highlight-card cut-card">
+                            <div class="label">Fastest Lap</div>
+                            <div class="disp highlight-name">{{ fastest.Driver.givenName }} {{ fastest.Driver.familyName }}</div>
+                            <div class="label" style="margin:4px 0 12px;">Lap {{ fastest.FastestLap?.lap }}</div>
+                            <div class="mono highlight-time highlight-time--cyan">{{ fastest.FastestLap?.Time?.time }}</div>
+                        </div>
+                    }
+                </div>
+            </section>
+        }
+
         @if(nextRace(); as next) {
             <section class="next-teaser cut-card">
                 <div class="next-teaser__info">

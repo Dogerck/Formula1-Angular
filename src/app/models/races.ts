@@ -1,5 +1,6 @@
 import { circuits } from "./circuits";
 import { Result } from "./result";
+import { QualifyingResult } from "./qualifying-result";
 
 export interface Races {
     season: string,
@@ -15,7 +16,8 @@ export interface Races {
     Qualifying: Qualifying,
     Sprint: Sprint,
     SprintQualifying: SprintQualifying,
-    Results?: Result[]
+    Results?: Result[],
+    QualifyingResults?: QualifyingResult[]
 }
 
 export interface Circuit extends circuits {}
