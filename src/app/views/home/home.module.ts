@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { HomeRoutingModule } from './home-routing.module';
 import { StandingsComponent } from './components/standings/standings.component';
 import { HomeComponent } from './home.component';
-import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
 import { NextRaceComponent } from './components/next-race/next-race.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner'; 
 import { LoaderInterceptor } from 'src/app/interceptors/interceptor-loader.interceptor';
@@ -27,6 +27,6 @@ import { ConvertToLocalDateDirective } from 'src/app/directives/convert-to-local
             useClass: LoaderInterceptor,
             multi: true
         },
-        provideHttpClient(withInterceptorsFromDi())
+        provideHttpClient(withXhr(), withInterceptorsFromDi())
     ] })
 export class HomeModule { }

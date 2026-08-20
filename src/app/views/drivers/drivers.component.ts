@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Ergast } from 'src/app/models/Ergast/ergast';
 import { Drivers } from 'src/app/models/driver';
@@ -9,6 +9,7 @@ import { LoaderService } from 'src/app/services/loader-service.service';
     selector: 'app-drivers',
     templateUrl: './drivers.component.html',
     styleUrls: ['./drivers.component.scss'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class DriversComponent implements OnInit {

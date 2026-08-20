@@ -1,10 +1,11 @@
-import { AfterViewInit, Component, ElementRef, inject, Renderer2, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, inject, Renderer2, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import { LoaderService } from 'src/app/services/loader-service.service';
 
 @Component({
     selector: 'app-home',
     templateUrl: './home.component.html',
     styleUrls: ['./home.component.scss'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class HomeComponent implements AfterViewInit {

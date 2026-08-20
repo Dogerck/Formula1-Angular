@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Constructor } from 'src/app/models/constructor';
 import { Ergast } from 'src/app/models/Ergast/ergast';
@@ -9,6 +9,7 @@ import { LoaderService } from 'src/app/services/loader-service.service';
     selector: 'app-teams',
     templateUrl: './teams.component.html',
     styleUrls: ['./teams.component.scss'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class TeamsComponent {

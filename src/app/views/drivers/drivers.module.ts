@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { DriversRoutingModule } from './drivers-routing.module';
 import { DriversComponent } from './drivers.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner'; 
-import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
 import { LoaderInterceptor } from 'src/app/interceptors/interceptor-loader.interceptor';
 
 
@@ -18,6 +18,6 @@ import { LoaderInterceptor } from 'src/app/interceptors/interceptor-loader.inter
             useClass: LoaderInterceptor,
             multi: true
         },
-        provideHttpClient(withInterceptorsFromDi())
+        provideHttpClient(withXhr(), withInterceptorsFromDi())
     ] })
 export class DriversModule { }

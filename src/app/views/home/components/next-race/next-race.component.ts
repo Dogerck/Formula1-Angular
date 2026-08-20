@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Ergast } from 'src/app/models/Ergast/ergast';
 import { Races } from 'src/app/models/races';
@@ -9,6 +9,7 @@ import { NextRaceService } from 'src/app/services/next-race.service';
     selector: 'app-next-race',
     templateUrl: './next-race.component.html',
     styleUrls: ['./next-race.component.scss'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class NextRaceComponent implements OnInit {
