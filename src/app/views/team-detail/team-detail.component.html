@@ -1,0 +1,67 @@
+<div class="page">
+    @if(loaderService.loading()) {
+        <div class="loading-panel cut-card">
+            <mat-spinner diameter="36"></mat-spinner>
+        </div>
+    }
+
+    @if(team(); as team) {
+        <a routerLink="/teams" class="label back-link">&larr; Back to Teams</a>
+
+        <section class="team-hero cut-card" [style.border-top-color]="getTeamColor(team.name)">
+            <div class="team-hero__info">
+                <h1 class="disp team-hero__name">{{ team.name }}</h1>
+                <div class="team-hero__flag">
+                    <img class="img-flag" [appFlag]="team.nationality" alt="{{ team.nationality }} flag">
+                    <span class="label">{{ team.nationality }}</span>
+                </div>
+                <div class="team-hero__stats">
+                    <div>
+                        <div class="label">{{ currentYear }} Wins</div>
+                        <div class="mono team-hero__stat">{{ wins() }}</div>
+                    </div>
+                    <div>
+                        <div class="label">{{ currentYear }} Points</div>
+                        <div class="mono team-hero__stat team-hero__stat--cyan">{{ totalPoints() }}</div>
+                    </div>
+                    @if(currentDrivers().length) {
+                        <div>
+                            <div class="label">Drivers</div>
+                            <div class="mono team-hero__stat">{{ currentDrivers().join(', ') }}</div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </section>
+
+        <section class="season-results">
+            <div class="label section-label">{{ currentYear }} Results</div>
+            <div class="results-table">
+                <div class="results-row results-row--head label">
+                    <span>Rd</span>
+                    <span>Race</span>
+                    <span class="results-row__driver">Driver</span>
+                    <span class="align-end results-row__grid">Grid</span>
+                    <span class="align-end">Result</span>
+                    <span class="align-end results-row__points">Pts</span>
+                </div>
+                @for(race of seasonRaces(); track race.round) {
+                    @for(result of race.Results ?? []; track result.Driver.driverId) {
+                        <div class="results-row" [class.results-row--podium]="+result.position <= 3">
+                            <span class="mono results-row__round">{{ race.round }}</span>
+                            <span class="results-row__race">{{ race.raceName }}</span>
+                            <span class="label results-row__driver">{{ result.Driver.givenName }} {{ result.Driver.familyName }}</span>
+                            <span class="mono align-end results-row__grid">P{{ result.grid }}</span>
+                            <span class="mono align-end results-row__result">{{ result.position === result.positionText ? 'P' + result.position : result.status }}</span>
+                            <span class="mono align-end results-row__points" [class.results-row__points--win]="result.position === '1'">{{ result.points }}</span>
+                        </div>
+                    }
+                } @empty {
+                    <p class="label">No results yet.</p>
+                }
+            </div>
+        </section>
+    } @else if(!loaderService.loading()) {
+        <p class="label">No data.</p>
+    }
+</div>

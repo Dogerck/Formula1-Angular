@@ -1,6 +1,7 @@
 import { Component, ChangeDetectionStrategy, computed, inject } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { catchError, of } from 'rxjs';
+import { RouterLink } from '@angular/router';
 import { Ergast } from 'src/app/models/Ergast/ergast';
 import { ConstructorsService } from 'src/app/services/constructors.service';
 import { LoaderService } from 'src/app/services/loader-service.service';
@@ -12,7 +13,7 @@ import { getTeamColor } from 'src/app/constants/team-colors';
     templateUrl: './teams.component.html',
     styleUrls: ['./teams.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [MatProgressSpinner]
+    imports: [MatProgressSpinner, RouterLink]
 })
 export class TeamsComponent {
   private constructorService = inject(ConstructorsService);

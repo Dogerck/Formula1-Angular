@@ -1,0 +1,136 @@
+@import '../../scss/global.scss';
+
+.page {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 96px 24px 64px;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+
+.loading-panel {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    min-height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.back-link {
+    color: var(--text-dim);
+    text-decoration: none;
+    cursor: pointer;
+
+    &:hover {
+        color: var(--red);
+    }
+}
+
+.team-hero {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-top: 4px solid var(--border-strong);
+    padding: 40px 48px;
+
+    @media screen and #{$mobile} {
+        padding: 28px 24px;
+    }
+
+    &__name {
+        font-size: 44px;
+        line-height: .95;
+        margin: 0 0 16px;
+
+        @media screen and #{$mobile} {
+            font-size: 32px;
+        }
+    }
+
+    &__flag {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 24px;
+
+        .img-flag {
+            height: 14px;
+            border-radius: 2px;
+        }
+    }
+
+    &__stats {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 32px;
+    }
+
+    &__stat {
+        font-size: 18px;
+        margin-top: 6px;
+
+        &--cyan {
+            color: var(--cyan);
+        }
+    }
+}
+
+.season-results {
+    .section-label {
+        margin-bottom: 14px;
+    }
+}
+
+.results-table {
+    border-top: 1px solid var(--border-strong);
+}
+
+.results-row {
+    display: grid;
+    grid-template-columns: 36px 1fr 180px 70px 90px 60px;
+    align-items: center;
+    gap: 16px;
+    padding: 14px 4px;
+    border-bottom: 1px solid var(--border);
+
+    .align-end {
+        justify-self: end;
+    }
+
+    &--head {
+        padding-bottom: 12px;
+        border-bottom: 1px solid var(--border-strong);
+    }
+
+    &__round {
+        color: var(--text-dim);
+    }
+
+    &__race {
+        font-weight: 600;
+    }
+
+    &__grid,
+    &__result {
+        color: var(--text-dim);
+    }
+
+    &__points--win {
+        color: var(--cyan);
+    }
+
+    &--podium &__race {
+        color: var(--red);
+    }
+
+    @media screen and #{$mobile} {
+        grid-template-columns: 24px 1fr 60px;
+
+        &__driver,
+        &__grid,
+        &__points {
+            display: none;
+        }
+    }
+}

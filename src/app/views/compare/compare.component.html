@@ -1,0 +1,88 @@
+<div class="page">
+    <div class="page-head">
+        <div class="label">Head-to-Head</div>
+        <h1 class="disp page-title">Compare Drivers</h1>
+    </div>
+
+    @if(loaderService.loading()) {
+        <div class="loading-panel cut-card">
+            <mat-spinner diameter="36"></mat-spinner>
+        </div>
+    }
+
+    <div class="compare-grid">
+        <div class="compare-card cut-card">
+            <select class="driver-select mono" [value]="driverAId()" (change)="onSelectA($any($event.target).value)">
+                @for(driver of driversList(); track driver.driverId) {
+                    <option [value]="driver.driverId">{{ driver.givenName }} {{ driver.familyName }}</option>
+                }
+            </select>
+            @if(statA(); as stat) {
+                <img class="compare-card__photo" [appWikipediaPhoto]="stat.url" alt="{{ stat.givenName }} {{ stat.familyName }}">
+                <div class="disp compare-card__name">{{ stat.familyName }}</div>
+                <div class="compare-card__flag">
+                    <img class="img-flag" [appFlag]="stat.nationality" alt="{{ stat.nationality }} flag">
+                    @if(stat.team) {
+                        <span class="label">{{ stat.team }}</span>
+                    }
+                </div>
+                <div class="compare-card__stats">
+                    <div>
+                        <span class="label">Points</span>
+                        <span class="mono" [class.compare-card__value--lead]="stat.points > (statB()?.points ?? -1)">{{ stat.points }}</span>
+                    </div>
+                    <div>
+                        <span class="label">Wins</span>
+                        <span class="mono" [class.compare-card__value--lead]="stat.wins > (statB()?.wins ?? -1)">{{ stat.wins }}</span>
+                    </div>
+                    <div>
+                        <span class="label">Podiums</span>
+                        <span class="mono" [class.compare-card__value--lead]="stat.podiums > (statB()?.podiums ?? -1)">{{ stat.podiums }}</span>
+                    </div>
+                    <div>
+                        <span class="label">Races</span>
+                        <span class="mono">{{ stat.races }}</span>
+                    </div>
+                </div>
+            }
+        </div>
+
+        <div class="disp compare-vs">VS</div>
+
+        <div class="compare-card cut-card">
+            <select class="driver-select mono" [value]="driverBId()" (change)="onSelectB($any($event.target).value)">
+                @for(driver of driversList(); track driver.driverId) {
+                    <option [value]="driver.driverId">{{ driver.givenName }} {{ driver.familyName }}</option>
+                }
+            </select>
+            @if(statB(); as stat) {
+                <img class="compare-card__photo" [appWikipediaPhoto]="stat.url" alt="{{ stat.givenName }} {{ stat.familyName }}">
+                <div class="disp compare-card__name">{{ stat.familyName }}</div>
+                <div class="compare-card__flag">
+                    <img class="img-flag" [appFlag]="stat.nationality" alt="{{ stat.nationality }} flag">
+                    @if(stat.team) {
+                        <span class="label">{{ stat.team }}</span>
+                    }
+                </div>
+                <div class="compare-card__stats">
+                    <div>
+                        <span class="label">Points</span>
+                        <span class="mono" [class.compare-card__value--lead]="stat.points > (statA()?.points ?? -1)">{{ stat.points }}</span>
+                    </div>
+                    <div>
+                        <span class="label">Wins</span>
+                        <span class="mono" [class.compare-card__value--lead]="stat.wins > (statA()?.wins ?? -1)">{{ stat.wins }}</span>
+                    </div>
+                    <div>
+                        <span class="label">Podiums</span>
+                        <span class="mono" [class.compare-card__value--lead]="stat.podiums > (statA()?.podiums ?? -1)">{{ stat.podiums }}</span>
+                    </div>
+                    <div>
+                        <span class="label">Races</span>
+                        <span class="mono">{{ stat.races }}</span>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

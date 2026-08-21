@@ -21,7 +21,7 @@
                 <span class="teams-row__bar-spacer"></span>
             </div>
             @for(team of standingsData(); track team.Constructor.constructorId) {
-                <div class="teams-row">
+                <a [routerLink]="['/teams', team.Constructor.constructorId]" class="teams-row">
                     <span class="mono">{{ team.position }}</span>
                     <span class="team-swatch" [style.background-color]="getTeamColor(team.Constructor.name)"></span>
                     <span class="disp team-name">{{ team.Constructor.name }}</span>
@@ -30,7 +30,7 @@
                     <span class="team-bar">
                         <span class="team-bar__fill" [style.width.%]="pointsShare(team.points)" [style.background-color]="getTeamColor(team.Constructor.name)"></span>
                     </span>
-                </div>
+                </a>
             }
         </div>
     } @else if(!loaderService.loading()) {
