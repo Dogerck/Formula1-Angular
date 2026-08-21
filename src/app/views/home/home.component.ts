@@ -1,6 +1,7 @@
 import { AfterViewInit, Component, ElementRef, ChangeDetectionStrategy, signal, viewChild } from '@angular/core';
 import { NextRaceComponent } from './components/next-race/next-race.component';
 import { StandingsComponent } from './components/standings/standings.component';
+import { ChampionshipChartComponent } from './components/championship-chart/championship-chart.component';
 import { MatProgressSpinner } from '@angular/material/progress-spinner';
 import { F1TimelineComponent } from "./components/x-timeline/x-timeline.component";
 
@@ -23,7 +24,7 @@ const FEED_LOAD_TIMEOUT_MS = 8000;
     templateUrl: './home.component.html',
     styleUrls: ['./home.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [NextRaceComponent, StandingsComponent, MatProgressSpinner, F1TimelineComponent]
+    imports: [NextRaceComponent, StandingsComponent, ChampionshipChartComponent, MatProgressSpinner, F1TimelineComponent]
 })
 export class HomeComponent implements AfterViewInit {
   readonly feedContainer = viewChild.required<ElementRef<HTMLElement>>('feedContainer');

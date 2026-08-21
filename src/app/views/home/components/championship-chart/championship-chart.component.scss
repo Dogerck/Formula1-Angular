@@ -1,0 +1,150 @@
+@import '../../../../scss/global.scss';
+
+.championship-chart {
+    width: 100%;
+    margin-top: 48px;
+
+    .section-label-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 14px;
+    }
+
+    .section-label {
+        margin-bottom: 0;
+    }
+
+    .view-toggle {
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 0;
+        display: flex;
+        gap: 4px;
+        color: var(--text-faint);
+
+        &__option {
+            &--active {
+                color: var(--cyan);
+            }
+        }
+
+        &:hover {
+            color: var(--text-dim);
+        }
+    }
+
+    .loading-panel {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        min-height: 200px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .chart-panel {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        padding: 24px;
+    }
+
+    .chart-svg {
+        width: 100%;
+        height: auto;
+        display: block;
+        overflow: visible;
+
+        .grid-line {
+            stroke: var(--border);
+            stroke-width: 1;
+        }
+
+        .grid-label {
+            fill: var(--text-faint);
+            font-size: 9px;
+        }
+
+        .series-line {
+            fill: none;
+            stroke-width: 2;
+        }
+
+        .series-label {
+            font-size: 11px;
+        }
+
+        .hover-line {
+            stroke: var(--text-faint);
+            stroke-width: 1;
+            stroke-dasharray: 2 3;
+        }
+
+        .hover-target {
+            fill: transparent;
+            cursor: crosshair;
+        }
+    }
+
+    .chart-readout {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 16px;
+        margin-top: 16px;
+        padding-top: 14px;
+        border-top: 1px solid var(--border);
+        font-size: 12px;
+
+        &__round {
+            color: var(--text-dim);
+        }
+
+        &--hint {
+            color: var(--text-faint);
+        }
+    }
+
+    .chart-legend {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 16px;
+        margin-top: 12px;
+
+        &__item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        &__dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+        }
+    }
+
+    .table-panel {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        padding: 16px;
+        overflow-x: auto;
+    }
+
+    .progression-table {
+        border-collapse: collapse;
+        white-space: nowrap;
+
+        th,
+        td {
+            padding: 8px 12px;
+            text-align: left;
+            font-size: 12px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .align-end {
+            text-align: right;
+        }
+    }
+}

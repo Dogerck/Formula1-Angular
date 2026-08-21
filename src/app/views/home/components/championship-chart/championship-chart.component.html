@@ -1,0 +1,97 @@
+<section class="championship-chart">
+    <div class="section-label-row">
+        <div class="label section-label">Points Progression &middot; Top 5</div>
+        @if(series().length) {
+            <button type="button" class="label view-toggle" (click)="toggleTable()">
+                <span [class.view-toggle__option--active]="!showTable()" class="view-toggle__option">Chart</span>
+                /
+                <span [class.view-toggle__option--active]="showTable()" class="view-toggle__option">Table</span>
+            </button>
+        }
+    </div>
+
+    @if(loaderService.loading() && !series().length) {
+        <div class="loading-panel cut-card">
+            <mat-spinner diameter="36"></mat-spinner>
+        </div>
+    }
+
+    @if(series().length) {
+        @if(!showTable()) {
+            <div class="chart-panel cut-card">
+                <svg [attr.viewBox]="'0 0 ' + chartWidth + ' ' + chartHeight" class="chart-svg" preserveAspectRatio="none">
+                    @for(line of gridLines(); track line.value) {
+                        <line class="grid-line" x1="12" [attr.x2]="plotRight" [attr.y1]="line.y" [attr.y2]="line.y"></line>
+                        <text class="grid-label mono" x="0" [attr.y]="line.y - 4">{{ line.value }}</text>
+                    }
+
+                    @for(series of series(); track series.driverId) {
+                        <path class="series-line" [attr.d]="linePath(series)" [attr.stroke]="series.color"></path>
+                        <circle class="series-end-dot" [attr.cx]="plotRight" [attr.cy]="labelY(series)" r="3" [attr.fill]="series.color"></circle>
+                        <text class="series-label mono" [attr.x]="plotRight + 8" [attr.y]="labelY(series) + 4" [attr.fill]="series.color">{{ series.familyName }}</text>
+                    }
+
+                    @if(hoverX(); as hx) {
+                        <line class="hover-line" [attr.x1]="hx" [attr.x2]="hx" y1="16" [attr.y2]="chartHeight - 28"></line>
+                        @for(series of series(); track series.driverId) {
+                            <circle class="hover-dot" [attr.cx]="hx" [attr.cy]="yForHover(series)" r="3" [attr.fill]="series.color"></circle>
+                        }
+                    }
+
+                    <rect
+                        class="hover-target"
+                        x="12"
+                        y="0"
+                        [attr.width]="plotRight - 12"
+                        [attr.height]="chartHeight"
+                        (mousemove)="onHover($event)"
+                        (mouseleave)="onLeave()">
+                    </rect>
+                </svg>
+
+                @if(hoverIndex() !== null) {
+                    <div class="chart-readout mono">
+                        <span class="chart-readout__round">R{{ rounds()[hoverIndex()!] }}</span>
+                        @for(series of series(); track series.driverId) {
+                            <span class="chart-readout__item" [style.color]="series.color">{{ series.familyName }} {{ series.points[hoverIndex()!] }}</span>
+                        }
+                    </div>
+                } @else {
+                    <div class="chart-readout chart-readout--hint label">Hover the chart for round-by-round points</div>
+                }
+
+                <div class="chart-legend">
+                    @for(series of series(); track series.driverId) {
+                        <span class="chart-legend__item">
+                            <span class="chart-legend__dot" [style.background-color]="series.color"></span>
+                            <span class="label">{{ series.familyName }}</span>
+                        </span>
+                    }
+                </div>
+            </div>
+        } @else {
+            <div class="table-panel cut-card">
+                <table class="progression-table mono">
+                    <thead>
+                        <tr>
+                            <th class="label">Driver</th>
+                            @for(round of rounds(); track round) {
+                                <th class="label align-end">R{{ round }}</th>
+                            }
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for(series of series(); track series.driverId) {
+                            <tr>
+                                <td [style.color]="series.color">{{ series.familyName }}</td>
+                                @for(value of series.points; track $index) {
+                                    <td class="align-end">{{ value }}</td>
+                                }
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        }
+    }
+</section>
