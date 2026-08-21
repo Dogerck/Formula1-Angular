@@ -5,6 +5,7 @@ import { RouterLink } from '@angular/router';
 import { Ergast } from 'src/app/models/Ergast/ergast';
 import { DriversService } from 'src/app/services/drivers.service';
 import { LoaderService } from 'src/app/services/loader-service.service';
+import { FavoriteDriverService } from 'src/app/services/favorite-driver.service';
 import { MatProgressSpinner } from '@angular/material/progress-spinner';
 import { WikipediaPhotoDirective } from 'src/app/directives/wikipedia-photo.directive';
 import { FlagDirective } from 'src/app/directives/flag.directive';
@@ -19,6 +20,7 @@ import { FlagDirective } from 'src/app/directives/flag.directive';
 export class DriversComponent {
   private driversService = inject(DriversService);
   loaderService = inject(LoaderService);
+  favoriteService = inject(FavoriteDriverService);
 
   currentYear = new Date().getFullYear();
 
@@ -40,4 +42,10 @@ export class DriversComponent {
       .filter(driver => driver.url)
       .map(driver => ({ ...driver, driverId: driver.driverId.trim() }));
   });
+
+  toggleFavorite(event: Event, driverId: string): void {
+    event.preventDefault();
+    event.stopPropagation();
+    this.favoriteService.toggle(driverId);
+  }
 }

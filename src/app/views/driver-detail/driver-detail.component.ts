@@ -6,6 +6,7 @@ import { Ergast } from 'src/app/models/Ergast/ergast';
 import { DriversService } from 'src/app/services/drivers.service';
 import { ResultsService } from 'src/app/services/results.service';
 import { LoaderService } from 'src/app/services/loader-service.service';
+import { FavoriteDriverService } from 'src/app/services/favorite-driver.service';
 import { MatProgressSpinner } from '@angular/material/progress-spinner';
 import { WikipediaPhotoDirective } from 'src/app/directives/wikipedia-photo.directive';
 import { FlagDirective } from 'src/app/directives/flag.directive';
@@ -22,6 +23,7 @@ export class DriverDetailComponent {
   private driversService = inject(DriversService);
   private resultsService = inject(ResultsService);
   loaderService = inject(LoaderService);
+  favoriteService = inject(FavoriteDriverService);
 
   currentYear = new Date().getFullYear();
 

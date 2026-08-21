@@ -1,13 +1,21 @@
 <section class="next-race">
     <div class="section-label-row">
         <div class="label section-label">Next Race &mdash; Round {{ nextRaceData()?.round }}</div>
-        @if(trackTimezone()) {
-            <button type="button" class="label time-toggle" (click)="toggleTimeMode()">
-                <span [class.time-toggle__option--active]="timeMode() === 'local'" class="time-toggle__option">Local</span>
-                /
-                <span [class.time-toggle__option--active]="timeMode() === 'track'" class="time-toggle__option">Track</span>
-            </button>
-        }
+        <div class="section-label-row__right">
+            @if(nextSessionIso(); as target) {
+                <div class="session-countdown">
+                    <span class="label">Next Session In</span>
+                    <app-countdown [target]="target"></app-countdown>
+                </div>
+            }
+            @if(trackTimezone()) {
+                <button type="button" class="label time-toggle" (click)="toggleTimeMode()">
+                    <span [class.time-toggle__option--active]="timeMode() === 'local'" class="time-toggle__option">Local</span>
+                    /
+                    <span [class.time-toggle__option--active]="timeMode() === 'track'" class="time-toggle__option">Track</span>
+                </button>
+            }
+        </div>
     </div>
 
     @if(loaderService.loading()) {
@@ -23,8 +31,16 @@
                 <h1 class="disp race-name">{{ race.raceName }}</h1>
                 <div class="circuit-line">{{ race.Circuit.circuitName }} &middot; {{ race.Circuit.Location.locality }}, {{ race.Circuit.Location.country }}</div>
                 <div class="label date-range">{{ formattedDateRange() }}</div>
-                @if(currentWeather(); as weather) {
-                    <div class="label weather-line">{{ weather.icon }} {{ weather.temperature }}&deg;C &middot; {{ weather.label }}</div>
+                @if(weekendForecast().length) {
+                    <div class="forecast-row">
+                        @for(day of weekendForecast(); track day.date) {
+                            <div class="forecast-day" title="{{ day.label }}">
+                                <div class="label">{{ day.weekday }}</div>
+                                <div class="forecast-day__icon">{{ day.icon }}</div>
+                                <div class="mono forecast-day__temp">{{ day.tempMax }}&deg;<span class="forecast-day__temp-min">/{{ day.tempMin }}&deg;</span></div>
+                            </div>
+                        }
+                    </div>
                 }
                 <app-circuit-track [circuitId]="race.Circuit.circuitId" class="track-art"></app-circuit-track>
             </div>

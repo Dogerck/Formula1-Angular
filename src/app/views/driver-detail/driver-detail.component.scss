@@ -85,7 +85,39 @@
         color: transparent;
         -webkit-text-stroke: 1.5px var(--red);
         font-size: 32px;
+    }
+
+    &__top-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
         margin-bottom: 6px;
+    }
+
+    .favorite-btn {
+        flex-shrink: 0;
+        background: none;
+        border: 1px solid var(--border);
+        padding: 6px 12px;
+        color: var(--text-dim);
+        font-family: 'Titillium Web', sans-serif;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: .1em;
+        font-size: 11px;
+        cursor: pointer;
+        transition: color .3s ease, border-color .3s ease;
+
+        &:hover {
+            color: var(--text);
+            border-color: var(--text-dim);
+        }
+
+        &--active {
+            color: var(--cyan);
+            border-color: var(--cyan);
+        }
     }
 
     &__name {

@@ -66,6 +66,38 @@
         font-size: 13px;
         text-transform: uppercase;
     }
+
+    &__right {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 10px;
+    }
+
+    .tab-toggle {
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 0;
+        display: flex;
+        gap: 4px;
+        color: var(--text-faint);
+        font-family: 'Titillium Web', sans-serif;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: .14em;
+        font-size: 11px;
+
+        &__option {
+            &--active {
+                color: var(--cyan);
+            }
+        }
+
+        &:hover {
+            color: var(--text-dim);
+        }
+    }
 }
 
 .results-table {
@@ -115,6 +147,12 @@
         color: var(--red);
     }
 
+    &--favorite {
+        background: rgba(39, 244, 210, .05);
+        border-left: 2px solid var(--cyan);
+        padding-left: 2px;
+    }
+
     &:not(&--podium):not(&--head) {
         .results-row__position,
         .results-row__driver {
@@ -128,6 +166,25 @@
         &__team,
         &__grid,
         &__points {
+            display: none;
+        }
+    }
+}
+
+.results-table--qualifying .results-row {
+    grid-template-columns: 36px 10px 1fr 150px 100px 100px 100px;
+
+    &__q1,
+    &__q2 {
+        color: var(--text-dim);
+    }
+
+    @media screen and #{$mobile} {
+        grid-template-columns: 28px 8px 1fr 90px;
+
+        &__team,
+        &__q1,
+        &__q2 {
             display: none;
         }
     }

@@ -13,7 +13,17 @@
                 <img [appWikipediaPhoto]="driver.url" alt="{{ driver.givenName }} {{ driver.familyName }}">
             </div>
             <div class="driver-hero__info">
-                <div class="mono driver-hero__number">{{ driver.permanentNumber }}</div>
+                <div class="driver-hero__top-row">
+                    <div class="mono driver-hero__number">{{ driver.permanentNumber }}</div>
+                    <button
+                        type="button"
+                        class="favorite-btn"
+                        [class.favorite-btn--active]="favoriteService.isFavorite(driver.driverId)"
+                        (click)="favoriteService.toggle(driver.driverId)"
+                        aria-label="Toggle favorite driver">
+                        &#9733; {{ favoriteService.isFavorite(driver.driverId) ? 'Favorite' : 'Add to Favorites' }}
+                    </button>
+                </div>
                 <h1 class="disp driver-hero__name">{{ driver.givenName }}<br>{{ driver.familyName }}</h1>
                 <div class="driver-hero__flag">
                     <img class="img-flag" [appFlag]="driver.nationality" alt="{{ driver.nationality }} flag">

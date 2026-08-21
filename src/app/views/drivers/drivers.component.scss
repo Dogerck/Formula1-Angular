@@ -65,6 +65,34 @@
         border-color: var(--red);
     }
 
+    &--favorite {
+        border-color: var(--cyan);
+    }
+
+    .favorite-btn {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        z-index: 3;
+        background: rgba(11, 11, 14, .6);
+        border: none;
+        width: 32px;
+        height: 32px;
+        color: var(--text-faint);
+        font-size: 18px;
+        line-height: 1;
+        cursor: pointer;
+        transition: color .3s ease;
+
+        &:hover {
+            color: var(--text);
+        }
+
+        &--active {
+            color: var(--cyan);
+        }
+    }
+
     .driver-number {
         position: absolute;
         top: 14px;

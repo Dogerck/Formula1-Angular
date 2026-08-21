@@ -5,6 +5,7 @@ import { catchError, of } from 'rxjs';
 import { Ergast } from 'src/app/models/Ergast/ergast';
 import { LoaderService } from 'src/app/services/loader-service.service';
 import { StandingsService } from 'src/app/services/standings.service';
+import { FavoriteDriverService } from 'src/app/services/favorite-driver.service';
 import { MatProgressSpinner } from '@angular/material/progress-spinner';
 import { WikipediaPhotoDirective } from 'src/app/directives/wikipedia-photo.directive';
 import { getTeamColor } from 'src/app/constants/team-colors';
@@ -19,6 +20,7 @@ import { getTeamColor } from 'src/app/constants/team-colors';
 export class StandingsComponent {
   private standingsService = inject(StandingsService);
   loaderService = inject(LoaderService);
+  favoriteService = inject(FavoriteDriverService);
 
   currentYear = new Date().getFullYear();
 

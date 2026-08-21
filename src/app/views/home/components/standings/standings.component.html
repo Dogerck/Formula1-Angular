@@ -10,7 +10,7 @@
     @if(topThree().length) {
         <div class="podium">
             @for(driver of topThree(); track driver.Driver.driverId; let i = $index) {
-                <div class="podium-card cut-card" [class.podium-card--first]="i === 0">
+                <div class="podium-card cut-card" [class.podium-card--first]="i === 0" [class.podium-card--favorite]="favoriteService.isFavorite(driver.Driver.driverId)">
                     <div class="mono podium-rank">{{ driver.position }}</div>
                     <div class="podium-photo-row">
                         <img class="podium-photo" [appWikipediaPhoto]="driver.Driver.url" alt="{{ driver.Driver.givenName }} {{ driver.Driver.familyName }}">
@@ -33,7 +33,7 @@
         <div class="label section-label standings-label">Standings &middot; {{ restOfStandings()[0].position }}&ndash;{{ restOfStandings()[restOfStandings().length - 1].position }}</div>
         <div class="standings-table">
             @for(driverStandings of restOfStandings(); track driverStandings.Driver.driverId) {
-                <div class="standings-row">
+                <div class="standings-row" [class.standings-row--favorite]="favoriteService.isFavorite(driverStandings.Driver.driverId)">
                     <span class="mono standings-row__position">{{ driverStandings.position }}</span>
                     <span class="team-color" [style.background-color]="getTeamColor(driverStandings.Constructors[0].name)"></span>
                     <span class="standings-row__name">{{ driverStandings.Driver.givenName }} <b>{{ driverStandings.Driver.familyName }}</b></span>

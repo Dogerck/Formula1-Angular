@@ -8,10 +8,29 @@
         align-items: center;
         justify-content: space-between;
         margin-bottom: 14px;
+        flex-wrap: wrap;
+        gap: 12px;
+
+        &__right {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+        }
     }
 
     .section-label {
         margin-bottom: 0;
+    }
+
+    .session-countdown {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+
+        .countdown {
+            color: var(--cyan);
+            font-size: 15px;
+        }
     }
 
     .time-toggle {
@@ -95,8 +114,30 @@
             margin-bottom: 12px;
         }
 
-        .weather-line {
-            margin-top: 6px;
+        .forecast-row {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .forecast-day {
+            background: var(--surface-2);
+            border: 1px solid var(--border);
+            padding: 8px 10px;
+            text-align: center;
+
+            &__icon {
+                font-size: 18px;
+                margin: 4px 0;
+            }
+
+            &__temp {
+                font-size: 13px;
+            }
+
+            &__temp-min {
+                color: var(--text-faint);
+            }
         }
 
         .track-art {

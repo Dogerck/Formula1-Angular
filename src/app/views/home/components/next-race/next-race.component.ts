@@ -12,6 +12,7 @@ import { getCircuitTimezone } from 'src/app/constants/circuit-timezones';
 import { getWeatherInfo } from 'src/app/constants/weather-codes';
 import { CircuitTrackComponent } from 'src/app/shared/circuit-track/circuit-track.component';
 import { CircuitMapComponent } from 'src/app/shared/circuit-map/circuit-map.component';
+import { CountdownComponent } from 'src/app/shared/countdown/countdown.component';
 
 type TimeMode = 'local' | 'track';
 
@@ -20,7 +21,7 @@ type TimeMode = 'local' | 'track';
     templateUrl: './next-race.component.html',
     styleUrls: ['./next-race.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [MatProgressSpinner, FlagDirective, SessionTimeDirective, CircuitTrackComponent, CircuitMapComponent]
+    imports: [MatProgressSpinner, FlagDirective, SessionTimeDirective, CircuitTrackComponent, CircuitMapComponent, CountdownComponent]
 })
 export class NextRaceComponent {
   private nextRaceService = inject(NextRaceService);
@@ -53,10 +54,10 @@ export class NextRaceComponent {
 
   activeTimezone = computed(() => this.timeMode() === 'track' ? this.trackTimezone() : undefined);
 
-  private weather = toSignal(
+  private forecast = toSignal(
     toObservable(this.nextRaceData).pipe(
       switchMap(race => race
-        ? this.weatherService.getCurrentWeather(race.Circuit.Location.lat, race.Circuit.Location.long)
+        ? this.weatherService.getForecast(race.Circuit.Location.lat, race.Circuit.Location.long, race.FirstPractice.date, race.date)
         : of(null)
       ),
       catchError(error => {
@@ -67,13 +68,39 @@ export class NextRaceComponent {
     { initialValue: null }
   );
 
-  currentWeather = computed(() => {
-    const weather = this.weather();
-    if (!weather) {
+  weekendForecast = computed(() => {
+    const days = this.forecast() ?? [];
+    return days.map(day => ({
+      ...day,
+      ...getWeatherInfo(day.weatherCode),
+      weekday: this.weekdayLabel(day.date),
+      tempMax: Math.round(day.tempMax),
+      tempMin: Math.round(day.tempMin),
+    }));
+  });
+
+  nextSessionIso = computed(() => {
+    const race = this.nextRaceData();
+    if (!race) {
       return null;
     }
-    const info = getWeatherInfo(weather.weatherCode);
-    return { ...info, temperature: Math.round(weather.temperature) };
+    const sessions = [
+      { date: race.FirstPractice.date, time: race.FirstPractice.time },
+      race.SprintQualifying?.time ? { date: race.SprintQualifying.date, time: race.SprintQualifying.time } : { date: race.SecondPractice.date, time: race.SecondPractice.time },
+      race.ThirdPractice?.time ? { date: race.ThirdPractice.date, time: race.ThirdPractice.time } : null,
+      race.Sprint?.time ? { date: race.Sprint.date, time: race.Sprint.time } : null,
+      { date: race.Qualifying.date, time: race.Qualifying.time },
+      { date: race.date, time: race.time },
+    ];
+
+    const now = Date.now();
+    const upcoming = sessions
+      .filter((session): session is { date: string; time: string } => !!session)
+      .map(session => this.sessionIso(session.date, session.time))
+      .filter(iso => new Date(iso).getTime() > now)
+      .sort();
+
+    return upcoming[0] ?? null;
   });
 
   toggleTimeMode(): void {
@@ -82,6 +109,10 @@ export class NextRaceComponent {
 
   sessionIso(date: string, time: string): string {
     return `${date}T${time}`;
+  }
+
+  private weekdayLabel(date: string): string {
+    return new Intl.DateTimeFormat('en-GB', { weekday: 'short', timeZone: 'UTC' }).format(new Date(`${date}T00:00:00Z`));
   }
 
   private formatDateRange(startDate: string, endDate: string): string {

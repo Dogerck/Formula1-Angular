@@ -1,0 +1,13 @@
+.countdown {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 6px;
+
+    &__days {
+        color: var(--red);
+    }
+
+    &__clock {
+        font-variant-numeric: tabular-nums;
+    }
+}

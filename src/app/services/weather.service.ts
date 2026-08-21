@@ -2,16 +2,20 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { Observable, map } from 'rxjs';
 
-interface OpenMeteoResponse {
-  current: {
-    temperature_2m: number;
-    weather_code: number;
+interface OpenMeteoDailyResponse {
+  daily: {
+    time: string[];
+    weather_code: number[];
+    temperature_2m_max: number[];
+    temperature_2m_min: number[];
   };
 }
 
-export interface CurrentWeather {
-  temperature: number;
+export interface DailyForecast {
+  date: string;
   weatherCode: number;
+  tempMax: number;
+  tempMin: number;
 }
 
 @Injectable({
@@ -21,17 +25,22 @@ export class WeatherService {
   private http = inject(HttpClient);
   private apiUrl = 'https://api.open-meteo.com/v1/forecast';
 
-  getCurrentWeather(lat: string, long: string): Observable<CurrentWeather> {
+  getForecast(lat: string, long: string, startDate: string, endDate: string): Observable<DailyForecast[]> {
     const params = {
       latitude: lat,
       longitude: long,
-      current: 'temperature_2m,weather_code',
+      daily: 'weather_code,temperature_2m_max,temperature_2m_min',
+      timezone: 'auto',
+      start_date: startDate,
+      end_date: endDate,
     };
-    return this.http.get<OpenMeteoResponse>(this.apiUrl, { params }).pipe(
-      map(response => ({
-        temperature: response.current.temperature_2m,
-        weatherCode: response.current.weather_code,
-      }))
+    return this.http.get<OpenMeteoDailyResponse>(this.apiUrl, { params }).pipe(
+      map(response => response.daily.time.map((date, i) => ({
+        date,
+        weatherCode: response.daily.weather_code[i],
+        tempMax: response.daily.temperature_2m_max[i],
+        tempMin: response.daily.temperature_2m_min[i],
+      })))
     );
   }
 }
