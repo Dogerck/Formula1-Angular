@@ -1,0 +1,12 @@
+<div class="circuit-map cut-card">
+    @if(label()) {
+        <div class="label circuit-map__label">{{ label() }}</div>
+    }
+    <iframe
+        [src]="mapUrl()"
+        class="circuit-map__frame"
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        title="Circuit location map">
+    </iframe>
+</div>

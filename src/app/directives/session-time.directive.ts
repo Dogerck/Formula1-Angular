@@ -20,12 +20,10 @@ export class SessionTimeDirective {
       }
       const date = new Date(iso);
       const timezone = this.timezone();
-      const formatter = new Intl.DateTimeFormat(undefined, {
-        hour: '2-digit',
-        minute: '2-digit',
-        ...(timezone ? { timeZone: timezone } : {}),
-      });
-      this.el.nativeElement.innerText = formatter.format(date);
+      const zoneOption = timezone ? { timeZone: timezone } : {};
+      const weekdayFormatter = new Intl.DateTimeFormat('en-GB', { weekday: 'short', ...zoneOption });
+      const timeFormatter = new Intl.DateTimeFormat('en-GB', { hour: '2-digit', minute: '2-digit', ...zoneOption });
+      this.el.nativeElement.innerText = `${weekdayFormatter.format(date)} · ${timeFormatter.format(date)}`;
     });
   }
 }

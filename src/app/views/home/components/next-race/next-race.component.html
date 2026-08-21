@@ -23,6 +23,9 @@
                 <h1 class="disp race-name">{{ race.raceName }}</h1>
                 <div class="circuit-line">{{ race.Circuit.circuitName }} &middot; {{ race.Circuit.Location.locality }}, {{ race.Circuit.Location.country }}</div>
                 <div class="label date-range">{{ formattedDateRange() }}</div>
+                @if(currentWeather(); as weather) {
+                    <div class="label weather-line">{{ weather.icon }} {{ weather.temperature }}&deg;C &middot; {{ weather.label }}</div>
+                }
                 <app-circuit-track [circuitId]="race.Circuit.circuitId" class="track-art"></app-circuit-track>
             </div>
             <div class="hero-sessions">
@@ -63,6 +66,12 @@
                 </div>
             </div>
         </div>
+        <app-circuit-map
+            [lat]="race.Circuit.Location.lat"
+            [long]="race.Circuit.Location.long"
+            [label]="race.Circuit.circuitName"
+            class="race-map">
+        </app-circuit-map>
     }
 
     @if(!nextRaceData() && !loaderService.loading()) {

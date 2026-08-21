@@ -1,14 +1,17 @@
 import { Component, ChangeDetectionStrategy, computed, inject, signal } from '@angular/core';
-import { toSignal } from '@angular/core/rxjs-interop';
-import { catchError, of } from 'rxjs';
+import { toSignal, toObservable } from '@angular/core/rxjs-interop';
+import { catchError, of, switchMap } from 'rxjs';
 import { Ergast } from 'src/app/models/Ergast/ergast';
 import { LoaderService } from 'src/app/services/loader-service.service';
 import { NextRaceService } from 'src/app/services/next-race.service';
+import { WeatherService } from 'src/app/services/weather.service';
 import { MatProgressSpinner } from '@angular/material/progress-spinner';
 import { FlagDirective } from '../../../../directives/flag.directive';
 import { SessionTimeDirective } from '../../../../directives/session-time.directive';
 import { getCircuitTimezone } from 'src/app/constants/circuit-timezones';
+import { getWeatherInfo } from 'src/app/constants/weather-codes';
 import { CircuitTrackComponent } from 'src/app/shared/circuit-track/circuit-track.component';
+import { CircuitMapComponent } from 'src/app/shared/circuit-map/circuit-map.component';
 
 type TimeMode = 'local' | 'track';
 
@@ -17,10 +20,11 @@ type TimeMode = 'local' | 'track';
     templateUrl: './next-race.component.html',
     styleUrls: ['./next-race.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [MatProgressSpinner, FlagDirective, SessionTimeDirective, CircuitTrackComponent]
+    imports: [MatProgressSpinner, FlagDirective, SessionTimeDirective, CircuitTrackComponent, CircuitMapComponent]
 })
 export class NextRaceComponent {
   private nextRaceService = inject(NextRaceService);
+  private weatherService = inject(WeatherService);
   loaderService = inject(LoaderService);
 
   private ergast = toSignal(
@@ -48,6 +52,29 @@ export class NextRaceComponent {
   });
 
   activeTimezone = computed(() => this.timeMode() === 'track' ? this.trackTimezone() : undefined);
+
+  private weather = toSignal(
+    toObservable(this.nextRaceData).pipe(
+      switchMap(race => race
+        ? this.weatherService.getCurrentWeather(race.Circuit.Location.lat, race.Circuit.Location.long)
+        : of(null)
+      ),
+      catchError(error => {
+        console.log('Erro:', error);
+        return of(null);
+      })
+    ),
+    { initialValue: null }
+  );
+
+  currentWeather = computed(() => {
+    const weather = this.weather();
+    if (!weather) {
+      return null;
+    }
+    const info = getWeatherInfo(weather.weatherCode);
+    return { ...info, temperature: Math.round(weather.temperature) };
+  });
 
   toggleTimeMode(): void {
     this.timeMode.set(this.timeMode() === 'local' ? 'track' : 'local');
