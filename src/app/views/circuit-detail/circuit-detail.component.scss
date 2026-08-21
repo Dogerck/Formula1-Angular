@@ -1,0 +1,191 @@
+@import '../../scss/global.scss';
+
+.page {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 96px 24px 64px;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+
+.loading-panel {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    min-height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.back-link {
+    color: var(--text-dim);
+    text-decoration: none;
+    cursor: pointer;
+
+    &:hover {
+        color: var(--red);
+    }
+}
+
+.circuit-hero {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    display: flex;
+    flex-wrap: wrap;
+    overflow: hidden;
+
+    @media screen and #{$mobile} {
+        flex-direction: column;
+    }
+
+    &__photo {
+        width: 280px;
+        flex-shrink: 0;
+        position: relative;
+
+        @media screen and #{$mobile} {
+            width: 100%;
+            height: 240px;
+        }
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: top;
+            display: block;
+            filter: grayscale(.1);
+        }
+
+        &::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(90deg, transparent 55%, var(--surface) 100%);
+
+            @media screen and #{$mobile} {
+                background: linear-gradient(0deg, var(--surface) 0%, transparent 40%);
+            }
+        }
+    }
+
+    &__info {
+        flex: 1 1 320px;
+        padding: 32px;
+
+        @media screen and #{$mobile} {
+            padding: 24px;
+        }
+    }
+
+    &__name {
+        font-size: 34px;
+        line-height: 1;
+        margin: 0 0 12px;
+
+        @media screen and #{$mobile} {
+            font-size: 26px;
+        }
+    }
+
+    &__flag {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 20px;
+
+        .img-flag {
+            height: 14px;
+            border-radius: 2px;
+        }
+    }
+
+    &__stats {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 24px 32px;
+    }
+
+    &__stat {
+        font-size: 16px;
+        margin-top: 6px;
+
+        &--cyan {
+            color: var(--cyan);
+        }
+    }
+
+    &__track {
+        flex: 1 1 220px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 24px;
+        border-left: 1px solid var(--border);
+
+        @media screen and #{$mobile} {
+            border-left: none;
+            border-top: 1px solid var(--border);
+            width: 100%;
+        }
+    }
+}
+
+.circuit-about {
+    .section-label {
+        margin-bottom: 10px;
+    }
+
+    &__text {
+        color: var(--text-dim);
+        font-size: 14px;
+        line-height: 1.6;
+        max-width: 800px;
+        margin: 0;
+    }
+}
+
+.circuit-map-block {
+    display: block;
+}
+
+.recent-winners {
+    .section-label {
+        margin-bottom: 14px;
+    }
+}
+
+.results-table {
+    border-top: 1px solid var(--border-strong);
+}
+
+.results-row {
+    display: grid;
+    grid-template-columns: 60px 1fr 200px 180px;
+    align-items: center;
+    gap: 16px;
+    padding: 14px 4px;
+    border-bottom: 1px solid var(--border);
+
+    &--head {
+        padding-bottom: 12px;
+        border-bottom: 1px solid var(--border-strong);
+    }
+
+    &__year {
+        color: var(--text-dim);
+    }
+
+    &__winner {
+        font-weight: 600;
+    }
+
+    @media screen and #{$mobile} {
+        grid-template-columns: 48px 1fr 1fr;
+
+        &__team {
+            display: none;
+        }
+    }
+}

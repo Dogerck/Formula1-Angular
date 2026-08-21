@@ -10,6 +10,7 @@ export const routes: Routes = [
   { path: 'drivers', title: 'Drivers', loadComponent: () => import('./views/drivers/drivers.component').then(m => m.DriversComponent) },
   { path: 'drivers/:driverId', title: 'Driver', loadComponent: () => import('./views/driver-detail/driver-detail.component').then(m => m.DriverDetailComponent) },
   { path: 'schedule', title: 'Schedule', loadComponent: () => import('./views/schedule/schedule.component').then(m => m.ScheduleComponent) },
+  { path: 'circuits/:circuitId', title: 'Circuit', loadComponent: () => import('./views/circuit-detail/circuit-detail.component').then(m => m.CircuitDetailComponent) },
   { path: 'compare', title: 'Compare', loadComponent: () => import('./views/compare/compare.component').then(m => m.CompareComponent) },
   { path: 'not-found', title: 'Not Found', loadComponent: () => import('./views/not-found/not-found.component').then(m => m.NotFoundComponent) },
   { path: '', redirectTo: 'home', pathMatch: 'full' },

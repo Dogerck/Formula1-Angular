@@ -2,7 +2,9 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { Observable, catchError, map, of, shareReplay } from 'rxjs';
 
-interface WikipediaSummary {
+export interface WikipediaSummary {
+  extract?: string;
+  description?: string;
   thumbnail?: { source: string };
   originalimage?: { source: string };
 }
@@ -12,9 +14,9 @@ interface WikipediaSummary {
 })
 export class WikipediaImageService {
   private http = inject(HttpClient);
-  private cache = new Map<string, Observable<string | null>>();
+  private cache = new Map<string, Observable<WikipediaSummary | null>>();
 
-  getImageUrl(wikipediaUrl: string): Observable<string | null> {
+  getSummary(wikipediaUrl: string): Observable<WikipediaSummary | null> {
     const summaryUrl = this.toSummaryApiUrl(wikipediaUrl);
     if (!summaryUrl) {
       return of(null);
@@ -22,7 +24,6 @@ export class WikipediaImageService {
 
     if (!this.cache.has(summaryUrl)) {
       const request$ = this.http.get<WikipediaSummary>(summaryUrl).pipe(
-        map(summary => summary.thumbnail?.source ?? summary.originalimage?.source ?? null),
         catchError(() => of(null)),
         shareReplay(1)
       );
@@ -30,6 +31,12 @@ export class WikipediaImageService {
     }
 
     return this.cache.get(summaryUrl)!;
+  }
+
+  getImageUrl(wikipediaUrl: string): Observable<string | null> {
+    return this.getSummary(wikipediaUrl).pipe(
+      map(summary => summary?.thumbnail?.source ?? summary?.originalimage?.source ?? null)
+    );
   }
 
   private toSummaryApiUrl(wikipediaUrl: string): string | null {

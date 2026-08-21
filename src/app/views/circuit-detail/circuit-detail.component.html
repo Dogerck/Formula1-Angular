@@ -1,0 +1,89 @@
+<div class="page">
+    @if(loaderService.loading()) {
+        <div class="loading-panel cut-card">
+            <mat-spinner diameter="36"></mat-spinner>
+        </div>
+    }
+
+    @if(circuit(); as circuit) {
+        <a routerLink="/schedule" class="label back-link">&larr; Back to Schedule</a>
+
+        <section class="circuit-hero cut-card">
+            <div class="circuit-hero__photo">
+                <img [appWikipediaPhoto]="circuit.url" alt="{{ circuit.circuitName }}">
+            </div>
+            <div class="circuit-hero__info">
+                <h1 class="disp circuit-hero__name">{{ circuit.circuitName }}</h1>
+                <div class="circuit-hero__flag">
+                    <img class="img-flag" [appFlag]="circuit.Location.country" alt="{{ circuit.Location.country }} flag">
+                    <span class="label">{{ circuit.Location.locality }}, {{ circuit.Location.country }}</span>
+                </div>
+                <div class="circuit-hero__stats">
+                    @if(firstRaceYear(); as year) {
+                        <div>
+                            <div class="label">First Grand Prix</div>
+                            <div class="mono circuit-hero__stat">{{ year }}</div>
+                        </div>
+                    }
+                    <div>
+                        <div class="label">Races Held</div>
+                        <div class="mono circuit-hero__stat circuit-hero__stat--cyan">{{ totalRaces() }}</div>
+                    </div>
+                    @if(mostWinsDriver(); as top) {
+                        <div>
+                            <div class="label">Most Wins &middot; Driver</div>
+                            <div class="mono circuit-hero__stat">{{ top.name }} ({{ top.wins }})</div>
+                        </div>
+                    }
+                    @if(mostWinsConstructor(); as top) {
+                        <div>
+                            <div class="label">Most Wins &middot; Team</div>
+                            <div class="mono circuit-hero__stat">{{ top.name }} ({{ top.wins }})</div>
+                        </div>
+                    }
+                </div>
+            </div>
+            <app-circuit-track [circuitId]="circuit.circuitId" class="circuit-hero__track"></app-circuit-track>
+        </section>
+
+        @if(description(); as text) {
+            <section class="circuit-about">
+                <div class="label section-label">About</div>
+                <p class="circuit-about__text">{{ text }}</p>
+            </section>
+        }
+
+        <app-circuit-map
+            [lat]="circuit.Location.lat"
+            [long]="circuit.Location.long"
+            [label]="circuit.circuitName"
+            class="circuit-map-block">
+        </app-circuit-map>
+
+        @if(recentWinners().length) {
+            <section class="recent-winners">
+                <div class="label section-label">Recent Winners</div>
+                <div class="results-table">
+                    <div class="results-row results-row--head label">
+                        <span>Year</span>
+                        <span>Race</span>
+                        <span>Winner</span>
+                        <span class="results-row__team">Team</span>
+                    </div>
+                    @for(race of recentWinners(); track race.season) {
+                        @if(race.Results?.[0]; as result) {
+                            <div class="results-row">
+                                <span class="mono results-row__year">{{ race.season }}</span>
+                                <span class="results-row__race">{{ race.raceName }}</span>
+                                <span class="results-row__winner">{{ result.Driver.givenName }} {{ result.Driver.familyName }}</span>
+                                <span class="label results-row__team">{{ result.Constructor.name }}</span>
+                            </div>
+                        }
+                    }
+                </div>
+            </section>
+        }
+    } @else if(!loaderService.loading()) {
+        <p class="label">No data.</p>
+    }
+</div>

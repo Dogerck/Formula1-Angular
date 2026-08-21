@@ -1,6 +1,7 @@
 import { Component, ChangeDetectionStrategy, computed, inject } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { catchError, of } from 'rxjs';
+import { RouterLink } from '@angular/router';
 import { Ergast } from 'src/app/models/Ergast/ergast';
 import { Races } from 'src/app/models/races';
 import { ScheduleService } from 'src/app/services/schedule.service';
@@ -20,7 +21,7 @@ export interface ScheduleRace extends Races {
     templateUrl: './schedule.component.html',
     styleUrls: ['./schedule.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [MatProgressSpinner, FlagDirective, ConvertToLocalDateDirective]
+    imports: [MatProgressSpinner, FlagDirective, ConvertToLocalDateDirective, RouterLink]
 })
 export class ScheduleComponent {
   private scheduleService = inject(ScheduleService);

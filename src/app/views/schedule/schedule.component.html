@@ -13,7 +13,7 @@
     @if(scheduleData().length) {
         <div class="race-list">
             @for(race of scheduleData(); track race.round) {
-                <div class="race-row" [class.race-row--next]="race.status === 'next'" [class.race-row--done]="race.status === 'done'">
+                <a [routerLink]="['/circuits', race.Circuit.circuitId]" class="race-row" [class.race-row--next]="race.status === 'next'" [class.race-row--done]="race.status === 'done'">
                     <span class="mono race-row__round">{{ race.round }}</span>
                     <span class="label race-row__status">
                         @switch (race.status) {
@@ -28,7 +28,7 @@
                     </div>
                     <img class="img-flag" [appFlag]="race.Circuit.Location.country" alt="{{ race.Circuit.Location.country }} flag">
                     <span class="mono race-row__date" appConvertToLocalDate="{{ race.date }}"></span>
-                </div>
+                </a>
             }
         </div>
     } @else if(!loaderService.loading()) {

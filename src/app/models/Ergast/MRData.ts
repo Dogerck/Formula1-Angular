@@ -3,6 +3,7 @@ import { ConstructorsTable } from "../tables/constructors-table";
 import { DriverTable } from "../tables/drivers-table";
 import { RaceTable } from "../tables/race-table";
 import { StandingsTable } from "../tables/standings-table";
+import { CircuitTable } from "../tables/circuits-table";
 
 export interface MRData {
     xmlns: string,
@@ -14,5 +15,6 @@ export interface MRData {
     DriverTable: DriverTable,
     StandingsTable: StandingsTable,
     RaceTable: RaceTable,
-    ConstructorTable: ConstructorsTable
+    ConstructorTable: ConstructorsTable,
+    CircuitTable?: CircuitTable
   }
