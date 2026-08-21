@@ -2,17 +2,11 @@ import { Component, ChangeDetectionStrategy, computed, inject, signal } from '@a
 import { toSignal, toObservable } from '@angular/core/rxjs-interop';
 import { catchError, forkJoin, map, of, switchMap } from 'rxjs';
 import { Ergast } from 'src/app/models/Ergast/ergast';
+import { DriverSeries } from 'src/app/models/driver-series';
 import { StandingsService } from 'src/app/services/standings.service';
 import { LoaderService } from 'src/app/services/loader-service.service';
 import { getTeamColor } from 'src/app/constants/team-colors';
 import { MatProgressSpinner } from '@angular/material/progress-spinner';
-
-interface DriverSeries {
-  driverId: string;
-  familyName: string;
-  color: string;
-  points: number[];
-}
 
 const CHART_WIDTH = 760;
 const CHART_HEIGHT = 280;
