@@ -90,18 +90,39 @@
     }
 
     @media screen and #{$mobile} {
-        grid-template-columns: 40px 1fr 20px;
-        row-gap: 8px;
+        grid-template-columns: 32px 1fr;
+        grid-template-areas:
+            "flag   name"
+            "round  name"
+            "status name"
+            "date   date";
+        column-gap: 16px;
+        row-gap: 6px;
 
-        &__status,
-        &__date {
-            grid-column: 2;
+        &__round {
+            grid-area: round;
+        }
+
+        &__status {
+            grid-area: status;
             justify-self: start;
             text-align: left;
         }
 
+        &__name {
+            grid-area: name;
+        }
+
+        &__date {
+            grid-area: date;
+            justify-self: start;
+            text-align: left;
+            margin-top: 6px;
+        }
+
         .img-flag {
-            grid-row: 1;
+            grid-area: flag;
+            justify-self: start;
         }
     }
 }
