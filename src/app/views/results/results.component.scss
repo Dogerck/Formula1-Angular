@@ -15,6 +15,35 @@
     justify-content: center;
 }
 
+.round-picker {
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    padding-bottom: 4px;
+    margin-bottom: 24px;
+}
+
+.round-chip {
+    flex-shrink: 0;
+    padding: 6px 12px;
+    border: 1px solid var(--border);
+    color: var(--text-dim);
+    text-decoration: none;
+    font-size: 12px;
+    cursor: pointer;
+    transition: border-color .3s ease, color .3s ease;
+
+    &:hover {
+        border-color: var(--text-dim);
+        color: var(--text);
+    }
+
+    &--active {
+        border-color: var(--cyan);
+        color: var(--cyan);
+    }
+}
+
 .page-head {
     display: flex;
     justify-content: space-between;

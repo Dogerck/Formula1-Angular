@@ -5,6 +5,15 @@
         </div>
     }
 
+    @if(completedRounds().length) {
+        <div class="round-picker">
+            <a routerLink="/results" class="mono round-chip" [class.round-chip--active]="!round()">Latest</a>
+            @for(r of completedRounds(); track r.round) {
+                <a [routerLink]="['/results', r.round]" class="mono round-chip" [class.round-chip--active]="round() === r.round" title="{{ r.raceName }}">{{ r.round }}</a>
+            }
+        </div>
+    }
+
     @if(race(); as race) {
         <div class="page-head">
             <div>
@@ -19,10 +28,10 @@
                 <span>Pos</span>
                 <span></span>
                 <span>Driver</span>
-                <span>Team</span>
-                <span class="align-end">Grid</span>
+                <span class="results-row__team">Team</span>
+                <span class="align-end results-row__grid">Grid</span>
                 <span class="align-end">Time / Gap</span>
-                <span class="align-end">Pts</span>
+                <span class="align-end results-row__points">Pts</span>
             </div>
             @for(result of results(); track result.Driver.driverId) {
                 <div class="results-row" [class.results-row--podium]="+result.position <= 3">

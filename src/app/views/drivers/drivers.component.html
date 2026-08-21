@@ -14,7 +14,7 @@
     @if(driversData().length || !loaderService.loading()) {
         <div class="driver-grid">
             @for(item of driversData(); track item.driverId) {
-                <div class="driver-card cut-card">
+                <a [routerLink]="['/drivers', item.driverId]" class="driver-card cut-card">
                     <div class="mono driver-number">{{ item.permanentNumber }}</div>
                     <img class="driver-photo" [appWikipediaPhoto]="item.url" alt="{{ item.givenName }} {{ item.familyName }}">
                     <div class="driver-info">
@@ -24,7 +24,7 @@
                             <img class="img-flag" [appFlag]="item.nationality" alt="{{ item.nationality }} flag">
                         </div>
                     </div>
-                </div>
+                </a>
             } @empty {
                 <p class="label">No data.</p>
             }

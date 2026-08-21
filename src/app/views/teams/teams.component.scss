@@ -85,7 +85,8 @@
     @media screen and #{$mobile} {
         grid-template-columns: 28px 8px 1fr 60px 60px;
 
-        .team-bar {
+        .team-bar,
+        .teams-row__bar-spacer {
             display: none;
         }
     }

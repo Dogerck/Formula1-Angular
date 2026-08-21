@@ -56,6 +56,10 @@
     position: relative;
     overflow: hidden;
     transition: border-color .3s ease;
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
 
     &:hover {
         border-color: var(--red);

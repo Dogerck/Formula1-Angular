@@ -1,0 +1,77 @@
+<div class="page">
+    @if(loaderService.loading()) {
+        <div class="loading-panel cut-card">
+            <mat-spinner diameter="36"></mat-spinner>
+        </div>
+    }
+
+    @if(driver(); as driver) {
+        <a routerLink="/drivers" class="label back-link">&larr; Back to Drivers</a>
+
+        <section class="driver-hero cut-card">
+            <div class="driver-hero__photo">
+                <img [appWikipediaPhoto]="driver.url" alt="{{ driver.givenName }} {{ driver.familyName }}">
+            </div>
+            <div class="driver-hero__info">
+                <div class="mono driver-hero__number">{{ driver.permanentNumber }}</div>
+                <h1 class="disp driver-hero__name">{{ driver.givenName }}<br>{{ driver.familyName }}</h1>
+                <div class="driver-hero__flag">
+                    <img class="img-flag" [appFlag]="driver.nationality" alt="{{ driver.nationality }} flag">
+                    <span class="label">{{ driver.nationality }}</span>
+                </div>
+                <div class="driver-hero__stats">
+                    <div>
+                        <div class="label">Code</div>
+                        <div class="mono driver-hero__stat">{{ driver.code }}</div>
+                    </div>
+                    <div>
+                        <div class="label">Born</div>
+                        <div class="mono driver-hero__stat">{{ driver.dateOfBirth }}</div>
+                    </div>
+                    @if(currentTeam(); as team) {
+                        <div>
+                            <div class="label">Team</div>
+                            <div class="mono driver-hero__stat">{{ team }}</div>
+                        </div>
+                    }
+                    <div>
+                        <div class="label">{{ currentYear }} Points</div>
+                        <div class="mono driver-hero__stat driver-hero__stat--cyan">{{ totalPoints() }}</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="season-results">
+            <div class="label section-label">{{ currentYear }} Results</div>
+            <div class="results-table">
+                <div class="results-row results-row--head label">
+                    <span>Rd</span>
+                    <span>Race</span>
+                    <span class="team-swatch"></span>
+                    <span class="results-row__team">Team</span>
+                    <span class="align-end results-row__grid">Grid</span>
+                    <span class="align-end">Result</span>
+                    <span class="align-end results-row__points">Pts</span>
+                </div>
+                @for(race of seasonRaces(); track race.round) {
+                    @if(race.Results?.[0]; as result) {
+                        <div class="results-row" [class.results-row--podium]="+result.position <= 3">
+                            <span class="mono results-row__round">{{ race.round }}</span>
+                            <span class="results-row__race">{{ race.raceName }}</span>
+                            <span class="team-swatch" [style.background-color]="getTeamColor(result.Constructor.name)"></span>
+                            <span class="label results-row__team">{{ result.Constructor.name }}</span>
+                            <span class="mono align-end results-row__grid">P{{ result.grid }}</span>
+                            <span class="mono align-end results-row__result">{{ result.position === result.positionText ? 'P' + result.position : result.status }}</span>
+                            <span class="mono align-end results-row__points" [class.results-row__points--win]="result.position === '1'">{{ result.points }}</span>
+                        </div>
+                    }
+                } @empty {
+                    <p class="label">No results yet.</p>
+                }
+            </div>
+        </section>
+    } @else if(!loaderService.loading()) {
+        <p class="label">No data.</p>
+    }
+</div>
