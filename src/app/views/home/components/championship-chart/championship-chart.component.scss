@@ -1,4 +1,4 @@
-@import '../../../../scss/global.scss';
+@use '../../../../scss/global' as *;
 
 .championship-chart {
     width: 100%;

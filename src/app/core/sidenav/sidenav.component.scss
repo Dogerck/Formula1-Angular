@@ -1,4 +1,4 @@
-@import '../../scss/global.scss';
+@use '../../scss/global' as *;
 
 // Custom elements default to `display: inline` in the absence of an explicit
 // rule, which breaks height/overflow calculations for the block-level

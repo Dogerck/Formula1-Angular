@@ -1,4 +1,5 @@
 @use '@angular/material' as mat;
+@use './app/scss/global' as *;
 // Plus imports for other components in your app.
 
 // Include the common styles for Angular Material. We include this here so that you only
@@ -6,7 +7,6 @@
 // Be sure that you only ever include this mixin once!
 @include mat.elevation-classes();
 @include mat.app-background();
-@import './app/scss/global.scss';
 
 // M3 theme built from the F1 brand colors (see _theme-colors.scss, generated with
 // `ng generate @angular/material:m3-theme --primary-color="#e10600" --secondary-color="#15151e"`).

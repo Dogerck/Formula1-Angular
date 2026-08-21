@@ -1,4 +1,4 @@
-@import '../../scss/global.scss';
+@use '../../scss/global' as *;
 
 .page {
     min-height: calc(100vh - 140px);
