@@ -1,3 +1,3 @@
-@import './custom-variations';
-@import './theme-colors';
-@import './tokens';
+@forward './custom-variations';
+@forward './theme-colors';
+@forward './tokens';

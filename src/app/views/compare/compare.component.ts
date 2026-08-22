@@ -3,6 +3,7 @@ import { toSignal, toObservable } from '@angular/core/rxjs-interop';
 import { catchError, of, switchMap } from 'rxjs';
 import { Ergast } from 'src/app/models/Ergast/ergast';
 import { Result } from 'src/app/models/result';
+import { DriverStats } from 'src/app/models/driver-stats';
 import { DriversService } from 'src/app/services/drivers.service';
 import { ResultsService } from 'src/app/services/results.service';
 import { StandingsService } from 'src/app/services/standings.service';
@@ -10,19 +11,6 @@ import { LoaderService } from 'src/app/services/loader-service.service';
 import { MatProgressSpinner } from '@angular/material/progress-spinner';
 import { WikipediaPhotoDirective } from 'src/app/directives/wikipedia-photo.directive';
 import { FlagDirective } from 'src/app/directives/flag.directive';
-
-interface DriverStats {
-  driverId: string;
-  givenName: string;
-  familyName: string;
-  url: string;
-  nationality: string;
-  team?: string;
-  points: number;
-  wins: number;
-  podiums: number;
-  races: number;
-}
 
 @Component({
     selector: 'app-compare',

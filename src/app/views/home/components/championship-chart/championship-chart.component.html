@@ -25,7 +25,7 @@
                         <text class="grid-label mono" x="0" [attr.y]="line.y - 4">{{ line.value }}</text>
                     }
 
-                    @for(series of series(); track series.driverId) {
+                    @for(series of visibleSeries(); track series.driverId) {
                         <path class="series-line" [attr.d]="linePath(series)" [attr.stroke]="series.color"></path>
                         <circle class="series-end-dot" [attr.cx]="plotRight" [attr.cy]="labelY(series)" r="3" [attr.fill]="series.color"></circle>
                         <text class="series-label mono" [attr.x]="plotRight + 8" [attr.y]="labelY(series) + 4" [attr.fill]="series.color">{{ series.familyName }}</text>
@@ -33,7 +33,7 @@
 
                     @if(hoverX(); as hx) {
                         <line class="hover-line" [attr.x1]="hx" [attr.x2]="hx" y1="16" [attr.y2]="chartHeight - 28"></line>
-                        @for(series of series(); track series.driverId) {
+                        @for(series of visibleSeries(); track series.driverId) {
                             <circle class="hover-dot" [attr.cx]="hx" [attr.cy]="yForHover(series)" r="3" [attr.fill]="series.color"></circle>
                         }
                     }
@@ -52,7 +52,7 @@
                 @if(hoverIndex() !== null) {
                     <div class="chart-readout mono">
                         <span class="chart-readout__round">R{{ rounds()[hoverIndex()!] }}</span>
-                        @for(series of series(); track series.driverId) {
+                        @for(series of visibleSeries(); track series.driverId) {
                             <span class="chart-readout__item" [style.color]="series.color">{{ series.familyName }} {{ series.points[hoverIndex()!] }}</span>
                         }
                     </div>
@@ -62,10 +62,14 @@
 
                 <div class="chart-legend">
                     @for(series of series(); track series.driverId) {
-                        <span class="chart-legend__item">
+                        <button
+                            type="button"
+                            class="chart-legend__item"
+                            [class.chart-legend__item--hidden]="hiddenDriverIds().has(series.driverId)"
+                            (click)="toggleDriver(series.driverId)">
                             <span class="chart-legend__dot" [style.background-color]="series.color"></span>
                             <span class="label">{{ series.familyName }}</span>
-                        </span>
+                        </button>
                     }
                 </div>
             </div>

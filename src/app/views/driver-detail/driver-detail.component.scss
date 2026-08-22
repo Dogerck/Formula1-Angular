@@ -1,4 +1,4 @@
-@import '../../scss/global.scss';
+@use '../../scss/global' as *;
 
 .page {
     max-width: 1200px;

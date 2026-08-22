@@ -2,17 +2,11 @@ import { Component, ChangeDetectionStrategy, computed, inject, signal } from '@a
 import { toSignal, toObservable } from '@angular/core/rxjs-interop';
 import { catchError, forkJoin, map, of, switchMap } from 'rxjs';
 import { Ergast } from 'src/app/models/Ergast/ergast';
+import { DriverSeries } from 'src/app/models/driver-series';
 import { StandingsService } from 'src/app/services/standings.service';
 import { LoaderService } from 'src/app/services/loader-service.service';
 import { getTeamColor } from 'src/app/constants/team-colors';
 import { MatProgressSpinner } from '@angular/material/progress-spinner';
-
-interface DriverSeries {
-  driverId: string;
-  familyName: string;
-  color: string;
-  points: number[];
-}
 
 const CHART_WIDTH = 760;
 const CHART_HEIGHT = 280;
@@ -34,6 +28,7 @@ export class ChampionshipChartComponent {
 
   showTable = signal(false);
   hoverIndex = signal<number | null>(null);
+  hiddenDriverIds = signal<ReadonlySet<string>>(new Set());
 
   private currentStandings = toSignal(
     this.standingsService.getAll<Ergast>('current/driverStandings.json').pipe(
@@ -48,7 +43,7 @@ export class ChampionshipChartComponent {
   private driverMeta = computed(() => {
     const list = this.currentStandings()?.MRData.StandingsTable.StandingsLists[0]?.DriverStandings ?? [];
     const meta = new Map<string, { familyName: string; team: string }>();
-    list.slice(0, 5).forEach(standing => meta.set(standing.Driver.driverId, {
+    list.slice(0, 10).forEach(standing => meta.set(standing.Driver.driverId, {
       familyName: standing.Driver.familyName,
       team: standing.Constructors[0]?.name ?? '',
     }));
@@ -61,7 +56,7 @@ export class ChampionshipChartComponent {
         const list = ergast?.MRData.StandingsTable.StandingsLists[0];
         const season = list?.season;
         const round = Number(list?.round ?? 0);
-        const topIds = (list?.DriverStandings ?? []).slice(0, 5).map(standing => standing.Driver.driverId);
+        const topIds = (list?.DriverStandings ?? []).slice(0, 10).map(standing => standing.Driver.driverId);
         if (!season || !round || !topIds.length) {
           return of(null);
         }
@@ -105,7 +100,9 @@ export class ChampionshipChartComponent {
     return Array.from({ length: count }, (_, i) => i + 1);
   });
 
-  private maxPoints = computed(() => Math.max(1, ...this.series().flatMap(s => s.points)));
+  visibleSeries = computed(() => this.series().filter(s => !this.hiddenDriverIds().has(s.driverId)));
+
+  private maxPoints = computed(() => Math.max(1, ...this.visibleSeries().flatMap(s => s.points)));
 
   chartWidth = CHART_WIDTH;
   chartHeight = CHART_HEIGHT;
@@ -169,5 +166,15 @@ export class ChampionshipChartComponent {
 
   toggleTable(): void {
     this.showTable.set(!this.showTable());
+  }
+
+  toggleDriver(driverId: string): void {
+    const next = new Set(this.hiddenDriverIds());
+    if (next.has(driverId)) {
+      next.delete(driverId);
+    } else {
+      next.add(driverId);
+    }
+    this.hiddenDriverIds.set(next);
   }
 }
