@@ -10,6 +10,7 @@ import { FavoriteDriverService } from 'src/app/services/favorite-driver.service'
 import { MatProgressSpinner } from '@angular/material/progress-spinner';
 import { getTeamColor } from 'src/app/constants/team-colors';
 import { RacePaceChartComponent } from './components/race-pace-chart/race-pace-chart.component';
+import { TireStrategyChartComponent } from './components/tire-strategy-chart/tire-strategy-chart.component';
 
 type ResultsTab = 'race' | 'qualifying';
 
@@ -18,7 +19,7 @@ type ResultsTab = 'race' | 'qualifying';
     templateUrl: './results.component.html',
     styleUrls: ['./results.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [MatProgressSpinner, RouterLink, RacePaceChartComponent]
+    imports: [MatProgressSpinner, RouterLink, RacePaceChartComponent, TireStrategyChartComponent]
 })
 export class ResultsComponent {
   private resultsService = inject(ResultsService);
@@ -53,6 +54,8 @@ export class ResultsComponent {
   results = computed(() => this.race()?.Results ?? []);
 
   topFinisherNumbers = computed(() => new Set(this.results().slice(0, 10).map(result => Number(result.number))));
+
+  finishingOrderNumbers = computed(() => this.results().map(result => Number(result.number)));
 
   qualifyingResults = computed(() => this.race()?.QualifyingResults ?? []);
 

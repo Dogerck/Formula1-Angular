@@ -1,6 +1,6 @@
 import { Component, ChangeDetectionStrategy, computed, inject, input } from '@angular/core';
 import { toSignal, toObservable } from '@angular/core/rxjs-interop';
-import { catchError, forkJoin, map, of, switchMap } from 'rxjs';
+import { catchError, forkJoin, of, switchMap } from 'rxjs';
 import { OpenF1Service } from 'src/app/services/openf1.service';
 import { LoaderService } from 'src/app/services/loader-service.service';
 import { CHART_COLORS, chartAxisLabel, chartAxisLine, chartGrid, chartLegendTextStyle, chartSplitLine, chartTooltip } from 'src/app/constants/echart-theme';
@@ -38,15 +38,7 @@ export class RacePaceChartComponent {
 
   private sessionKey = toSignal(
     toObservable(this.raceKey).pipe(
-      switchMap(({ season, raceDate }) => {
-        const year = Number(season);
-        if (!year || !raceDate) {
-          return of(null);
-        }
-        return this.openF1Service.getRaceSessions(year).pipe(
-          map(sessions => sessions.find(session => session.date_start.startsWith(raceDate))?.session_key ?? null)
-        );
-      }),
+      switchMap(({ season, raceDate }) => this.openF1Service.getSessionKeyForRace(season, raceDate)),
       catchError(error => {
         console.log('Erro:', error);
         return of(null);

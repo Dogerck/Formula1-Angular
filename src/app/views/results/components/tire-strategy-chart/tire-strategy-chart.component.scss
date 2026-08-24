@@ -1,0 +1,56 @@
+@use '../../../../scss/global' as *;
+
+.tire-strategy-chart {
+    width: 100%;
+    margin-top: 40px;
+
+    .section-label-row {
+        margin-bottom: 14px;
+    }
+
+    .section-label {
+        margin-bottom: 0;
+    }
+
+    .loading-panel {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        min-height: 200px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .chart-panel {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        padding: 24px;
+
+        &--empty {
+            color: var(--text-faint);
+            text-transform: none;
+            letter-spacing: normal;
+        }
+    }
+
+    .compound-legend {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 16px;
+        margin-top: 16px;
+        padding-top: 14px;
+        border-top: 1px solid var(--border);
+
+        &__item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        &__dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+        }
+    }
+}
