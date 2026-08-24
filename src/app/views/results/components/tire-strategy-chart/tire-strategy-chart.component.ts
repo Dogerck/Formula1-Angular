@@ -4,7 +4,7 @@ import { catchError, forkJoin, of, switchMap } from 'rxjs';
 import { OpenF1Service, OpenF1Stint } from 'src/app/services/openf1.service';
 import { LoaderService } from 'src/app/services/loader-service.service';
 import { getTireCompoundColor } from 'src/app/constants/tire-compound-colors';
-import { chartAxisLabel, chartAxisLine, chartGrid, chartTooltip } from 'src/app/constants/echart-theme';
+import { chartAxisLabel, chartAxisLine, chartGrid, chartTooltip, MONO_FONT } from 'src/app/constants/echart-theme';
 import { MatProgressSpinner } from '@angular/material/progress-spinner';
 import { EchartComponent, EChartOption } from 'src/app/shared/echart/echart.component';
 
@@ -136,6 +136,15 @@ export class TireStrategyChartComponent {
         type: 'bar' as const,
         stack: 'laps',
         barMaxWidth: 18,
+        label: {
+          show: true,
+          position: 'inside' as const,
+          color: '#0b0b0e',
+          fontFamily: MONO_FONT,
+          fontSize: 10,
+          fontWeight: 700 as const,
+          formatter: (params: any) => (params.value > 0 ? params.value : ''),
+        },
         data: drivers.map(driver => {
           const stint = driver.stints[stintIndex];
           if (!stint) {

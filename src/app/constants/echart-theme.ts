@@ -11,7 +11,7 @@ export const CHART_COLORS = {
   red: '#e10600',
 } as const;
 
-const MONO_FONT = "'Space Mono', monospace";
+export const MONO_FONT = "'Space Mono', monospace";
 const LABEL_FONT = "'Titillium Web', sans-serif";
 
 export const chartAxisLabel = {
