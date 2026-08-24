@@ -6,29 +6,22 @@ import { DriverSeries } from 'src/app/models/driver-series';
 import { StandingsService } from 'src/app/services/standings.service';
 import { LoaderService } from 'src/app/services/loader-service.service';
 import { getTeamColor } from 'src/app/constants/team-colors';
+import { CHART_COLORS, chartAxisLabel, chartAxisLine, chartGrid, chartLegendTextStyle, chartSplitLine, chartTooltip } from 'src/app/constants/echart-theme';
 import { MatProgressSpinner } from '@angular/material/progress-spinner';
-
-const CHART_WIDTH = 760;
-const CHART_HEIGHT = 280;
-const PADDING_X = 12;
-const PADDING_TOP = 16;
-const PADDING_BOTTOM = 28;
-const LABEL_GUTTER = 70;
+import { EchartComponent, EChartOption } from 'src/app/shared/echart/echart.component';
 
 @Component({
     selector: 'app-championship-chart',
     templateUrl: './championship-chart.component.html',
     styleUrls: ['./championship-chart.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [MatProgressSpinner]
+    imports: [MatProgressSpinner, EchartComponent]
 })
 export class ChampionshipChartComponent {
   private standingsService = inject(StandingsService);
   loaderService = inject(LoaderService);
 
   showTable = signal(false);
-  hoverIndex = signal<number | null>(null);
-  hiddenDriverIds = signal<ReadonlySet<string>>(new Set());
 
   private currentStandings = toSignal(
     this.standingsService.getAll<Ergast>('current/driverStandings.json').pipe(
@@ -100,81 +93,51 @@ export class ChampionshipChartComponent {
     return Array.from({ length: count }, (_, i) => i + 1);
   });
 
-  visibleSeries = computed(() => this.series().filter(s => !this.hiddenDriverIds().has(s.driverId)));
-
-  private maxPoints = computed(() => Math.max(1, ...this.visibleSeries().flatMap(s => s.points)));
-
-  chartWidth = CHART_WIDTH;
-  chartHeight = CHART_HEIGHT;
-  plotRight = CHART_WIDTH - LABEL_GUTTER;
-
-  private xForIndex(index: number): number {
-    const count = this.rounds().length;
-    if (count <= 1) {
-      return PADDING_X;
-    }
-    return PADDING_X + (index / (count - 1)) * (this.plotRight - PADDING_X);
-  }
-
-  private yForValue(value: number): number {
-    const usable = CHART_HEIGHT - PADDING_TOP - PADDING_BOTTOM;
-    return PADDING_TOP + usable - (value / this.maxPoints()) * usable;
-  }
-
-  linePath(series: DriverSeries): string {
-    return series.points.map((value, i) => `${i === 0 ? 'M' : 'L'}${this.xForIndex(i)},${this.yForValue(value)}`).join(' ');
-  }
-
-  labelY(series: DriverSeries): number {
-    return this.yForValue(series.points[series.points.length - 1] ?? 0);
-  }
-
-  gridLines = computed(() => {
-    const max = this.maxPoints();
-    const steps = 4;
-    return Array.from({ length: steps + 1 }, (_, i) => {
-      const value = Math.round((max / steps) * i);
-      return { value, y: this.yForValue(value) };
-    });
-  });
-
-  hoverX = computed(() => {
-    const index = this.hoverIndex();
-    return index === null ? null : this.xForIndex(index);
-  });
-
-  yForHover(series: DriverSeries): number {
-    const index = this.hoverIndex();
-    return index === null ? 0 : this.yForValue(series.points[index] ?? 0);
-  }
-
-  onHover(event: MouseEvent): void {
-    const count = this.rounds().length;
-    if (count < 2) {
-      return;
-    }
-    const target = event.currentTarget as SVGRectElement;
-    const bounds = target.getBoundingClientRect();
-    const ratio = (event.clientX - bounds.left) / bounds.width;
-    const index = Math.round(ratio * (count - 1));
-    this.hoverIndex.set(Math.min(count - 1, Math.max(0, index)));
-  }
-
-  onLeave(): void {
-    this.hoverIndex.set(null);
-  }
+  chartOptions = computed<EChartOption>(() => ({
+    backgroundColor: 'transparent',
+    grid: chartGrid,
+    tooltip: {
+      trigger: 'axis',
+      ...chartTooltip,
+      valueFormatter: value => `${value} pts`,
+    },
+    legend: {
+      type: 'scroll',
+      top: 0,
+      textStyle: chartLegendTextStyle,
+      inactiveColor: CHART_COLORS.textFaint,
+    },
+    xAxis: {
+      type: 'category',
+      data: this.rounds().map(round => `R${round}`),
+      axisLabel: chartAxisLabel,
+      axisLine: chartAxisLine,
+      splitLine: { show: false },
+    },
+    yAxis: {
+      type: 'value',
+      axisLabel: chartAxisLabel,
+      splitLine: chartSplitLine,
+    },
+    dataZoom: [{ type: 'inside' }],
+    // Direct end-of-line labels collide when several drivers finish close in
+    // points, and ECharts' own overlap-avoidance doesn't reposition endLabel
+    // (open upstream limitation). The legend plus hover-to-highlight below
+    // identifies a line without that clutter.
+    series: this.series().map(driver => ({
+      name: driver.familyName,
+      type: 'line',
+      data: driver.points,
+      color: driver.color,
+      symbol: 'circle',
+      symbolSize: 4,
+      lineStyle: { width: 2 },
+      emphasis: { focus: 'series', lineStyle: { width: 3 } },
+      blur: { lineStyle: { opacity: 0.15 }, itemStyle: { opacity: 0.15 } },
+    })),
+  }));
 
   toggleTable(): void {
     this.showTable.set(!this.showTable());
-  }
-
-  toggleDriver(driverId: string): void {
-    const next = new Set(this.hiddenDriverIds());
-    if (next.has(driverId)) {
-      next.delete(driverId);
-    } else {
-      next.add(driverId);
-    }
-    this.hiddenDriverIds.set(next);
   }
 }
