@@ -17,6 +17,9 @@ export interface OpenF1Lap {
   lap_duration: number | null;
   is_pit_out_lap: boolean;
   st_speed: number | null;
+  duration_sector_1: number | null;
+  duration_sector_2: number | null;
+  duration_sector_3: number | null;
 }
 
 export interface OpenF1Driver {

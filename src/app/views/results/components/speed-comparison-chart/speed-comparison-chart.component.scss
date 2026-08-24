@@ -1,0 +1,35 @@
+@use '../../../../scss/global' as *;
+
+.speed-comparison-chart {
+    width: 100%;
+    margin-top: 40px;
+
+    .section-label-row {
+        margin-bottom: 14px;
+    }
+
+    .section-label {
+        margin-bottom: 0;
+    }
+
+    .loading-panel {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        min-height: 200px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .chart-panel {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        padding: 24px;
+
+        &--empty {
+            color: var(--text-faint);
+            text-transform: none;
+            letter-spacing: normal;
+        }
+    }
+}

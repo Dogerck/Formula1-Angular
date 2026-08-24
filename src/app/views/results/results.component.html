@@ -58,6 +58,8 @@
 
             <app-race-pace-chart [season]="race.season" [raceDate]="race.date" [topFinisherNumbers]="topFinisherNumbers()"></app-race-pace-chart>
             <app-tire-strategy-chart [season]="race.season" [raceDate]="race.date" [driverOrder]="finishingOrderNumbers()"></app-tire-strategy-chart>
+            <app-speed-comparison-chart [season]="race.season" [raceDate]="race.date"></app-speed-comparison-chart>
+            <app-sector-comparison-chart [season]="race.season" [raceDate]="race.date" [driverOrder]="finishingOrderNumbers()"></app-sector-comparison-chart>
         } @else {
             <div class="results-table results-table--qualifying">
                 <div class="results-row results-row--head label">

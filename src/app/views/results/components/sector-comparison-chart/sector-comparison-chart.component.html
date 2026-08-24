@@ -1,0 +1,17 @@
+<section class="sector-comparison-chart">
+    <div class="section-label-row">
+        <div class="label section-label">Best Sector Times</div>
+    </div>
+
+    @if(!loaded()) {
+        <div class="loading-panel cut-card">
+            <mat-spinner diameter="36"></mat-spinner>
+        </div>
+    } @else if(drivers().length) {
+        <div class="chart-panel cut-card">
+            <app-echart [options]="chartOptions()" [height]="chartHeight()"></app-echart>
+        </div>
+    } @else {
+        <div class="chart-panel cut-card chart-panel--empty label">No sector data available for this race yet.</div>
+    }
+</section>

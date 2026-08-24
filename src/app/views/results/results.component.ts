@@ -11,6 +11,8 @@ import { MatProgressSpinner } from '@angular/material/progress-spinner';
 import { getTeamColor } from 'src/app/constants/team-colors';
 import { RacePaceChartComponent } from './components/race-pace-chart/race-pace-chart.component';
 import { TireStrategyChartComponent } from './components/tire-strategy-chart/tire-strategy-chart.component';
+import { SpeedComparisonChartComponent } from './components/speed-comparison-chart/speed-comparison-chart.component';
+import { SectorComparisonChartComponent } from './components/sector-comparison-chart/sector-comparison-chart.component';
 
 type ResultsTab = 'race' | 'qualifying';
 
@@ -19,7 +21,7 @@ type ResultsTab = 'race' | 'qualifying';
     templateUrl: './results.component.html',
     styleUrls: ['./results.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [MatProgressSpinner, RouterLink, RacePaceChartComponent, TireStrategyChartComponent]
+    imports: [MatProgressSpinner, RouterLink, RacePaceChartComponent, TireStrategyChartComponent, SpeedComparisonChartComponent, SectorComparisonChartComponent]
 })
 export class ResultsComponent {
   private resultsService = inject(ResultsService);
