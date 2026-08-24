@@ -55,6 +55,8 @@
                     <p class="label">No data.</p>
                 }
             </div>
+
+            <app-race-pace-chart [season]="race.season" [raceDate]="race.date" [topFinisherNumbers]="topFinisherNumbers()"></app-race-pace-chart>
         } @else {
             <div class="results-table results-table--qualifying">
                 <div class="results-row results-row--head label">

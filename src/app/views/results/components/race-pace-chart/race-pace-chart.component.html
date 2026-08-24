@@ -1,0 +1,77 @@
+<section class="race-pace-chart">
+    <div class="section-label-row">
+        <div class="label section-label">Race Pace &middot; Lap Times</div>
+    </div>
+
+    @if(!loaded()) {
+        <div class="loading-panel cut-card">
+            <mat-spinner diameter="36"></mat-spinner>
+        </div>
+    } @else if(series().length) {
+        <div class="chart-panel cut-card">
+            <svg [attr.viewBox]="'0 0 ' + chartWidth + ' ' + chartHeight" class="chart-svg" preserveAspectRatio="none">
+                @for(line of gridLines(); track line.value) {
+                    <line class="grid-line" x1="12" [attr.x2]="plotRight" [attr.y1]="line.y" [attr.y2]="line.y"></line>
+                    <text class="grid-label mono" x="0" [attr.y]="line.y - 4">{{ formatLapTime(line.value) }}</text>
+                }
+
+                @for(tick of lapTicks(); track tick) {
+                    <line class="lap-tick" [attr.x1]="xForLap(tick)" [attr.x2]="xForLap(tick)" y1="16" [attr.y2]="chartHeight - 28"></line>
+                    <text class="lap-tick-label mono" [attr.x]="xForLap(tick)" [attr.y]="chartHeight - 10" text-anchor="middle">L{{ tick }}</text>
+                }
+
+                @for(series of visibleSeries(); track series.driverNumber) {
+                    <path class="series-line" [attr.d]="linePath(series)" [attr.stroke]="series.color"></path>
+                }
+
+                @for(entry of labelPositions(); track entry.series.driverNumber) {
+                    <circle class="series-end-dot" [attr.cx]="plotRight" [attr.cy]="entry.dotY" r="3" [attr.fill]="entry.series.color"></circle>
+                    <text class="series-label mono" [attr.x]="plotRight + 8" [attr.y]="entry.labelY + 4" [attr.fill]="entry.series.color">{{ entry.series.name }}</text>
+                }
+
+                @if(hoverX(); as hx) {
+                    <line class="hover-line" [attr.x1]="hx" [attr.x2]="hx" y1="16" [attr.y2]="chartHeight - 28"></line>
+                    @for(entry of hoverReadout(); track entry.series.driverNumber) {
+                        <circle class="hover-dot" [attr.cx]="hx" [attr.cy]="entry.y" [attr.fill]="entry.series.color" r="3"></circle>
+                    }
+                }
+
+                <rect
+                    class="hover-target"
+                    x="12"
+                    y="0"
+                    [attr.width]="plotRight - 12"
+                    [attr.height]="chartHeight"
+                    (mousemove)="onHover($event)"
+                    (mouseleave)="onLeave()">
+                </rect>
+            </svg>
+
+            @if(hoverLap(); as lap) {
+                <div class="chart-readout mono">
+                    <span class="chart-readout__round">Lap {{ lap }}</span>
+                    @for(entry of hoverReadout(); track entry.series.driverNumber) {
+                        <span class="chart-readout__item" [style.color]="entry.series.color">{{ entry.series.name }} {{ formatLapTime(entry.point.duration) }}</span>
+                    }
+                </div>
+            } @else {
+                <div class="chart-readout chart-readout--hint label">Hover the chart for lap-by-lap times</div>
+            }
+
+            <div class="chart-legend">
+                @for(series of series(); track series.driverNumber) {
+                    <button
+                        type="button"
+                        class="chart-legend__item"
+                        [class.chart-legend__item--hidden]="!isVisible(series.driverNumber)"
+                        (click)="toggleDriver(series.driverNumber)">
+                        <span class="chart-legend__dot" [style.background-color]="series.color"></span>
+                        <span class="label">{{ series.name }}</span>
+                    </button>
+                }
+            </div>
+        </div>
+    } @else {
+        <div class="chart-panel cut-card chart-panel--empty label">No lap data available for this race yet.</div>
+    }
+</section>
