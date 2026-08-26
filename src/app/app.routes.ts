@@ -1,7 +1,7 @@
 import { Routes } from '@angular/router';
 
 export const routes: Routes = [
-  { path: 'home', title: 'Formula 1 - Angular', loadComponent: () => import('./views/home/home.component').then(m => m.HomeComponent) },
+  { path: 'home', title: 'Apex', loadComponent: () => import('./views/home/home.component').then(m => m.HomeComponent) },
   { path: 'teams', title: 'Teams', loadComponent: () => import('./views/teams/teams.component').then(m => m.TeamsComponent) },
   { path: 'teams/:constructorId', title: 'Team', loadComponent: () => import('./views/team-detail/team-detail.component').then(m => m.TeamDetailComponent) },
   { path: 'latest', title: 'Latest', loadComponent: () => import('./views/latest/latest.component').then(m => m.LatestComponent) },
